@@ -6,12 +6,11 @@
 /*   By: jwalsh <jwalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 15:03:06 by jwalsh            #+#    #+#             */
-/*   Updated: 2018/04/25 16:27:39 by jwalsh           ###   ########.fr       */
+/*   Updated: 2018/04/25 16:35:00 by jwalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <glad/glad.h>
-#include <glfw/glfw3.h>
+#include "Glfw.hpp"
 
 int    main ( void ) {
 	
