@@ -1,0 +1,86 @@
+1. Makefile and compilation with OpenGl, glad, and OpenGl math extension. 
+2. Hiearachy of structure for OpenGl
+	
+	Matrix Class and Functions (for HumanGL, not for rest of projects)
+		Rotation Matrix Class
+		...
+	Vectors Class and Functions (")
+	
+	GLFW Class
+	Window Class
+	ShaderProgram Class
+	Object Class
+		Sphere Class
+		Rectangle Class
+			Square Class
+		...
+	Texture Class (to read bmps. May not be necessary for humanGL)
+
+
+Handling Multiple Objects
+Each object has its own
+	centering matrix (should be applied to vertices once and modify them)
+	model matrix to determine scaling, rotation, translation
+	texture? color?
+
+Use Scene Graph to create hierarchy between objects
+
+
+Consider splitting up attributes in different VBOs
+Can be stored in the same VBO, but an Object instance defines the number of vertices it has and its position in the VBO
+
+-> Call the glDrawArrays function once per object, but send a different model matrix to the vertex shader each time before we start to render. 
+
+Continue OpenGl tutorial
+
+
+
+
+General Algorithm:
+
+Move part of body by updating Model Matrix components
+Recalculate child nodes by with new matrix
+Use opencl to calculate? - no, there aren't that many vertices...
+
+Human -	Torso
+	Head
+	Upper Arm R
+		Lower Arm R
+	Upper Arm L
+		Lower Arm L
+	Upper Leg R
+		Lower Leg R
+	Upper Leg L
+		Lower Leg L
+
+Class BodyPart
+	Parent BodyPart (can be null)
+	Children BodyParts
+	render
+	change dimensions
+	Move
+	Rotate
+
+Handling movements
+	define rule of movement over time depending on movement.
+	define rotation and/or translation vectors (to add to matrices) based on movement type and time in movement.
+	define acceleration, max relative velocity. Use sine, cosine function to smooth out.
+	interpolate positions from intermediary poses.
+
+Example: walking (legs). 5 - 9 keyframes. Must be smooth though
+	1. Contact
+	2. Down
+	3. Passing
+	4. Up
+	5. Contact (opposite)
+
+determine angle and position changes over time for each body part.
+The origin of a body part is it's point of contact with a parent body part.
+Determine angle and position relative to parent body part over time.
+To move to next keyframe, determine how many frames need to take place between current keyframe and next and prepare intermediate keyframes based on FPS. 
+Set angles of each body part relative to parent body part for each keyframe. Do we actually need to define a translation for each body part? - no, though we can for the head to define bobbing.
+
+Cycle Class
+Frame Class
+	Keyframe Class
+Body Part
