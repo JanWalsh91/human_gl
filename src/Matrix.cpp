@@ -1,12 +1,13 @@
 #include "Matrix.hpp"
 
-Matrix::Matrix( void ) {
-	// this->m = {
-	// 	1, 0, 0, 0,
-	// 	0, 1, 0, 0, 
-	// 	0, 0, 1, 0,
-	// 	0, 0, 0, 1
-	// };
+Matrix::Matrix( void ) {}
+
+Matrix::Matrix( unsigned size ) {
+	this->m = new float[size * size];
+	m[0] = 1;
+	m[5] = 1;
+	m[10] = 1;
+	m[15] = 1;
 }
 
 Matrix::Matrix( Matrix const & matrix ) {

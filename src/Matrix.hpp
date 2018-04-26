@@ -6,14 +6,17 @@
 class Matrix {
 
 	public:
-		Matrix( void );
+		Matrix( unsigned size );
 		Matrix( Matrix const & );
 		~Matrix( void );
-
+		
 		Matrix & operator=( Matrix const & rhs );
-	
+		float const & toArray( void ) const;
+
 	private:
-		float	m[16];
+		Matrix( void );
+		float		*m;
+		unsigned	size;
 };
 
 #endif

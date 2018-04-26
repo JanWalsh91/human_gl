@@ -3,6 +3,6 @@
 
 int    main ( void ) {
 	
-	Matrix m;
+	Matrix m(4);
 	return (0);
 }
