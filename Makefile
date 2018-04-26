@@ -6,7 +6,7 @@
 #    By: jwalsh <jwalsh@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/12 15:16:17 by jwalsh            #+#    #+#              #
-#    Updated: 2018/04/25 16:27:10 by jwalsh           ###   ########.fr        #
+#    Updated: 2018/04/26 12:42:24 by jwalsh           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ GLFW_LIB := glfw3
 LIBRARIES := ./libs
 
 CC = gcc
-CXX := clang++
+CXX := clang++ -std=c++14
 CCFLAGS := -Wall -Werror -Wextra
 
 all: $(NAME)

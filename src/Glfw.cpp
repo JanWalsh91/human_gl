@@ -15,5 +15,8 @@ Glfw::Glfw( Glfw const & Glfw ) {
 Glfw::~Glfw( void ) {}
 
 Glfw & Glfw::operator=( Glfw const & rhs ) {
+	this->window = rhs.window;
+	this->win_h = rhs.win_h;
+	this->win_w = rhs.win_w;
 	return *this;
 }

@@ -9,15 +9,10 @@
 	GLFW Class
 	Window Class
 	ShaderProgram Class
-	Object Class
-		Sphere Class
-		Rectangle Class
-			Square Class
-		...
 	Texture Class (to read bmps. May not be necessary for humanGL)
 
-
 Handling Multiple Objects
+
 Each object has its own
 	centering matrix (should be applied to vertices once and modify them)
 	model matrix to determine scaling, rotation, translation
@@ -54,12 +49,13 @@ Human -	Torso
 		Lower Leg L
 
 Class BodyPart
-	Parent BodyPart (can be null)
-	Children BodyParts
-	render
-	change dimensions
-	Move
-	Rotate
+	// Parent BodyPart (can be null)
+	Children BodyParts list
+	render()
+	update matrix()
+	Matrix
+	pos * 3
+	rot * 3 
 
 Handling movements
 	define rule of movement over time depending on movement.
@@ -76,8 +72,11 @@ Example: walking (legs). 5 - 9 keyframes. Must be smooth though
 
 determine angle and position changes over time for each body part.
 The origin of a body part is it's point of contact with a parent body part.
+
 Determine angle and position relative to parent body part over time.
+
 To move to next keyframe, determine how many frames need to take place between current keyframe and next and prepare intermediate keyframes based on FPS. 
+
 Set angles of each body part relative to parent body part for each keyframe. Do we actually need to define a translation for each body part? - no, though we can for the head to define bobbing.
 
 Cycle Class
