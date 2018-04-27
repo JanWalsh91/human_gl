@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(nanogui_test)
+project(human_gl)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
@@ -8,6 +8,6 @@ include_directories(libs/nanogui/include)
 include_directories(${NANOGUI_EXTRA_INCS})
 add_definitions(${NANOGUI_EXTRA_DEFS})
 
-set(SOURCE_FILES patate.cpp)
-add_executable(nanogui_test ${SOURCE_FILES})
-target_link_libraries(nanogui_test nanogui ${NANOGUI_EXTRA_LIBS})
+set(SOURCE_FILES src/main.cpp src/Matrix.cpp src/Vector.cpp )
+add_executable(human_gl ${SOURCE_FILES})
+target_link_libraries(human_gl nanogui ${NANOGUI_EXTRA_LIBS})
