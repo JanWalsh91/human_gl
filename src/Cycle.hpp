@@ -5,6 +5,7 @@
 # include "KeyFrame.hpp"
 # include "Vector.hpp"
 
+# include <GLFW/glfw3.h>
 # include <string>
 
 class Cycle {
@@ -19,14 +20,20 @@ class Cycle {
 		void	interpolate(); // call on each KeyFrame to interpolate Frames between itself and next KeyFrame
 		void	play(); // loop over updating uniform matrix and VBO
 
+		Frame&	getCurrentFrame();
+
+		void	setStartTime( unsigned time ) { this->startTime = time; }
+		unsigned	getStartTime() { return this->startTime; }
 	private:
-		vector<KeyFrame>	keyFrames;
-		vector<Frame>		frames;
+		std::vector<KeyFrame>	keyFrames;
+		std::vector<Frame>		frames;
 		unsigned			totalTime;
 		unsigned			framesPerCycle;
-		static const unsigned	keyFramesPerCycle = 60;
-		string				name;
+		unsigned			startTime;
+		std::string				name;
 
+
+		static const unsigned	keyFramesPerCycle = 60;
 
 };
 

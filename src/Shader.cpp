@@ -1,5 +1,9 @@
 #include "Shader.hpp"
 
+# include <GLFW/glfw3.h>
+
+Shader::Shader() {}
+
 Shader::Shader( const char* vertexPath, const char* fragmentPath ) {
 	std::string vertexCode;
 	std::string fragmentCode;
@@ -60,7 +64,7 @@ Shader & Shader::operator=( Shader const & rhs ) {
 	return *this;
 }
 
-Shader::checkCompileErrors( unsigned int shader, std::string type )
+void Shader::checkCompileErrors( unsigned int shader, std::string type )
 {
 	int success;
 	char infoLog[1024];
@@ -72,6 +76,7 @@ Shader::checkCompileErrors( unsigned int shader, std::string type )
 		{
 			glGetShaderInfoLog( shader, 1024, NULL, infoLog );
 			std::cout << "ERROR::SHADER_COMPILATION_ERROR of type: " << type << "\n" << infoLog << "\n -- --------------------------------------------------- -- " << std::endl;
+			// Exception
 		}
 	}
 	else

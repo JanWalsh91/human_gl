@@ -16,3 +16,8 @@ Cycle & Cycle::operator=( Cycle const & rhs ) {
 void Cycle::interpolate() {
 	
 }
+
+Frame&	Cycle::getCurrentFrame() {
+	return this->frames[(int)(this->getStartTime() - glfwGetTime() / 16) % this->frames.size()];
+
+}

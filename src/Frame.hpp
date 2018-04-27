@@ -1,7 +1,7 @@
 #ifndef FRAME_H
 # define FRAME_H
 
-# include "Mesh.hpp"
+# include "Mesh/Mesh.hpp"
 
 # include <vector>
 
@@ -16,6 +16,7 @@ public:
 	Frame &	operator=( Frame const & rhs );
 
 	void render();
+	std::vector<Mesh>& getMeshes() { return this->meshes; }
 private:
 	std::vector<Mesh> meshes;
 

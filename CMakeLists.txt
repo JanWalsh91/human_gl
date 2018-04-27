@@ -11,6 +11,9 @@ add_definitions(${NANOGUI_EXTRA_DEFS})
 set(
 	SOURCE_FILES
 	src/main.cpp
+	src/Shader.cpp
+	src/Window.cpp
+	src/Cycle.cpp
 	src/Matrix.cpp
 	src/Vector.cpp
 	src/Mesh/Mesh.cpp
