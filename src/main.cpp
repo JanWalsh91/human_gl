@@ -1,16 +1,12 @@
-#include "Glfw.cpp"
-#include "Matrix.cpp"
+#include "Glfw.hpp"
+#include "Matrix.hpp"
 
 #include <vector>
 
 int    main ( void ) {
 	
-	Matrix m(4);
-	std::cout << m[0] << std::endl;
-	Matrix n = m;
-	
-	std::cout << n <<std::endl;
-	
-	// std::vector<float> m;
+	Matrix m(50, Matrix::TYPE::ROTATION_X);
+	std::cout << m << std::endl;
+
 	return (0);
 }
