@@ -23,6 +23,42 @@ Vector & Vector::operator=( Vector const & rhs ) {
 	return *this;
 }
 
+Vector  Vector::operator+( Vector const & rhs ) {
+	Vector v;
+
+	v[0] = this->v[0] + rhs.v[0];
+	v[1] = this->v[1] + rhs.v[1];
+	v[2] = this->v[2] + rhs.v[2];
+	return v;
+}
+
+Vector  Vector::operator-( Vector const & rhs ) {
+	Vector v;
+
+	v[0] = this->v[0] - rhs.v[0];
+	v[1] = this->v[1] - rhs.v[1];
+	v[2] = this->v[2] - rhs.v[2];
+	return v;
+}
+
+Vector  Vector::operator*( Vector const & rhs ) {
+	Vector v;
+
+	v[0] = this->v[0] * rhs.v[0];
+	v[1] = this->v[1] * rhs.v[1];
+	v[2] = this->v[2] * rhs.v[2];
+	return v;
+}
+
+Vector  Vector::operator/( Vector const & rhs ) {
+	Vector v;
+
+	v[0] = this->v[0] / rhs.v[0];
+	v[1] = this->v[1] / rhs.v[1];
+	v[2] = this->v[2] / rhs.v[2];
+	return v;
+}
+
 float	& Vector::operator[]( int i ) {
 	return this->v[i];
 }
@@ -47,4 +83,9 @@ float const	& Vector::operator[]( int i ) const {
 
 float *	Vector::toArray( void ) {
 	return this->v.data();
+}
+
+std::ostream &    operator<<( std::ostream & o, Vector const & rhs ) {
+	o << rhs[0] << ", " << rhs[1] << ", " << rhs[2];
+	return o;
 }

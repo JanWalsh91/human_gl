@@ -13,6 +13,10 @@ class Vector {
 		~Vector( void );
 
 		Vector &	operator=( Vector const & rhs );
+		Vector 	operator+( Vector const & rhs );
+		Vector 	operator-( Vector const & rhs );
+		Vector 	operator*( Vector const & rhs );
+		Vector 	operator/( Vector const & rhs );
 		float &			operator[](int i);
 		float const &	operator[](int i) const;
 
@@ -22,5 +26,7 @@ class Vector {
 		std::vector<float>	v;
 
 };
+
+std::ostream &	operator<<( std::ostream & o, Vector const & rhs );
 
 #endif

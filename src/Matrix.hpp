@@ -20,18 +20,23 @@ class Matrix {
 			ROTATION_Y,
 			ROTATION_Z,
 			SCALE,
-			TRANSLATE
+			TRANSLATE,
+			PROJECTION
 		};
 
 		Matrix( float angle, Matrix::TYPE type );
 
 		Matrix( Vector const & v, Matrix::TYPE type );
+		Matrix( Matrix::TYPE type );
+		Matrix( float far_dist, float near_dist, float aspect, float fov, Matrix::TYPE type );
 		Matrix( Matrix const & );
 		~Matrix( void );
 		
 		Matrix &	operator=( Matrix const & rhs );
 		Matrix		operator*( Matrix const & rhs );
 		Matrix		operator*( Vector const & rhs );
+		Matrix		operator*=( Matrix const & rhs );
+		Matrix		operator*=( Vector const & rhs );
 		float &			operator[](int i);
 		float const &	operator[](int i) const;
 

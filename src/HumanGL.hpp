@@ -1,6 +1,10 @@
 #ifndef HUMAN_GL
 # define HUMAN_GL
 
+# include <vector>
+# include "Cycle.hpp"
+// # include "Window.hpp"
+
 class HumanGL {
 
 public:
@@ -9,8 +13,12 @@ public:
 	~HumanGL( void );
 
 	HumanGL & operator=( HumanGL const & rhs );
-private:
 
+	void initCycles(); // creates the cycles (walking, jumping ...)
+
+private:
+	vector<Cycle>	cycles;
+	// Window			*window;
 };
 
 #endif

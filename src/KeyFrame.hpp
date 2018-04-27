@@ -14,7 +14,7 @@ public:
 	KeyFrame &	operator=( KeyFrame const & rhs );
 
 
-	Frame* interpolate(KeyFrame const & other, unsigned maxFramesPerCycle, int & size);
+	Frame* interpolate( KeyFrame const & other, unsigned maxFramesPerCycle, int & size );
 
 	// Setters
 private:

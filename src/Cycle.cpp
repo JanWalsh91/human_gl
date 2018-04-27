@@ -12,3 +12,7 @@ Cycle::~Cycle( void ) {}
 Cycle & Cycle::operator=( Cycle const & rhs ) {
 	return *this;
 }
+
+void Cycle::interpolate() {
+	
+}

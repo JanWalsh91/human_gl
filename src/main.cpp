@@ -1,12 +1,13 @@
 #include "Glfw.hpp"
+#include "Mesh/TorsoMesh.hpp"
+#include "Vector.hpp"
 #include "Matrix.hpp"
 
 #include <vector>
 
 int    main ( void ) {
 	
-	Matrix m(50, Matrix::TYPE::ROTATION_X);
-	std::cout << m << std::endl;
+	TorsoMesh m;
 
 	return (0);
 }
