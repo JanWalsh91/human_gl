@@ -1,8 +1,5 @@
 #include "Shader.hpp"
 
-# include <GLFW/glfw3.h>
-
-
 Shader::Shader() {}
 
 Shader::Shader( const char* vertexPath, const char* fragmentPath ) {

@@ -3,11 +3,18 @@
 
 # include "Vector.hpp"
 
+# ifdef _WIN32
+# define _USE_MATH_DEFINES
+# include <math.h>
+# endif
+
+# include <cmath>
+
 # include <cstring>
 # include <iostream>
 # include <vector>
 # include <exception>
-# include <cmath>
+
 
 class Matrix {
 
