@@ -56,8 +56,7 @@ Matrix::Matrix( Vector const & v, Matrix::TYPE type ) : Matrix::Matrix(4) {
 		this->m[12] = v[0];
 		this->m[13] = v[1];
 		this->m[14] = v[2];
-	}
-	if ( type == Matrix::TYPE::SCALE ) {
+	} else if ( type == Matrix::TYPE::SCALE ) {
 		this->m[0] = v[0];
 		this->m[5] = v[1];
 		this->m[10] = v[2];
@@ -98,10 +97,6 @@ float const	& Matrix::operator[]( int i ) const {
 
 unsigned			Matrix::getSize( void ) const {
 	return this->size;
-}
-
-float *	Matrix::toArray( void ) {
-	return this->m.data();
 }
 
 Matrix	Matrix::operator*( Matrix const & rhs ) {
@@ -166,6 +161,10 @@ const char* Matrix::OperationImpossible::what() const throw() {
 	return "Operation Impossible";
 }
 
+float*	Matrix::toArray( void ) {
+	return &this->m[0];
+}
+
 std::ostream &    operator<<( std::ostream & o, Matrix const & rhs ) {
 	unsigned int size = rhs.getSize();
 
@@ -180,4 +179,3 @@ std::ostream &    operator<<( std::ostream & o, Matrix const & rhs ) {
 	}
 	return o;
 }
-

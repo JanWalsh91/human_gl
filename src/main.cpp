@@ -12,7 +12,9 @@ int    main ( void ) {
 //	TorsoMesh m;
 	Window w(800, 600, "Joli projet");
 
-//	w.display();
+	Cycle cycle;
+
+	w.loop(cycle);
 
 	return (0);
 }

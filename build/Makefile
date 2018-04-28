@@ -221,6 +221,33 @@ glfw/fast:
 	$(MAKE) -f libs/nanogui/ext_build/glfw/src/CMakeFiles/glfw.dir/build.make libs/nanogui/ext_build/glfw/src/CMakeFiles/glfw.dir/build
 .PHONY : glfw/fast
 
+libs/nanogui/ext/glad/src/glad.o: libs/nanogui/ext/glad/src/glad.c.o
+
+.PHONY : libs/nanogui/ext/glad/src/glad.o
+
+# target to build an object file
+libs/nanogui/ext/glad/src/glad.c.o:
+	$(MAKE) -f CMakeFiles/human_gl.dir/build.make CMakeFiles/human_gl.dir/libs/nanogui/ext/glad/src/glad.c.o
+.PHONY : libs/nanogui/ext/glad/src/glad.c.o
+
+libs/nanogui/ext/glad/src/glad.i: libs/nanogui/ext/glad/src/glad.c.i
+
+.PHONY : libs/nanogui/ext/glad/src/glad.i
+
+# target to preprocess a source file
+libs/nanogui/ext/glad/src/glad.c.i:
+	$(MAKE) -f CMakeFiles/human_gl.dir/build.make CMakeFiles/human_gl.dir/libs/nanogui/ext/glad/src/glad.c.i
+.PHONY : libs/nanogui/ext/glad/src/glad.c.i
+
+libs/nanogui/ext/glad/src/glad.s: libs/nanogui/ext/glad/src/glad.c.s
+
+.PHONY : libs/nanogui/ext/glad/src/glad.s
+
+# target to generate assembly for a file
+libs/nanogui/ext/glad/src/glad.c.s:
+	$(MAKE) -f CMakeFiles/human_gl.dir/build.make CMakeFiles/human_gl.dir/libs/nanogui/ext/glad/src/glad.c.s
+.PHONY : libs/nanogui/ext/glad/src/glad.c.s
+
 src/Cycle.o: src/Cycle.cpp.o
 
 .PHONY : src/Cycle.o
@@ -248,6 +275,33 @@ src/Cycle.cpp.s:
 	$(MAKE) -f CMakeFiles/human_gl.dir/build.make CMakeFiles/human_gl.dir/src/Cycle.cpp.s
 .PHONY : src/Cycle.cpp.s
 
+src/HumanGL.o: src/HumanGL.cpp.o
+
+.PHONY : src/HumanGL.o
+
+# target to build an object file
+src/HumanGL.cpp.o:
+	$(MAKE) -f CMakeFiles/human_gl.dir/build.make CMakeFiles/human_gl.dir/src/HumanGL.cpp.o
+.PHONY : src/HumanGL.cpp.o
+
+src/HumanGL.i: src/HumanGL.cpp.i
+
+.PHONY : src/HumanGL.i
+
+# target to preprocess a source file
+src/HumanGL.cpp.i:
+	$(MAKE) -f CMakeFiles/human_gl.dir/build.make CMakeFiles/human_gl.dir/src/HumanGL.cpp.i
+.PHONY : src/HumanGL.cpp.i
+
+src/HumanGL.s: src/HumanGL.cpp.s
+
+.PHONY : src/HumanGL.s
+
+# target to generate assembly for a file
+src/HumanGL.cpp.s:
+	$(MAKE) -f CMakeFiles/human_gl.dir/build.make CMakeFiles/human_gl.dir/src/HumanGL.cpp.s
+.PHONY : src/HumanGL.cpp.s
+
 src/Matrix.o: src/Matrix.cpp.o
 
 .PHONY : src/Matrix.o
@@ -274,6 +328,33 @@ src/Matrix.s: src/Matrix.cpp.s
 src/Matrix.cpp.s:
 	$(MAKE) -f CMakeFiles/human_gl.dir/build.make CMakeFiles/human_gl.dir/src/Matrix.cpp.s
 .PHONY : src/Matrix.cpp.s
+
+src/Mesh/ArmMesh.o: src/Mesh/ArmMesh.cpp.o
+
+.PHONY : src/Mesh/ArmMesh.o
+
+# target to build an object file
+src/Mesh/ArmMesh.cpp.o:
+	$(MAKE) -f CMakeFiles/human_gl.dir/build.make CMakeFiles/human_gl.dir/src/Mesh/ArmMesh.cpp.o
+.PHONY : src/Mesh/ArmMesh.cpp.o
+
+src/Mesh/ArmMesh.i: src/Mesh/ArmMesh.cpp.i
+
+.PHONY : src/Mesh/ArmMesh.i
+
+# target to preprocess a source file
+src/Mesh/ArmMesh.cpp.i:
+	$(MAKE) -f CMakeFiles/human_gl.dir/build.make CMakeFiles/human_gl.dir/src/Mesh/ArmMesh.cpp.i
+.PHONY : src/Mesh/ArmMesh.cpp.i
+
+src/Mesh/ArmMesh.s: src/Mesh/ArmMesh.cpp.s
+
+.PHONY : src/Mesh/ArmMesh.s
+
+# target to generate assembly for a file
+src/Mesh/ArmMesh.cpp.s:
+	$(MAKE) -f CMakeFiles/human_gl.dir/build.make CMakeFiles/human_gl.dir/src/Mesh/ArmMesh.cpp.s
+.PHONY : src/Mesh/ArmMesh.cpp.s
 
 src/Mesh/Mesh.o: src/Mesh/Mesh.cpp.o
 
@@ -454,12 +535,21 @@ help:
 	@echo "... nanogui-obj"
 	@echo "... glfw_objects"
 	@echo "... glfw"
+	@echo "... libs/nanogui/ext/glad/src/glad.o"
+	@echo "... libs/nanogui/ext/glad/src/glad.i"
+	@echo "... libs/nanogui/ext/glad/src/glad.s"
 	@echo "... src/Cycle.o"
 	@echo "... src/Cycle.i"
 	@echo "... src/Cycle.s"
+	@echo "... src/HumanGL.o"
+	@echo "... src/HumanGL.i"
+	@echo "... src/HumanGL.s"
 	@echo "... src/Matrix.o"
 	@echo "... src/Matrix.i"
 	@echo "... src/Matrix.s"
+	@echo "... src/Mesh/ArmMesh.o"
+	@echo "... src/Mesh/ArmMesh.i"
+	@echo "... src/Mesh/ArmMesh.s"
 	@echo "... src/Mesh/Mesh.o"
 	@echo "... src/Mesh/Mesh.i"
 	@echo "... src/Mesh/Mesh.s"

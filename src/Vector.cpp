@@ -50,6 +50,15 @@ Vector  Vector::operator*( Vector const & rhs ) {
 	return v;
 }
 
+Vector  Vector::operator*( float rhs ) {
+	Vector v;
+
+	v[0] = this->v[0] * rhs;
+	v[1] = this->v[1] * rhs;
+	v[2] = this->v[2] * rhs;
+	return v;
+}
+
 Vector  Vector::operator/( Vector const & rhs ) {
 	Vector v;
 

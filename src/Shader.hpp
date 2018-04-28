@@ -6,6 +6,9 @@
 # include <sstream>
 # include <iostream>
 
+# include "Vector.hpp"
+# include "Matrix.hpp"
+
 class Shader {
 
 	public:
@@ -18,13 +21,17 @@ class Shader {
 
 		unsigned int	ID;
 
-	private:
-		void checkCompileErrors( unsigned int shader, std::string type );
 		void setBool( const std::string &name, bool value ) const;
 		void setInt( const std::string &name, int value ) const;
 		void setFloat( const std::string &name, float value) const;
-		
+		void setVector( const std::string &name, Vector v) const;
+		void setMatrix( const std::string &name, Matrix m) const;
 
-};
+	private:
+		void checkCompileErrors( unsigned int shader, std::string type );
+
+
+
+	};
 
 #endif

@@ -2,6 +2,7 @@
 
 # include <GLFW/glfw3.h>
 
+
 Shader::Shader() {}
 
 Shader::Shader( const char* vertexPath, const char* fragmentPath ) {
@@ -12,7 +13,7 @@ Shader::Shader( const char* vertexPath, const char* fragmentPath ) {
 
 	vShaderFile.exceptions ( std::ifstream::failbit | std::ifstream::badbit );
 	fShaderFile.exceptions ( std::ifstream::failbit | std::ifstream::badbit );
-	try 
+	try
 	{
 		vShaderFile.open(vertexPath);
 		fShaderFile.open(fragmentPath);
@@ -34,7 +35,7 @@ Shader::Shader( const char* vertexPath, const char* fragmentPath ) {
 	unsigned int vertex, fragment;
 	int success;
 	char infoLog[512];
-	
+
 	vertex = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(vertex, 1, &vShaderCode, NULL);
 	glCompileShader(vertex);
@@ -75,17 +76,17 @@ void Shader::checkCompileErrors( unsigned int shader, std::string type )
 		if (!success)
 		{
 			glGetShaderInfoLog( shader, 1024, NULL, infoLog );
-			std::cout << "ERROR::SHADER_COMPILATION_ERROR of type: " << type << "\n" << infoLog << "\n -- --------------------------------------------------- -- " << std::endl;
+			std::cout << "ERROR::SHADER_COMPILATION_ERROR of type: " << type << " [" << infoLog << "]" << std::endl;
 			// Exception
 		}
 	}
 	else
 	{
 		glGetProgramiv( shader, GL_LINK_STATUS, &success );
-		if ( !success )
+		if (!success)
 		{
 			glGetProgramInfoLog( shader, 1024, NULL, infoLog );
-			std::cout << "ERROR::PROGRAM_LINKING_ERROR of type: " << type << "\n" << infoLog << "\n -- --------------------------------------------------- -- " << std::endl;
+			std::cout << "ERROR::PROGRAM_LINKING_ERROR of type: " << type << " [" << infoLog << "]" << std::endl;
 		}
 	}
 }
@@ -109,5 +110,13 @@ void Shader::setFloat( const std::string &name, float value) const
 { 
 	glUniform1f(glGetUniformLocation(ID, name.c_str()), value); 
 }
-	
+
+void Shader::setVector( const std::string &name, Vector v) const {
+	glUniform3f(glGetUniformLocation(ID, name.c_str()), v[0], v[1], v[2]);
+}
+
+void Shader::setMatrix( const std::string &name, Matrix m) const {
+	glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, m.toArray());
+}
+
 	
