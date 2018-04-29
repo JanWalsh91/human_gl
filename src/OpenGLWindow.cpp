@@ -30,7 +30,7 @@ OpenGLWindow::OpenGLWindow( int width, int height, std::string const & title ): 
 	this->viewMatrix[8] = this->camDir[0];
 	this->viewMatrix[9] = this->camDir[1];
 	this->viewMatrix[10] = this->camDir[2];
-	std::cout << "View Matrix: \n" << this->viewMatrix << std::endl;
+	// std::cout << "View Matrix: \n" << this->viewMatrix << std::endl;
 	this->PMatrix = Matrix(100, 0.1, (float)this->width / (float)this->height, 45, Matrix::TYPE::PROJECTION);
 	this->initialize(this->window, true);
 
@@ -161,7 +161,7 @@ void OpenGLWindow::createWidget() {
 	new nanogui::Label(panel, "X", "sans-bold");
 
 	nanogui::Slider *slider = new nanogui::Slider(panel);
-	slider->setValue(1.0f);
+	slider->setValue(0.5f);
 	slider->setFixedWidth(100);
 
 	nanogui::TextBox *textBox = new nanogui::TextBox(panel);
@@ -173,11 +173,12 @@ void OpenGLWindow::createWidget() {
 	slider->setCallback([this, textBox](float value) {
 		textBox->setValue(std::to_string((int) (value * 100)));
 		std::cout << value << std::endl;
-
+		// this->human->setRotationSpeedX(value);
+		this->poubelle = value;
 	});
 	slider->setFinalCallback([&](float value) {
 		std::cout << "Final slider value: " << (int) (value * 100) << std::endl;
-		this->human->setRotationSpeedX(value);
+		
 	});
 	textBox->setFixedSize(nanogui::Vector2i(60,25));
 	textBox->setFontSize(20);
@@ -218,22 +219,34 @@ void OpenGLWindow::loop(Cycle & cycle) {
 //	Mesh mesh3(Vector(0, 0, 0), Vector(0.2, 0.5, 0.2), Vector(-0.7, 0, 0), Vector(0, 0.5, 0));
 
 	TorsoMesh torso;
-	ArmMesh		rightArm(Side::RIGHT);
-	ArmMesh		leftArm(Side::LEFT, Vector(80, 0, 0));
-	Mesh		leftSubArm(Vector(0, 0, 0), Vector(0.5, 0.5, 0.5), Vector(0, -1, 0), Vector(0, 0, 0), Vector(0.1, 0.1, 0.1));
+	ArmMesh		rightArm(Side::RIGHT, Vector(0, 0, 0));
+	// ArmMesh		leftArm(Side::LEFT, Vector(80, 0, 0));
+	Mesh		leftSubArm(
+		Vector(0, 0, 0),
+		Vector(0, 0, 0),
+		Vector(0.5, 0.5, 0.5),
+		Vector(0.5, 0.5, 0.5),
+		Vector(0, -1, 0),
+		Vector(0, 0, 1),
+		"RightSUBArm");
 
-	torso.append(rightArm);
-	leftArm.append(leftSubArm);
-	torso.append(leftArm);
-	torso.recursivelyUpdateModelMatrix();
-
+	this->poubelle = 0;
+	torso.append(&rightArm);
+	rightArm.append(&leftSubArm);
+	// torso.append(leftArm);
+	Matrix i;
+	torso.recursivelyUpdateModelMatrix(i);
+	// exit(0);
 	while (!glfwWindowShouldClose(this->window) && glfwGetKey(this->window, GLFW_KEY_ESCAPE) != GLFW_PRESS) {
 		glEnable(GL_DEPTH_TEST);
 //		double currentTime = glfwGetTime();
 		glfwPollEvents();
 
-		torso.setRotationAngles(Vector(glfwGetTime() * (this->human->getRotationSpeed()[0] * 100), 0, 0));
-		torso.recursivelyUpdateModelMatrix();
+		torso.setRotationAngles(Vector(0, 60+0 *(this->human->getRotationSpeed()[0] * 360), 0));
+		rightArm.setRotationAngles(Vector(this->poubelle * 360, 0, 0));
+		torso.recursivelyUpdateModelMatrix(i);
+
+		std::cout << "Poubelle: " << this->poubelle << std::endl;
 
 		glClearColor(0.2f, 0.2f, .5f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -250,16 +263,16 @@ void OpenGLWindow::loop(Cycle & cycle) {
 		this->shaderProgram.setMatrix("projectionMatrix",  this->PMatrix);
 //
 		this->shaderProgram.use();
-//		for (int i = 0; i < 6; i++) {
-//
-//		}
+		// for (int i = 0; i < 6; i++) {
+
+		// }
 
 
 		glBindVertexArray(human->getVAO());
 		glBindBuffer(GL_ARRAY_BUFFER, human->getVBO());
 
 		torso.recursivelyRender(this->shaderProgram);
-
+		// exit(0);
 
 //		glBindVertexArray(VAO);
 //		glDrawArrays(GL_TRIANGLES, 0, 3);
@@ -267,6 +280,7 @@ void OpenGLWindow::loop(Cycle & cycle) {
 		this->drawWidgets();
 
 		glfwSwapBuffers(this->window);
+
 	}
 
 

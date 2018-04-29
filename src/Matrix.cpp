@@ -118,13 +118,15 @@ Matrix	Matrix::operator*( Matrix const & rhs ) {
 }
 
 Matrix	Matrix::operator*( Vector const & rhs ) {
-	Matrix m;
+	Matrix m = *this;
 	int size = this->getSize();
+	// std::cout << "rhs: \n" << rhs << std::endl;
 
 	if (size != 4 && size != 3) throw (Matrix::OperationImpossible());
-	m.m[0] *= rhs[0];
-	m.m[5] *= rhs[1];
-	m.m[10] *= rhs[2];
+	m.m[12] = this->m[12] + rhs[0];
+	m.m[13] = this->m[13] + rhs[1];
+	m.m[14] = this->m[14] + rhs[2];
+	// std::cout << "m: \n" << m << std::endl;
 	return m;
 }
 
@@ -151,9 +153,9 @@ Matrix	Matrix::operator*=( Vector const & rhs ) {
 	int size = this->getSize();
 
 	if (size != 4 && size != 3) throw (Matrix::OperationImpossible());
-	this->m[0] *= rhs[0];
-	this->m[5] *= rhs[1];
-	this->m[10] *= rhs[2];
+	this->m[12] *= rhs[0];
+	this->m[13] *= rhs[1];
+	this->m[14] *= rhs[2];
 	return *this;
 }
 

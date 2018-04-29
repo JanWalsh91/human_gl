@@ -12,7 +12,13 @@ class Mesh {
 
 public:
 	Mesh();
-	Mesh( Vector rotationAngles, Vector scale, Vector translation, Vector origin, Vector color );
+	Mesh( Vector rotationAngles,
+		Vector rotationOrigin,
+		Vector scale,
+		Vector scaleOrigin,
+		Vector translation,
+		Vector color );
+	Mesh( Vector rotationAngles, Vector rotationOrigin, Vector scale, Vector scaleOrigin, Vector translation, Vector color, std::string const & name );
 	Mesh( Mesh const & );
 
 	virtual ~Mesh();
@@ -21,32 +27,46 @@ public:
 
 	void render( Shader & s );
 	void recursivelyRender( Shader & s );
-	void updateModelMatrix( Matrix & scale, Matrix & translate, Matrix & rotate );
-	void updateModelMatrix();
-	void recursivelyUpdateModelMatrix( Matrix & scale, Matrix & translate, Matrix & rotate );
-	void recursivelyUpdateModelMatrix();
+	// void updateModelMatrix( Matrix & modelMatrix, Matrix & translateMatrix );
+	void updateModelMatrix(Matrix & parentModelMatrix);
+	// void updateInheritedModelMatrix();
+	
+	// void recursivelyUpdateModelMatrix( Matrix & modelMatrix, Matrix & translateMatrix );
+	
+	Matrix& recursivelyUpdateModelMatrix(Matrix & parentModelMatrix);
 
 	// Setters
 	// not needed until we set variables outside of constructors.
 	Matrix &	getModelMatrix();
-	void append( Mesh & mesh );
+	void append( Mesh* mesh );
 
-	void setRotationAngles(Vector  newAngle) { this->rotationAngles = newAngle; }
+	void setRotationAngles(Vector  newAngle) { 
+		this->rotationAngles = newAngle;
+		std::cout << this->rotationAngles << std::endl;
+	}
 
 private:
-	std::vector<Mesh> meshes;
+	std::vector<Mesh*> meshes;
+	Mesh* parentMesh;
 	Matrix modelMatrix;
+	Matrix inheritedModelMatrix;
 	Matrix scaleMatrix;
 	Matrix rotateMatrix;
 	Matrix translateMatrix;
 
 
-	Vector origin;
 	Vector rotationAngles;
+	Vector rotationOrigin;
 	Vector translation;
 	Vector scale;
+	Vector scaleOrigin;
 	Vector color;
 
+	std::string name;
+
+	void updateRotationMatrix();
+	Vector getScaleCenter();
+	Vector getRotationCenter();
 	// change to actual VBO
 	unsigned VBOPosition;
 };

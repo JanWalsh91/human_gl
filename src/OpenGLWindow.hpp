@@ -40,6 +40,8 @@ private:
 	Vector		camRight;
 	Vector		camUp;
 	Matrix		PMatrix;
+
+	double poubelle;
 };
 
 #endif
