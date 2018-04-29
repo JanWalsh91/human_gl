@@ -1,16 +1,19 @@
-#include "Window.hpp"
+#include "OpenGLWindow.hpp"
 #include "Mesh/TorsoMesh.hpp"
 #include "Vector.hpp"
 #include "Matrix.hpp"
 
 #include <vector>
 
-#include "Window.hpp"
+#include "OpenGLWindow.hpp"
 
 int    main ( void ) {
 	
 //	TorsoMesh m;
-	Window w(800, 600, "Joli projet");
+
+	OpenGLWindow::initOpenGL();
+
+	OpenGLWindow w(1280, 720, "Joli projet");
 
 	Cycle cycle;
 

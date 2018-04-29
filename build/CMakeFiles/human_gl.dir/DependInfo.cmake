@@ -26,14 +26,15 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   )
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/tgros/Projects/human_gl/src/Cycle.cpp" "/Users/tgros/Projects/human_gl/build/CMakeFiles/human_gl.dir/src/Cycle.cpp.o"
+  "/Users/tgros/Projects/human_gl/src/GUI.cpp" "/Users/tgros/Projects/human_gl/build/CMakeFiles/human_gl.dir/src/GUI.cpp.o"
   "/Users/tgros/Projects/human_gl/src/HumanGL.cpp" "/Users/tgros/Projects/human_gl/build/CMakeFiles/human_gl.dir/src/HumanGL.cpp.o"
   "/Users/tgros/Projects/human_gl/src/Matrix.cpp" "/Users/tgros/Projects/human_gl/build/CMakeFiles/human_gl.dir/src/Matrix.cpp.o"
   "/Users/tgros/Projects/human_gl/src/Mesh/ArmMesh.cpp" "/Users/tgros/Projects/human_gl/build/CMakeFiles/human_gl.dir/src/Mesh/ArmMesh.cpp.o"
   "/Users/tgros/Projects/human_gl/src/Mesh/Mesh.cpp" "/Users/tgros/Projects/human_gl/build/CMakeFiles/human_gl.dir/src/Mesh/Mesh.cpp.o"
   "/Users/tgros/Projects/human_gl/src/Mesh/TorsoMesh.cpp" "/Users/tgros/Projects/human_gl/build/CMakeFiles/human_gl.dir/src/Mesh/TorsoMesh.cpp.o"
+  "/Users/tgros/Projects/human_gl/src/OpenGLWindow.cpp" "/Users/tgros/Projects/human_gl/build/CMakeFiles/human_gl.dir/src/OpenGLWindow.cpp.o"
   "/Users/tgros/Projects/human_gl/src/Shader.cpp" "/Users/tgros/Projects/human_gl/build/CMakeFiles/human_gl.dir/src/Shader.cpp.o"
   "/Users/tgros/Projects/human_gl/src/Vector.cpp" "/Users/tgros/Projects/human_gl/build/CMakeFiles/human_gl.dir/src/Vector.cpp.o"
-  "/Users/tgros/Projects/human_gl/src/Window.cpp" "/Users/tgros/Projects/human_gl/build/CMakeFiles/human_gl.dir/src/Window.cpp.o"
   "/Users/tgros/Projects/human_gl/src/main.cpp" "/Users/tgros/Projects/human_gl/build/CMakeFiles/human_gl.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")

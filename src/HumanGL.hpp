@@ -6,6 +6,7 @@
 # include <vector>
 
 # include "Cycle.hpp"
+# include "Vector.hpp"
 // # include "Window.hpp"
 
 class HumanGL {
@@ -22,11 +23,20 @@ public:
 
 	GLuint getVBO() { return this->VBO; }
 	GLuint getVAO() { return this->VAO; }
+
+	void setRotationSpeed(Vector speed) { this->rotationSpeed = speed; }
+	void setRotationSpeedX(double x) { this->rotationSpeed[0] = x; }
+	void setRotationSpeedY(double y) { this->rotationSpeed[1] = y; }
+	void setRotationSpeedZ(double z) { this->rotationSpeed[2] = z; }
+	Vector getRotationSpeed() { return this->rotationSpeed; }
 private:
 	std::vector<Cycle>	cycles;
 
 	GLuint		VAO;
 	GLuint		VBO;
+
+	Vector rotationSpeed;
+
 //	unsigned VAO;
 
 	// Window			*window;

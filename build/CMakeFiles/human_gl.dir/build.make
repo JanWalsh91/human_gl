@@ -83,18 +83,18 @@ CMakeFiles/human_gl.dir/src/Shader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/human_gl.dir/src/Shader.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tgros/Projects/human_gl/src/Shader.cpp -o CMakeFiles/human_gl.dir/src/Shader.cpp.s
 
-CMakeFiles/human_gl.dir/src/Window.cpp.o: CMakeFiles/human_gl.dir/flags.make
-CMakeFiles/human_gl.dir/src/Window.cpp.o: ../src/Window.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/tgros/Projects/human_gl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/human_gl.dir/src/Window.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/human_gl.dir/src/Window.cpp.o -c /Users/tgros/Projects/human_gl/src/Window.cpp
+CMakeFiles/human_gl.dir/src/OpenGLWindow.cpp.o: CMakeFiles/human_gl.dir/flags.make
+CMakeFiles/human_gl.dir/src/OpenGLWindow.cpp.o: ../src/OpenGLWindow.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/tgros/Projects/human_gl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/human_gl.dir/src/OpenGLWindow.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/human_gl.dir/src/OpenGLWindow.cpp.o -c /Users/tgros/Projects/human_gl/src/OpenGLWindow.cpp
 
-CMakeFiles/human_gl.dir/src/Window.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/human_gl.dir/src/Window.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/tgros/Projects/human_gl/src/Window.cpp > CMakeFiles/human_gl.dir/src/Window.cpp.i
+CMakeFiles/human_gl.dir/src/OpenGLWindow.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/human_gl.dir/src/OpenGLWindow.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/tgros/Projects/human_gl/src/OpenGLWindow.cpp > CMakeFiles/human_gl.dir/src/OpenGLWindow.cpp.i
 
-CMakeFiles/human_gl.dir/src/Window.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/human_gl.dir/src/Window.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tgros/Projects/human_gl/src/Window.cpp -o CMakeFiles/human_gl.dir/src/Window.cpp.s
+CMakeFiles/human_gl.dir/src/OpenGLWindow.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/human_gl.dir/src/OpenGLWindow.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tgros/Projects/human_gl/src/OpenGLWindow.cpp -o CMakeFiles/human_gl.dir/src/OpenGLWindow.cpp.s
 
 CMakeFiles/human_gl.dir/src/Cycle.cpp.o: CMakeFiles/human_gl.dir/flags.make
 CMakeFiles/human_gl.dir/src/Cycle.cpp.o: ../src/Cycle.cpp
@@ -187,9 +187,22 @@ CMakeFiles/human_gl.dir/src/HumanGL.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/human_gl.dir/src/HumanGL.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tgros/Projects/human_gl/src/HumanGL.cpp -o CMakeFiles/human_gl.dir/src/HumanGL.cpp.s
 
+CMakeFiles/human_gl.dir/src/GUI.cpp.o: CMakeFiles/human_gl.dir/flags.make
+CMakeFiles/human_gl.dir/src/GUI.cpp.o: ../src/GUI.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/tgros/Projects/human_gl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/human_gl.dir/src/GUI.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/human_gl.dir/src/GUI.cpp.o -c /Users/tgros/Projects/human_gl/src/GUI.cpp
+
+CMakeFiles/human_gl.dir/src/GUI.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/human_gl.dir/src/GUI.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/tgros/Projects/human_gl/src/GUI.cpp > CMakeFiles/human_gl.dir/src/GUI.cpp.i
+
+CMakeFiles/human_gl.dir/src/GUI.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/human_gl.dir/src/GUI.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/tgros/Projects/human_gl/src/GUI.cpp -o CMakeFiles/human_gl.dir/src/GUI.cpp.s
+
 CMakeFiles/human_gl.dir/libs/nanogui/ext/glad/src/glad.c.o: CMakeFiles/human_gl.dir/flags.make
 CMakeFiles/human_gl.dir/libs/nanogui/ext/glad/src/glad.c.o: ../libs/nanogui/ext/glad/src/glad.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/tgros/Projects/human_gl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/human_gl.dir/libs/nanogui/ext/glad/src/glad.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/tgros/Projects/human_gl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/human_gl.dir/libs/nanogui/ext/glad/src/glad.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/human_gl.dir/libs/nanogui/ext/glad/src/glad.c.o   -c /Users/tgros/Projects/human_gl/libs/nanogui/ext/glad/src/glad.c
 
 CMakeFiles/human_gl.dir/libs/nanogui/ext/glad/src/glad.c.i: cmake_force
@@ -204,7 +217,7 @@ CMakeFiles/human_gl.dir/libs/nanogui/ext/glad/src/glad.c.s: cmake_force
 human_gl_OBJECTS = \
 "CMakeFiles/human_gl.dir/src/main.cpp.o" \
 "CMakeFiles/human_gl.dir/src/Shader.cpp.o" \
-"CMakeFiles/human_gl.dir/src/Window.cpp.o" \
+"CMakeFiles/human_gl.dir/src/OpenGLWindow.cpp.o" \
 "CMakeFiles/human_gl.dir/src/Cycle.cpp.o" \
 "CMakeFiles/human_gl.dir/src/Matrix.cpp.o" \
 "CMakeFiles/human_gl.dir/src/Vector.cpp.o" \
@@ -212,6 +225,7 @@ human_gl_OBJECTS = \
 "CMakeFiles/human_gl.dir/src/Mesh/TorsoMesh.cpp.o" \
 "CMakeFiles/human_gl.dir/src/Mesh/ArmMesh.cpp.o" \
 "CMakeFiles/human_gl.dir/src/HumanGL.cpp.o" \
+"CMakeFiles/human_gl.dir/src/GUI.cpp.o" \
 "CMakeFiles/human_gl.dir/libs/nanogui/ext/glad/src/glad.c.o"
 
 # External object files for target human_gl
@@ -219,7 +233,7 @@ human_gl_EXTERNAL_OBJECTS =
 
 human_gl: CMakeFiles/human_gl.dir/src/main.cpp.o
 human_gl: CMakeFiles/human_gl.dir/src/Shader.cpp.o
-human_gl: CMakeFiles/human_gl.dir/src/Window.cpp.o
+human_gl: CMakeFiles/human_gl.dir/src/OpenGLWindow.cpp.o
 human_gl: CMakeFiles/human_gl.dir/src/Cycle.cpp.o
 human_gl: CMakeFiles/human_gl.dir/src/Matrix.cpp.o
 human_gl: CMakeFiles/human_gl.dir/src/Vector.cpp.o
@@ -227,11 +241,12 @@ human_gl: CMakeFiles/human_gl.dir/src/Mesh/Mesh.cpp.o
 human_gl: CMakeFiles/human_gl.dir/src/Mesh/TorsoMesh.cpp.o
 human_gl: CMakeFiles/human_gl.dir/src/Mesh/ArmMesh.cpp.o
 human_gl: CMakeFiles/human_gl.dir/src/HumanGL.cpp.o
+human_gl: CMakeFiles/human_gl.dir/src/GUI.cpp.o
 human_gl: CMakeFiles/human_gl.dir/libs/nanogui/ext/glad/src/glad.c.o
 human_gl: CMakeFiles/human_gl.dir/build.make
 human_gl: libs/nanogui/libnanogui.dylib
 human_gl: CMakeFiles/human_gl.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/tgros/Projects/human_gl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable human_gl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/tgros/Projects/human_gl/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable human_gl"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/human_gl.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

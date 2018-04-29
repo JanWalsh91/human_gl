@@ -57,7 +57,7 @@ void Mesh::recursivelyRender( Shader & s ) {
 
 // updates Model Matrix based on rot, trans, scale vectors
 void	Mesh::updateModelMatrix() {
-	std::cout << "Updatemodel matrix" << std::endl;
+//	std::cout << "Updatemodel matrix" << std::endl;
 	// reset matrix
 	this->scaleMatrix = Matrix(this->scale, Matrix::TYPE::SCALE);
 	// translate

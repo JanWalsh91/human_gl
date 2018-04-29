@@ -15,7 +15,7 @@ set(
 	SOURCE_FILES
 	src/main.cpp
 	src/Shader.cpp
-	src/Window.cpp
+        src/OpenGLWindow.cpp
 	src/Cycle.cpp
 	src/Matrix.cpp
 	src/Vector.cpp
@@ -23,6 +23,7 @@ set(
 	src/Mesh/TorsoMesh.cpp
 	src/Mesh/ArmMesh.cpp
 	src/HumanGL.cpp
+	src/GUI.cpp
 	libs/nanogui/ext/glad/src/glad.c
 )
 add_executable(human_gl ${SOURCE_FILES})

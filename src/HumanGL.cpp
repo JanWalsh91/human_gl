@@ -60,6 +60,10 @@ HumanGL::HumanGL( void ) {
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
+
+	this->rotationSpeed[0] = 1.0f;
+	this->rotationSpeed[1] = 0.0f;
+	this->rotationSpeed[2] = 0.0f;
 	// delete cubes
 }
 

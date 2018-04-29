@@ -275,6 +275,33 @@ src/Cycle.cpp.s:
 	$(MAKE) -f CMakeFiles/human_gl.dir/build.make CMakeFiles/human_gl.dir/src/Cycle.cpp.s
 .PHONY : src/Cycle.cpp.s
 
+src/GUI.o: src/GUI.cpp.o
+
+.PHONY : src/GUI.o
+
+# target to build an object file
+src/GUI.cpp.o:
+	$(MAKE) -f CMakeFiles/human_gl.dir/build.make CMakeFiles/human_gl.dir/src/GUI.cpp.o
+.PHONY : src/GUI.cpp.o
+
+src/GUI.i: src/GUI.cpp.i
+
+.PHONY : src/GUI.i
+
+# target to preprocess a source file
+src/GUI.cpp.i:
+	$(MAKE) -f CMakeFiles/human_gl.dir/build.make CMakeFiles/human_gl.dir/src/GUI.cpp.i
+.PHONY : src/GUI.cpp.i
+
+src/GUI.s: src/GUI.cpp.s
+
+.PHONY : src/GUI.s
+
+# target to generate assembly for a file
+src/GUI.cpp.s:
+	$(MAKE) -f CMakeFiles/human_gl.dir/build.make CMakeFiles/human_gl.dir/src/GUI.cpp.s
+.PHONY : src/GUI.cpp.s
+
 src/HumanGL.o: src/HumanGL.cpp.o
 
 .PHONY : src/HumanGL.o
@@ -410,6 +437,33 @@ src/Mesh/TorsoMesh.cpp.s:
 	$(MAKE) -f CMakeFiles/human_gl.dir/build.make CMakeFiles/human_gl.dir/src/Mesh/TorsoMesh.cpp.s
 .PHONY : src/Mesh/TorsoMesh.cpp.s
 
+src/OpenGLWindow.o: src/OpenGLWindow.cpp.o
+
+.PHONY : src/OpenGLWindow.o
+
+# target to build an object file
+src/OpenGLWindow.cpp.o:
+	$(MAKE) -f CMakeFiles/human_gl.dir/build.make CMakeFiles/human_gl.dir/src/OpenGLWindow.cpp.o
+.PHONY : src/OpenGLWindow.cpp.o
+
+src/OpenGLWindow.i: src/OpenGLWindow.cpp.i
+
+.PHONY : src/OpenGLWindow.i
+
+# target to preprocess a source file
+src/OpenGLWindow.cpp.i:
+	$(MAKE) -f CMakeFiles/human_gl.dir/build.make CMakeFiles/human_gl.dir/src/OpenGLWindow.cpp.i
+.PHONY : src/OpenGLWindow.cpp.i
+
+src/OpenGLWindow.s: src/OpenGLWindow.cpp.s
+
+.PHONY : src/OpenGLWindow.s
+
+# target to generate assembly for a file
+src/OpenGLWindow.cpp.s:
+	$(MAKE) -f CMakeFiles/human_gl.dir/build.make CMakeFiles/human_gl.dir/src/OpenGLWindow.cpp.s
+.PHONY : src/OpenGLWindow.cpp.s
+
 src/Shader.o: src/Shader.cpp.o
 
 .PHONY : src/Shader.o
@@ -464,33 +518,6 @@ src/Vector.cpp.s:
 	$(MAKE) -f CMakeFiles/human_gl.dir/build.make CMakeFiles/human_gl.dir/src/Vector.cpp.s
 .PHONY : src/Vector.cpp.s
 
-src/Window.o: src/Window.cpp.o
-
-.PHONY : src/Window.o
-
-# target to build an object file
-src/Window.cpp.o:
-	$(MAKE) -f CMakeFiles/human_gl.dir/build.make CMakeFiles/human_gl.dir/src/Window.cpp.o
-.PHONY : src/Window.cpp.o
-
-src/Window.i: src/Window.cpp.i
-
-.PHONY : src/Window.i
-
-# target to preprocess a source file
-src/Window.cpp.i:
-	$(MAKE) -f CMakeFiles/human_gl.dir/build.make CMakeFiles/human_gl.dir/src/Window.cpp.i
-.PHONY : src/Window.cpp.i
-
-src/Window.s: src/Window.cpp.s
-
-.PHONY : src/Window.s
-
-# target to generate assembly for a file
-src/Window.cpp.s:
-	$(MAKE) -f CMakeFiles/human_gl.dir/build.make CMakeFiles/human_gl.dir/src/Window.cpp.s
-.PHONY : src/Window.cpp.s
-
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -541,6 +568,9 @@ help:
 	@echo "... src/Cycle.o"
 	@echo "... src/Cycle.i"
 	@echo "... src/Cycle.s"
+	@echo "... src/GUI.o"
+	@echo "... src/GUI.i"
+	@echo "... src/GUI.s"
 	@echo "... src/HumanGL.o"
 	@echo "... src/HumanGL.i"
 	@echo "... src/HumanGL.s"
@@ -556,15 +586,15 @@ help:
 	@echo "... src/Mesh/TorsoMesh.o"
 	@echo "... src/Mesh/TorsoMesh.i"
 	@echo "... src/Mesh/TorsoMesh.s"
+	@echo "... src/OpenGLWindow.o"
+	@echo "... src/OpenGLWindow.i"
+	@echo "... src/OpenGLWindow.s"
 	@echo "... src/Shader.o"
 	@echo "... src/Shader.i"
 	@echo "... src/Shader.s"
 	@echo "... src/Vector.o"
 	@echo "... src/Vector.i"
 	@echo "... src/Vector.s"
-	@echo "... src/Window.o"
-	@echo "... src/Window.i"
-	@echo "... src/Window.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
