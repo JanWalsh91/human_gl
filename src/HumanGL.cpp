@@ -78,9 +78,9 @@ HumanGL & HumanGL::operator=( HumanGL const & rhs ) {
 	return *this;
 }
 
-
-
-
+void HumanGL::initCycles() {
+	this->cycles[0] = Cycle(Cycle::Type::WALKING);
+}
 
 
 

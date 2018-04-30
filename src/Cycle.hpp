@@ -11,7 +11,10 @@
 class Cycle {
 
 	public:
-		Cycle( void );
+		
+		enum Type { WALKING };
+
+		Cycle( Cycle::Type );
 		Cycle( Cycle const & );
 		~Cycle( void );
 
@@ -24,13 +27,15 @@ class Cycle {
 
 		void	setStartTime( unsigned time ) { this->startTime = time; }
 		unsigned	getStartTime() { return this->startTime; }
+		std::vector<KeyFrame*>	keyFrames;
 	private:
-		std::vector<KeyFrame>	keyFrames;
 		std::vector<Frame>		frames;
 		unsigned			totalTime;
 		unsigned			framesPerCycle;
 		unsigned			startTime;
 		std::string				name;
+
+		void createWalkingCycle();
 
 
 		static const unsigned	keyFramesPerCycle = 60;

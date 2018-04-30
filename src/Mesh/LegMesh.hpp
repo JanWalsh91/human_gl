@@ -1,18 +1,15 @@
-#ifndef TORSO_MESH_HPP
-# define TORSO_MESH_HPP
+#ifndef LEG_MESH_HPP
+# define LEG_MESH_HPP
 
 # include "Mesh.hpp"
 
-class TorsoMesh : public Mesh {
+class LegMesh : public Mesh {
 
 public:
-	TorsoMesh();
-	TorsoMesh( Vector rotationAngles );
-	TorsoMesh( TorsoMesh const & );
-	~TorsoMesh();
-
-	TorsoMesh & operator=( TorsoMesh const & rhs );
-
+	LegMesh();
+	LegMesh( Side side );
+	LegMesh( Side side, Vector );
+	~LegMesh() {}
 private:
 
 };

@@ -15,9 +15,9 @@ int    main ( void ) {
 
 	OpenGLWindow w(1280, 720, "Joli projet");
 
-	Cycle cycle;
+	// Cycle cycle;
 
-	w.loop(cycle);
+	w.loop();
 
 	return (0);
 }

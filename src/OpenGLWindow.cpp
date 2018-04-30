@@ -1,9 +1,5 @@
 #include "OpenGLWindow.hpp"
 
-#include "Mesh/TorsoMesh.hpp"
-#include "Mesh/ArmMesh.hpp"
-#include "Mesh/HeadMesh.hpp"
-
 OpenGLWindow::OpenGLWindow( int width, int height, std::string const & title ): nanogui::Screen(), width(width), height(height) {
 	if (!(this->window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr))) {
 		// exception
@@ -17,6 +13,9 @@ OpenGLWindow::OpenGLWindow( int width, int height, std::string const & title ): 
 	this->shaderProgram.use();
 	std::cout << "init window" << std::endl;
 	this->human = new HumanGL();
+
+	this->human->initCycles();
+
 	this->camPos = Vector(0, 0, -10);
 	this->camRight = Vector(1, 0, 0);
 	this->camUp = Vector(0, 1, 0);
@@ -211,7 +210,7 @@ void OpenGLWindow::initOpenGL() {
 
 #include <unistd.h>
 
-void OpenGLWindow::loop(Cycle & cycle) {
+void OpenGLWindow::loop() {
 //	this->lastTimeFrame = glfwGetTime();
 
 
@@ -219,27 +218,38 @@ void OpenGLWindow::loop(Cycle & cycle) {
 //	Mesh mesh2(Vector(0, 0, 0), Vector(0.2, 0.5, 0.2), Vector(0.7, 0, 0), Vector(0, 1, 0));
 //	Mesh mesh3(Vector(0, 0, 0), Vector(0.2, 0.5, 0.2), Vector(-0.7, 0, 0), Vector(0, 0.5, 0));
 
-	TorsoMesh torso;
-	ArmMesh		rightArm(Side::RIGHT, Vector(0, 0, 0));
-	ArmMesh		leftArm(Side::LEFT, Vector(0, 0, 0));
-	HeadMesh	head(Vector(0, 0, 0));
-	Mesh		leftSubArm(
-		Vector(30, 0, 0), // rotationAngles
-		Vector(0, 0, 0), // rotation origin 
-		Vector(0.25, 0.5, 0.25), //scale 
-		Vector(0, 0, 0), // scale origin
-		Vector(0, -1.5, -0.3), // translate
-		Vector(0, 0, 1), // color
-		"RightSUBArm");
+	// TorsoMesh torso;
+	// ArmMesh		rightArm(Side::RIGHT, Vector(-3, 0, 4));
+	// ArmMesh		leftArm(Side::LEFT, Vector(-3, 0, -4));
+	// LowerArmMesh		lowerRightArm(Side::RIGHT, Vector(4, 0, -4));
+	// LowerArmMesh		lowerLeftArm(Side::LEFT, Vector(4, 0, 4));
+	// LowerLegMesh		lowerRightLeg(Side::RIGHT, Vector(-10, 0, 0));
+	// LowerLegMesh		lowerLeftLeg(Side::LEFT, Vector(-10, 0, 0));
+	// LegMesh		rightLeg(Side::RIGHT, Vector(5, 0, 0));
+	// LegMesh		leftLeg(Side::LEFT, Vector(5, 0, 0));
+	// HandMesh		rightHand(Side::RIGHT, Vector(0, 0, 0));
+	// HandMesh		leftHand(Side::LEFT, Vector(0, 0, 0));
+	// FootMesh		rightFoot(Side::RIGHT, Vector(0, 0, 0));
+	// FootMesh		leftFoot(Side::LEFT, Vector(0, 0, 0));
+	// HeadMesh	head(Vector(0, 0, 0));
 
 	this->poubelle = 0;
-	torso.append(&rightArm);
-	torso.append(&leftArm);
-	torso.append(&head);
-	rightArm.append(&leftSubArm);
+	// torso.append(&rightArm);
+	// torso.append(&leftArm);
+	// torso.append(&rightLeg);
+	// torso.append(&leftLeg);
+	// leftLeg.append(&lowerLeftLeg);
+	// rightLeg.append(&lowerRightLeg);
+	// torso.append(&head);
+	// rightArm.append(&lowerRightArm);
+	// leftArm.append(&lowerLeftArm);
+	// lowerRightArm.append(&rightHand);
+	// lowerLeftArm.append(&leftHand);
+	// lowerRightLeg.append(&rightFoot);
+	// lowerLeftLeg.append(&leftFoot);
 	Matrix i;
 	Vector o;
-	torso.recursivelyUpdateMatrices(i, o);
+	// torso.recursivelyUpdateMatrices(i, o);
 	// exit(0);
 	while (!glfwWindowShouldClose(this->window) && glfwGetKey(this->window, GLFW_KEY_ESCAPE) != GLFW_PRESS) {
 		glEnable(GL_DEPTH_TEST);
@@ -248,17 +258,28 @@ void OpenGLWindow::loop(Cycle & cycle) {
 
 		// torso.setRotationAngles(Vector(torso.rotationAngles[0], glfwGetTime() * (this->human->getRotationSpeed()[0] * 100), torso.rotationAngles[2]));
 		// torso.setRotationAngles(Vector(glfwGetTime() * (this->human->getRotationSpeed()[0] * 100), glfwGetTime() * (this->human->getRotationSpeed()[0] * 100), glfwGetTime() * (this->human->getRotationSpeed()[0] * 100)));
-		rightArm.setRotationAngles(Vector( glfwGetTime() * (this->human->getRotationSpeed()[0] * 100), rightArm.rotationAngles[1], rightArm.rotationAngles[2] ));
+		// rightArm.setRotationAngles(Vector( std::sin(glfwGetTime()) * 50, rightArm.rotationAngles[1], rightArm.rotationAngles[2] ));
+		// leftArm.setRotationAngles(Vector( -std::sin(glfwGetTime()) * 50, leftArm.rotationAngles[1], leftArm.rotationAngles[2] ));
+		// lowerLeftArm.setRotationAngles(Vector( std::cos(glfwGetTime()) * 50, lowerLeftArm.rotationAngles[1], lowerLeftArm.rotationAngles[2] ));
+		// lowerRightArm.setRotationAngles(Vector( -std::cos(glfwGetTime()) * 50, lowerRightArm.rotationAngles[1], lowerRightArm.rotationAngles[2] ));
 		// torso.setRotationAngles(Vector(torso.rotationAngles[0], torso.rotationAngles[1], this->poubelle * 360));
+		// head.setRotationAngles(Vector(-std::cos(glfwGetTime() * 10) * 20, 0, 0));
+		// leftLeg.setRotationAngles(Vector( std::sin(glfwGetTime()) * 20, 0, 0));
+		// rightLeg.setRotationAngles(Vector( -std::sin(glfwGetTime()) * 20, 0, 0));
+
+		// lowerLeftLeg.setRotationAngles(Vector( 0, 0, std::sin(glfwGetTime() * 5) * 90));
+		// lowerRightLeg.setRotationAngles(Vector( 0, 0, -std::sin(glfwGetTime() * 5) * 90));
+
+		// torso.recursivelyUpdateMatrices(i, o);
+
+		// std::cout << "Poubelle: " << this->poubelle << std::endl;
+
+		// this->human->cycles[0].keyFrames[0]->getRoot()->recursivelyUpdateMatrices(i, o);
+
 		
-		torso.recursivelyUpdateMatrices(i, o);
-
-		std::cout << "Poubelle: " << this->poubelle << std::endl;
-
 		glClearColor(0.2f, 0.2f, .5f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-
+		
 		this->drawContents();
 //		if (currentTime - this->lastTimeFrame > 16) {
 //			cycle.getCurrentFrame().getMeshes()[0].render();
@@ -278,7 +299,9 @@ void OpenGLWindow::loop(Cycle & cycle) {
 		glBindVertexArray(human->getVAO());
 		glBindBuffer(GL_ARRAY_BUFFER, human->getVBO());
 
-		torso.recursivelyRender(this->shaderProgram);
+		// this->human->cycles[0].keyFrames[0]->getRoot()->recursivelyRender(this->shaderProgram);
+
+		// torso.recursivelyRender(this->shaderProgram);
 		// exit(0);
 
 //		glBindVertexArray(VAO);

@@ -7,6 +7,14 @@
 # include <nanogui/nanogui.h>
 
 # include "Mesh/Mesh.hpp"
+# include "Mesh/TorsoMesh.hpp"
+# include "Mesh/ArmMesh.hpp"
+# include "Mesh/LowerArmMesh.hpp"
+# include "Mesh/LegMesh.hpp"
+# include "Mesh/LowerLegMesh.hpp"
+# include "Mesh/HeadMesh.hpp"
+# include "Mesh/HandMesh.hpp"
+# include "Mesh/FootMesh.hpp"
 # include "Shader.hpp"
 # include "Cycle.hpp"
 # include "HumanGL.hpp"
@@ -20,7 +28,7 @@ public:
 	~OpenGLWindow( void );
 
 	OpenGLWindow & operator=( OpenGLWindow const & rhs );
-	void loop(Cycle & cycle);
+	void loop();
 	void createWidget();
 
 	HumanGL* getHuman() { return this->human; }

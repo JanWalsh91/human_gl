@@ -177,7 +177,7 @@ Matrix Mesh::calculateScalingMatrix( Vector & absSclCtr ) {
 // }
 
 void Mesh::recursivelyUpdateMatrices( Matrix & parentMatrix, Vector parentPos ) {
-	std::cout << "recursivelyUpdateMatrices " << this->name << "  parentPos: " << parentPos << std::endl;
+	// std::cout << "recursivelyUpdateMatrices " << this->name << "  parentPos: " << parentPos << std::endl;
 	// std::cout << "parentMatrix: \n" << parentMatrix << std::endl;
 	// Update scaling and rotation centers based on parentPos 
 
@@ -190,8 +190,8 @@ void Mesh::recursivelyUpdateMatrices( Matrix & parentMatrix, Vector parentPos ) 
 	// Vector absRotCtr = ( parentMatrix * this->translation ) + ( this->scaleMatrix * this->rotationOrigin );
 	// std::cout << "( parentMatrix * this->translation ): " << ( parentMatrix * this->translation ) << std::endl;
 
-	std::cout << "absRotCtr: " << absRotCtr << std::endl;
-	std::cout << "absSclCtr: " << absSclCtr << std::endl;
+	// std::cout << "absRotCtr: " << absRotCtr << std::endl;
+	// std::cout << "absSclCtr: " << absSclCtr << std::endl;
 
 	// Update translateMatrix
 	this->translateMatrix = Matrix( this->translation, Matrix::TYPE::TRANSLATE );
@@ -213,7 +213,7 @@ void Mesh::recursivelyUpdateMatrices( Matrix & parentMatrix, Vector parentPos ) 
 	this->modelMatrix = ((this->scaleMatrix * this->rotateMatrix) * this->translateMatrix) * parentMatrix;
 
 	// std::cout << "this->modelMatrix: \n" << this->modelMatrix << std::endl;
-	std::cout << " parentMatrix: \n" << parentMatrix << std::endl;
+	// std::cout << " parentMatrix: \n" << parentMatrix << std::endl;
 
 	// Calculate newParentPos
 	Vector newParentPos = parentPos + parentMatrix * /*parentPos +*/ this->translation;

@@ -44,10 +44,11 @@ public:
 	Matrix &	getModelMatrix();
 	void append( Mesh* mesh );
 
-	void setRotationAngles(Vector  newAngle) { 
-		this->rotationAngles = newAngle;
-		std::cout << this->rotationAngles << std::endl;
-	}
+	void setRotationAngles(Vector  newAngle) { this->rotationAngles = newAngle; }
+	void setTranslation(Vector  translation) { this->translation = translation; }
+	void setScale(Vector  scale) { this->scale = scale; }
+	void setColor(Vector  color) { this->color = color; }
+	
 	Vector rotationAngles;
 
 private:
