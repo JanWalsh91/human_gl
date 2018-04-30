@@ -41,9 +41,9 @@ class Matrix {
 		
 		Matrix &	operator=( Matrix const & rhs );
 		Matrix		operator*( Matrix const & rhs );
-		Matrix		operator*( Vector const & rhs );
-		Matrix		operator*=( Matrix const & rhs );
-		Matrix		operator*=( Vector const & rhs );
+		Vector		operator*( Vector const & rhs );
+		// Matrix		operator*=( Matrix const & rhs );
+		// Matrix		operator*=( Vector const & rhs );
 		float &			operator[](int i);
 		float const &	operator[](int i) const;
 

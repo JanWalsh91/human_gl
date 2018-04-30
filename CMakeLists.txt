@@ -15,13 +15,14 @@ set(
 	SOURCE_FILES
 	src/main.cpp
 	src/Shader.cpp
-        src/OpenGLWindow.cpp
+	src/OpenGLWindow.cpp
 	src/Cycle.cpp
 	src/Matrix.cpp
 	src/Vector.cpp
 	src/Mesh/Mesh.cpp
 	src/Mesh/TorsoMesh.cpp
 	src/Mesh/ArmMesh.cpp
+	src/Mesh/HeadMesh.cpp
 	src/HumanGL.cpp
 	src/GUI.cpp
 	libs/nanogui/ext/glad/src/glad.c
