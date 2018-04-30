@@ -21,6 +21,7 @@ class Vector {
 		Vector 	operator*( Matrix const & rhs );
 		Vector 	operator*( float rhs );
 		Vector 	operator/( Vector const & rhs );
+		bool	operator==(Vector const & rhs);
 		float &			operator[](int i);
 		float const &	operator[](int i) const;
 		

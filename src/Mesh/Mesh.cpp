@@ -175,6 +175,21 @@ Matrix Mesh::calculateScalingMatrix( Vector & absSclCtr ) {
 // Matrix Mesh::scaleRotCtr() {
 // 	// move 
 // }
+Mesh* Mesh::getByColor(Vector color) {
+	Mesh* tmp = nullptr;
+
+	if (color == this->color) {
+		std::cout << this->getName() << std::endl;
+		return this;
+	}
+	for (Mesh* mesh : this->meshes) {
+		if (mesh->getByColor(color) != nullptr) {
+			tmp = mesh;
+			break;
+		}
+	}
+	return tmp;
+}
 
 void Mesh::recursivelyUpdateMatrices( Matrix & parentMatrix, Vector parentPos ) {
 	// std::cout << "recursivelyUpdateMatrices " << this->name << "  parentPos: " << parentPos << std::endl;

@@ -56,4 +56,5 @@ Frame* KeyFrame::interpolate( KeyFrame const & other, unsigned maxFramesPerCycle
 	//		include first keyFrame, exclude last
 	size = std::abs(other.index - this->index);
 	// calculate 
+	return nullptr;
 }

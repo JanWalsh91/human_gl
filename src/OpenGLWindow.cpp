@@ -1,5 +1,6 @@
 #include "OpenGLWindow.hpp"
 
+
 OpenGLWindow::OpenGLWindow( int width, int height, std::string const & title ): nanogui::Screen(), width(width), height(height) {
 	if (!(this->window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr))) {
 		// exception
@@ -11,7 +12,6 @@ OpenGLWindow::OpenGLWindow( int width, int height, std::string const & title ): 
 	}
 	this->shaderProgram = Shader("../src/Shaders/base.vert", "../src/Shaders/base.frag");
 	this->shaderProgram.use();
-	std::cout << "init window" << std::endl;
 	this->human = new HumanGL();
 
 	this->human->initCycles();
@@ -33,7 +33,6 @@ OpenGLWindow::OpenGLWindow( int width, int height, std::string const & title ): 
 	// std::cout << "View Matrix: \n" << this->viewMatrix << std::endl;
 	this->PMatrix = Matrix(100, 0.1, (float)this->width / (float)this->height, 45, Matrix::TYPE::PROJECTION);
 	this->initialize(this->window, true);
-
 
 	int w, h;
 	glfwGetFramebufferSize(window, &w, &h);
@@ -161,6 +160,10 @@ void OpenGLWindow::loop() {
 	Vector o;
 	// torso.recursivelyUpdateMatrices(i, o);
 	// exit(0);
+
+
+	//this->human->cycles[0]->keyFrames[0]->getTorso()->setRotationAngles(Vector(0, 45, 0));
+
 	while (!glfwWindowShouldClose(this->window) && glfwGetKey(this->window, GLFW_KEY_ESCAPE) != GLFW_PRESS) {
 		glEnable(GL_DEPTH_TEST);
 //		double currentTime = glfwGetTime();
@@ -183,8 +186,7 @@ void OpenGLWindow::loop() {
 		// torso.recursivelyUpdateMatrices(i, o);
 
 		// std::cout << "Poubelle: " << this->poubelle << std::endl;
-
-		// this->human->cycles[0].keyFrames[0]->getRoot()->recursivelyUpdateMatrices(i, o);
+		 this->human->cycles[0]->keyFrames[0]->getRoot()->recursivelyUpdateMatrices(i, o);
 
 		
 		glClearColor(0.2f, 0.2f, .5f, 1.0f);
@@ -209,18 +211,49 @@ void OpenGLWindow::loop() {
 		glBindVertexArray(human->getVAO());
 		glBindBuffer(GL_ARRAY_BUFFER, human->getVBO());
 
-		// this->human->cycles[0].keyFrames[0]->getRoot()->recursivelyRender(this->shaderProgram);
+		
 
 		// torso.recursivelyRender(this->shaderProgram);
 		// exit(0);
 
 //		glBindVertexArray(VAO);
 //		glDrawArrays(GL_TRIANGLES, 0, 3);
-
+		this->human->cycles[0]->keyFrames[0]->getRoot()->recursivelyRender(this->shaderProgram);
 		this->drawWidgets();
 
-		glfwSwapBuffers(this->window);
+		
 
+
+		
+		if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT)) {
+			glFlush();
+			glFinish();
+			glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+			float data[4];
+			data[0] = 0;
+			data[1] = 0;
+			data[2] = 0;
+			data[3] = 0;
+			double xpos, ypos;
+			glfwGetCursorPos(window, &xpos, &ypos);
+			ypos = this->height - ypos;
+			glReadPixels(xpos, ypos, 1, 1, GL_RGB, GL_FLOAT, data);
+			//this->human->cycles[0]->keyFrames[0]->getHead()->setColor(Vector((float)data[0], (float)data[1], (float)data[2]));
+
+			std::cout << Vector((float)data[0], (float)data[1], (float)data[2]) << std::endl;
+			std::cout << this->human->cycles[0]->keyFrames[0]->getLeftLeg()->getColor() << std::endl;
+			std::cout << this->human->cycles[0]->keyFrames[0]->getLeftFoot()->getColor() << std::endl;
+			Mesh* tmp = this->human->cycles[0]->keyFrames[0]->getRoot()->getByColor(Vector((float)data[0], (float)data[1], (float)data[2]));
+			if (tmp) {
+				std::cout << tmp->getName() << std::endl;
+				tmp->setColor(Vector(1, 0, 0));
+			}
+			//unsigned char res[4];
+			//GLint viewport[4];
+			//glGetIntegerv(GL_VIEWPORT, viewport);
+			//glReadPixels(xpos, ypos, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &res);		
+		}
+		glfwSwapBuffers(this->window);
 	}
 
 
