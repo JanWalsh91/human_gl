@@ -35,7 +35,6 @@ OpenGLWindow::OpenGLWindow( int width, int height, std::string const & title ): 
 	this->initialize(this->window, true);
 
 
-
 	int w, h;
 	glfwGetFramebufferSize(window, &w, &h);
 	glViewport(0, 0, w, h);
@@ -46,9 +45,8 @@ OpenGLWindow::OpenGLWindow( int width, int height, std::string const & title ): 
 
 	bool enabled = true;
 
-
-
-	this->createWidget();
+	this->gui = new GUI(this);
+	this->gui->createSettings();
 
 	this->setVisible(true);
 	this->performLayout();
@@ -98,93 +96,6 @@ OpenGLWindow::OpenGLWindow( int width, int height, std::string const & title ): 
 	);
 }
 
-void OpenGLWindow::createWidget() {
-	nanogui::Window* guiWindow = new nanogui::Window(this, "HumanGL Settings");
-	guiWindow->setPosition(nanogui::Vector2i(20, 15));
-	guiWindow->setLayout(new nanogui::GroupLayout());
-
-//	new nanogui::Label(guiWindow, "Message dialog", "sans-bold");
-//	nanogui::Widget *tools = new nanogui::Widget(guiWindow);
-//	tools->setLayout(new nanogui::BoxLayout(nanogui::Orientation::Horizontal,
-//											nanogui::Alignment::Middle, 0, 6));
-//	nanogui::Button *b = new nanogui::Button(tools, "Info");
-//	b->setCallback([&] {
-//		auto dlg = new nanogui::MessageDialog(this, nanogui::MessageDialog::Type::Information, "Title", "This is an information message");
-//		dlg->setCallback([](int result) { std::cout << "Dialog result: " << result << std::endl; });
-//	});
-//	b = new nanogui::Button(tools, "Warn");
-//	b->setCallback([&] {
-//		auto dlg = new nanogui::MessageDialog(this, nanogui::MessageDialog::Type::Warning, "Title", "This is a warning message");
-//		dlg->setCallback([](int result) { std::cout << "Dialog result: " << result << std::endl; });
-//	});
-//	b = new nanogui::Button(tools, "Ask");
-//	b->setCallback([&] {
-//		auto dlg = new nanogui::MessageDialog(this, nanogui::MessageDialog::Type::Warning, "Title", "This is a question message", "Yes", "No", true);
-//		dlg->setCallback([](int result) { std::cout << "Dialog result: " << result << std::endl; });
-//	});
-//
-//	new nanogui::Label(guiWindow, "Image panel & scroll panel", "sans-bold");
-//	nanogui::PopupButton *imagePanelBtn = new nanogui::PopupButton(guiWindow, "Image Panel");
-//	imagePanelBtn->setIcon(ENTYPO_ICON_FOLDER);
-//
-//	new nanogui::Label(guiWindow, "File dialog", "sans-bold");
-//	tools = new Widget(guiWindow);
-//	tools->setLayout(new nanogui::BoxLayout(nanogui::Orientation::Horizontal,
-//											nanogui::Alignment::Middle, 0, 6));
-//	b = new nanogui::Button(tools, "Open");
-//	b->setCallback([&] {
-//
-//	});
-//	b = new nanogui::Button(tools, "Save");
-//	b->setCallback([&] {
-//
-//	});
-//
-//	new nanogui::Label(guiWindow, "Combo box", "sans-bold");
-//	new nanogui::ComboBox(guiWindow, { "Combo box item 1", "Combo box item 2", "Combo box item 3"});
-//	new nanogui::Label(guiWindow, "Check box", "sans-bold");
-//	nanogui::CheckBox *cb = new nanogui::CheckBox(guiWindow, "Flag 1",
-//								[](bool state) { std::cout << "Check box 1 state: " << state << std::endl; }
-//	);
-//	cb->setChecked(true);
-//	cb = new nanogui::CheckBox(guiWindow, "Flag 2",
-//					  [](bool state) { std::cout << "Check box 2 state: " << state << std::endl; }
-//	);
-//	new nanogui::Label(guiWindow, "Progress bar", "sans-bold");
-//	nanogui::ProgressBar* mProgress = new nanogui::ProgressBar(guiWindow);
-
-	new nanogui::Label(guiWindow, "Rotation", "sans-bold");
-
-	nanogui::Widget *panel = new Widget(guiWindow);
-	panel->setLayout(new nanogui::BoxLayout(nanogui::Orientation::Horizontal, nanogui::Alignment::Middle, 0, 20));
-
-	new nanogui::Label(panel, "X", "sans-bold");
-
-	nanogui::Slider *slider = new nanogui::Slider(panel);
-	slider->setValue(0.5f);
-	slider->setFixedWidth(100);
-
-	nanogui::TextBox *textBox = new nanogui::TextBox(panel);
-	textBox->setFixedSize(nanogui::Vector2i(60, 25));
-	textBox->setValue("100");
-	textBox->setUnits("%");
-
-
-	slider->setCallback([this, textBox](float value) {
-		textBox->setValue(std::to_string((int) (value * 100)));
-		std::cout << value << std::endl;
-		// this->human->setRotationSpeedX(value);
-		this->poubelle = value;
-	});
-	slider->setFinalCallback([&](float value) {
-		std::cout << "Final slider value: " << (int) (value * 100) << std::endl;
-		
-	});
-	textBox->setFixedSize(nanogui::Vector2i(60,25));
-	textBox->setFontSize(20);
-	textBox->setAlignment(nanogui::TextBox::Alignment::Right);
-}
-
 OpenGLWindow::OpenGLWindow( OpenGLWindow const & Window ) {
 	*this = Window;
 }
@@ -208,7 +119,6 @@ void OpenGLWindow::initOpenGL() {
 //
 //}
 
-#include <unistd.h>
 
 void OpenGLWindow::loop(Cycle & cycle) {
 //	this->lastTimeFrame = glfwGetTime();

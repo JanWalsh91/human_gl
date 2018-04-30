@@ -36,8 +36,35 @@ void GUI::createSettings() {
 		std::cout << "Final slider value: " << (int) (value * 100) << std::endl;
 		this->screen->getHuman()->setRotationSpeedX(value);
 	});
+
 	textBox->setFixedSize(nanogui::Vector2i(60,25));
 	textBox->setFontSize(20);
 	textBox->setAlignment(nanogui::TextBox::Alignment::Right);
+
+	new nanogui::Label(panel, "Y", "sans-bold");
+
+	nanogui::Slider *sliderY = new nanogui::Slider(panel);
+	sliderY->setValue(1.0f);
+	sliderY->setFixedWidth(100);
+
+	nanogui::TextBox *textBoxY = new nanogui::TextBox(panel);
+	textBoxY->setFixedSize(nanogui::Vector2i(60, 25));
+	textBoxY->setValue("100");
+	textBoxY->setUnits("%");
+
+
+	sliderY->setCallback([this, textBoxY](float value) {
+		textBoxY->setValue(std::to_string((int)(value * 100)));
+		std::cout << value << std::endl;
+
+	});
+	sliderY->setFinalCallback([&](float value) {
+		std::cout << "Final slider value: " << (int)(value * 100) << std::endl;
+		this->screen->getHuman()->setRotationSpeedX(value);
+	});
+
+	textBoxY->setFixedSize(nanogui::Vector2i(60, 30));
+	textBoxY->setFontSize(20);
+	textBoxY->setAlignment(nanogui::TextBox::Alignment::Right);
 
 }

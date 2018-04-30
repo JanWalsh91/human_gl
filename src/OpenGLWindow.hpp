@@ -12,6 +12,8 @@
 # include "HumanGL.hpp"
 # include "Vector.hpp"
 
+class GUI;
+
 class OpenGLWindow: public nanogui::Screen {
 
 public:
@@ -30,6 +32,7 @@ public:
 private:
 	GLFWwindow	*window;
 	HumanGL		*human;
+	GUI*		gui;
 	Shader		shaderProgram;
 	int			width;
 	int			height;
@@ -43,5 +46,7 @@ private:
 
 	double poubelle;
 };
+
+# include "GUI.hpp"
 
 #endif
