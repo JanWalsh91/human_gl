@@ -27,13 +27,17 @@ public:
 
 	void render( Shader & s );
 	void recursivelyRender( Shader & s );
+	void recursivelyUpdateMatrices( Matrix & parentMatrix, Vector parentPos );
+	Matrix calculateRotationMatrix( Vector & absRotCtr );
+	Matrix calculateScalingMatrix( Vector & absSclCtr );
+
 	// void updateModelMatrix( Matrix & modelMatrix, Matrix & translateMatrix );
-	void updateModelMatrix(Matrix & parentModelMatrix);
+	// void updateModelMatrix(Matrix & parentModelMatrix);
 	// void updateInheritedModelMatrix();
 	
 	// void recursivelyUpdateModelMatrix( Matrix & modelMatrix, Matrix & translateMatrix );
 	
-	Matrix& recursivelyUpdateModelMatrix(Matrix & parentModelMatrix);
+	// Matrix& recursivelyUpdateModelMatrix(Matrix & parentModelMatrix);
 
 	// Setters
 	// not needed until we set variables outside of constructors.
@@ -44,6 +48,7 @@ public:
 		this->rotationAngles = newAngle;
 		std::cout << this->rotationAngles << std::endl;
 	}
+	Vector rotationAngles;
 
 private:
 	std::vector<Mesh*> meshes;
@@ -55,7 +60,6 @@ private:
 	Matrix translateMatrix;
 
 
-	Vector rotationAngles;
 	Vector rotationOrigin;
 	Vector translation;
 	Vector scale;
@@ -64,9 +68,9 @@ private:
 
 	std::string name;
 
-	void updateRotationMatrix();
-	Vector getScaleCenter();
-	Vector getRotationCenter();
+	// void updateRotationMatrix();
+	// Vector getScaleCenter();
+	// Vector getRotationCenter();
 	// change to actual VBO
 	unsigned VBOPosition;
 };

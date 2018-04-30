@@ -2,6 +2,7 @@
 
 #include "Mesh/TorsoMesh.hpp"
 #include "Mesh/ArmMesh.hpp"
+#include "Mesh/HeadMesh.hpp"
 
 OpenGLWindow::OpenGLWindow( int width, int height, std::string const & title ): nanogui::Screen(), width(width), height(height) {
 	if (!(this->window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr))) {
@@ -220,31 +221,37 @@ void OpenGLWindow::loop(Cycle & cycle) {
 
 	TorsoMesh torso;
 	ArmMesh		rightArm(Side::RIGHT, Vector(0, 0, 0));
-	// ArmMesh		leftArm(Side::LEFT, Vector(80, 0, 0));
+	ArmMesh		leftArm(Side::LEFT, Vector(0, 0, 0));
+	HeadMesh	head(Vector(0, 0, 0));
 	Mesh		leftSubArm(
-		Vector(0, 0, 0),
-		Vector(0, 0, 0),
-		Vector(0.5, 0.5, 0.5),
-		Vector(0.5, 0.5, 0.5),
-		Vector(0, -1, 0),
-		Vector(0, 0, 1),
+		Vector(30, 0, 0), // rotationAngles
+		Vector(0, 0, 0), // rotation origin 
+		Vector(0.25, 0.5, 0.25), //scale 
+		Vector(0, 0, 0), // scale origin
+		Vector(0, -1.5, -0.3), // translate
+		Vector(0, 0, 1), // color
 		"RightSUBArm");
 
 	this->poubelle = 0;
 	torso.append(&rightArm);
+	torso.append(&leftArm);
+	torso.append(&head);
 	rightArm.append(&leftSubArm);
-	// torso.append(leftArm);
 	Matrix i;
-	torso.recursivelyUpdateModelMatrix(i);
+	Vector o;
+	torso.recursivelyUpdateMatrices(i, o);
 	// exit(0);
 	while (!glfwWindowShouldClose(this->window) && glfwGetKey(this->window, GLFW_KEY_ESCAPE) != GLFW_PRESS) {
 		glEnable(GL_DEPTH_TEST);
 //		double currentTime = glfwGetTime();
 		glfwPollEvents();
 
-		torso.setRotationAngles(Vector(0, 60+0 *(this->human->getRotationSpeed()[0] * 360), 0));
-		rightArm.setRotationAngles(Vector(this->poubelle * 360, 0, 0));
-		torso.recursivelyUpdateModelMatrix(i);
+		// torso.setRotationAngles(Vector(torso.rotationAngles[0], glfwGetTime() * (this->human->getRotationSpeed()[0] * 100), torso.rotationAngles[2]));
+		// torso.setRotationAngles(Vector(glfwGetTime() * (this->human->getRotationSpeed()[0] * 100), glfwGetTime() * (this->human->getRotationSpeed()[0] * 100), glfwGetTime() * (this->human->getRotationSpeed()[0] * 100)));
+		rightArm.setRotationAngles(Vector( glfwGetTime() * (this->human->getRotationSpeed()[0] * 100), rightArm.rotationAngles[1], rightArm.rotationAngles[2] ));
+		// torso.setRotationAngles(Vector(torso.rotationAngles[0], torso.rotationAngles[1], this->poubelle * 360));
+		
+		torso.recursivelyUpdateMatrices(i, o);
 
 		std::cout << "Poubelle: " << this->poubelle << std::endl;
 

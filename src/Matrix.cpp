@@ -30,23 +30,36 @@ Matrix::Matrix( float angle, Matrix::TYPE type ) : Matrix::Matrix(4) {
 void	Matrix::rot_x( float angle ) {
 	this->m[0] = 1;
 	this->m[5] = cos( angle );
-	this->m[6] = -sin( angle );
-	this->m[9] = sin( angle );
+
+	// this->m[6] = -sin( angle );
+	// this->m[9] = sin( angle );
+	this->m[6] = sin( angle );
+	this->m[9] = -sin( angle );
+	
 	this->m[10] = cos( angle );
 }
 
 void	Matrix::rot_y( float angle ) {
 	this->m[0] = cos( angle );
-	this->m[2] = sin( angle );
+	
+	// this->m[2] = sin( angle );
+	// this->m[5] = 1;
+	// this->m[8] = -sin( angle );
+	this->m[2] = -sin( angle );
 	this->m[5] = 1;
-	this->m[8] = -sin( angle );
+	this->m[8] = sin( angle );
+	
 	this->m[10] = cos( angle );
 }
 
 void	Matrix::rot_z( float angle ) {
 	this->m[0] = cos( angle );
-	this->m[1] = -sin( angle );
-	this->m[4] = sin( angle );
+	
+	// this->m[1] = -sin( angle );
+	// this->m[4] = sin( angle );
+	this->m[1] = sin( angle );
+	this->m[4] = -sin( angle );
+	
 	this->m[5] = cos( angle );
 	this->m[10] = 1;
 }
@@ -117,47 +130,41 @@ Matrix	Matrix::operator*( Matrix const & rhs ) {
 	return m;
 }
 
-Matrix	Matrix::operator*( Vector const & rhs ) {
-	Matrix m = *this;
-	int size = this->getSize();
-	// std::cout << "rhs: \n" << rhs << std::endl;
+Vector	Matrix::operator*( Vector const & rhs ) {
+	Vector	v;
+	float	w;
 
-	if (size != 4 && size != 3) throw (Matrix::OperationImpossible());
-	m.m[12] = this->m[12] + rhs[0];
-	m.m[13] = this->m[13] + rhs[1];
-	m.m[14] = this->m[14] + rhs[2];
-	// std::cout << "m: \n" << m << std::endl;
-	return m;
+	// w = this->m[12] * rhs[0] + this->m[13] * rhs[1] + this->m[14] * rhs[2] + this->m[15] * 1;
+	// v[0] = (this->m[0] * rhs[0] + this->m[1] * rhs[1] + this->m[2] * rhs[2] + this->m[3] * 1) / w;
+	// v[1] = (this->m[4] * rhs[0] + this->m[5] * rhs[1] + this->m[6] * rhs[2] + this->m[7] * 1) / w;
+	// v[2] = (this->m[8] * rhs[0] + this->m[9] * rhs[1] + this->m[10] * rhs[2] + this->m[11] * 1) / w;
+
+	w = this->m[3] * rhs[0] + this->m[7] * rhs[1] + this->m[11] * rhs[2] + this->m[15] * 1;
+	v[0] = (this->m[0] * rhs[0] + this->m[4] * rhs[1] + this->m[8] * rhs[2] + this->m[12] * 1) / w;
+	v[1] = (this->m[1] * rhs[0] + this->m[5] * rhs[1] + this->m[9] * rhs[2] + this->m[13] * 1) / w;
+	v[2] = (this->m[2] * rhs[0] + this->m[6] * rhs[1] + this->m[10] * rhs[2] + this->m[14] * 1) / w;
+
+	return v;
 }
 
-Matrix	Matrix::operator*=( Matrix const & rhs ) {
-	Matrix	m;
-	int		size = this->getSize();
+// Matrix	Matrix::operator*=( Matrix const & rhs ) {
+// 	Matrix	m;
+// 	int		size = this->getSize();
 	
-	if ( this->getSize() != rhs.getSize() ) {
-		throw (Matrix::OperationImpossible());
-	}
-	for (int y = 0; y < size; ++y) {
-		for (int x = 0; x < size; ++x) {
-			m.m[y * size + x] = this->m[y * size] * rhs.m[x] +
-				this->m[y * size + 1] * rhs.m[size + x] +
-				this->m[y * size + 2] * rhs.m[size * 2 + x] +
-				this->m[y * size + 3] * rhs.m[size * 3 + x];
-		}
-	}
-	this->m = m.m;
-	return *this;
-}
-
-Matrix	Matrix::operator*=( Vector const & rhs ) {
-	int size = this->getSize();
-
-	if (size != 4 && size != 3) throw (Matrix::OperationImpossible());
-	this->m[12] *= rhs[0];
-	this->m[13] *= rhs[1];
-	this->m[14] *= rhs[2];
-	return *this;
-}
+// 	if ( this->getSize() != rhs.getSize() ) {
+// 		throw (Matrix::OperationImpossible());
+// 	}
+// 	for (int y = 0; y < size; ++y) {
+// 		for (int x = 0; x < size; ++x) {
+// 			m.m[y * size + x] = this->m[y * size] * rhs.m[x] +
+// 				this->m[y * size + 1] * rhs.m[size + x] +
+// 				this->m[y * size + 2] * rhs.m[size * 2 + x] +
+// 				this->m[y * size + 3] * rhs.m[size * 3 + x];
+// 		}
+// 	}
+// 	this->m = m.m;
+// 	return *this;
+// }
 
 const char* Matrix::OperationImpossible::what() const throw() {
 	return "Operation Impossible";
@@ -171,7 +178,8 @@ std::ostream &    operator<<( std::ostream & o, Matrix const & rhs ) {
 	unsigned int size = rhs.getSize();
 
 	for ( unsigned i = 0; i < size * size; ++i ) {
-		o << rhs[i];
+		o.precision(2);
+		o << std::fixed << rhs[i] << "\t";
 		if ( i != size * size - 1 ) {
 			o << ", ";
 		}
