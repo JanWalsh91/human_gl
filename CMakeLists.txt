@@ -22,10 +22,18 @@ set(
 	src/Mesh/Mesh.cpp
 	src/Mesh/TorsoMesh.cpp
 	src/Mesh/ArmMesh.cpp
+	src/Mesh/LowerArmMesh.cpp
+	src/Mesh/LegMesh.cpp
+	src/Mesh/LowerLegMesh.cpp
 	src/Mesh/HeadMesh.cpp
+	src/Mesh/HandMesh.cpp
+	src/Mesh/FootMesh.cpp
 	src/HumanGL.cpp
 	src/GUI.cpp
+	src/KeyFrame.cpp
+	src/Frame.cpp
 	libs/nanogui/ext/glad/src/glad.c
+	src/ExceptionMsg.cpp
 )
 add_executable(human_gl ${SOURCE_FILES})
 target_link_libraries(human_gl nanogui ${NANOGUI_EXTRA_LIBS})

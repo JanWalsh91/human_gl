@@ -2,6 +2,7 @@
 #include "Mesh/TorsoMesh.hpp"
 #include "Vector.hpp"
 #include "Matrix.hpp"
+#include "ExceptionMsg.hpp"
 
 #include <vector>
 
@@ -10,6 +11,8 @@
 int    main ( void ) {
 	
 //	TorsoMesh m;
+
+	// throw ExceptionMsg("error");
 
 	OpenGLWindow::initOpenGL();
 

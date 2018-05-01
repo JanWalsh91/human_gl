@@ -29,7 +29,9 @@ public:
 	void setRotationSpeedY(double y) { this->rotationSpeed[1] = y; }
 	void setRotationSpeedZ(double z) { this->rotationSpeed[2] = z; }
 	Vector getRotationSpeed() { return this->rotationSpeed; }
+
 	std::vector<Cycle*>	cycles;
+
 private:
 	
 

@@ -23,7 +23,7 @@ Vector & Vector::operator=( Vector const & rhs ) {
 	return *this;
 }
 
-Vector  Vector::operator+( Vector const & rhs ) {
+Vector  Vector::operator+( Vector const & rhs ) const {
 	Vector v;
 
 	v[0] = this->v[0] + rhs.v[0];
@@ -32,7 +32,7 @@ Vector  Vector::operator+( Vector const & rhs ) {
 	return v;
 }
 
-Vector  Vector::operator-( Vector const & rhs ) {
+Vector  Vector::operator-( Vector const & rhs ) const {
 	Vector v;
 
 	v[0] = this->v[0] - rhs.v[0];

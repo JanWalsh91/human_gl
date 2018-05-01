@@ -1,14 +1,14 @@
 #include "OpenGLWindow.hpp"
+#include "ExceptionMsg.hpp"
 
 
 OpenGLWindow::OpenGLWindow( int width, int height, std::string const & title ): nanogui::Screen(), width(width), height(height) {
 	if (!(this->window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr))) {
-		// exception
+		throw ExceptionMsg("Failed to create window");
 	}
 	glfwMakeContextCurrent(this->window);
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-		std::cout << "Failed to initialize GLAD" << std::endl;
-		// exception
+		throw ExceptionMsg("Failed to initialize GLAD");
 	}
 	this->shaderProgram = Shader("../src/Shaders/base.vert", "../src/Shaders/base.frag");
 	this->shaderProgram.use();
@@ -106,7 +106,7 @@ OpenGLWindow::~OpenGLWindow() {
 
 void OpenGLWindow::initOpenGL() {
 	if (!glfwInit()) {
-		// exception
+		throw ExceptionMsg("Failed to initialize GLFW");
 	}
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
@@ -120,55 +120,16 @@ void OpenGLWindow::initOpenGL() {
 
 
 void OpenGLWindow::loop() {
-//	this->lastTimeFrame = glfwGetTime();
-
-
-//	Mesh mesh(Vector(0, 180, 0), Vector(1, 2, 1), Vector(0, 0, 0), Vector(1, 0, 1));
-//	Mesh mesh2(Vector(0, 0, 0), Vector(0.2, 0.5, 0.2), Vector(0.7, 0, 0), Vector(0, 1, 0));
-//	Mesh mesh3(Vector(0, 0, 0), Vector(0.2, 0.5, 0.2), Vector(-0.7, 0, 0), Vector(0, 0.5, 0));
-
-	// TorsoMesh torso;
-	// ArmMesh		rightArm(Side::RIGHT, Vector(-3, 0, 4));
-	// ArmMesh		leftArm(Side::LEFT, Vector(-3, 0, -4));
-	// LowerArmMesh		lowerRightArm(Side::RIGHT, Vector(4, 0, -4));
-	// LowerArmMesh		lowerLeftArm(Side::LEFT, Vector(4, 0, 4));
-	// LowerLegMesh		lowerRightLeg(Side::RIGHT, Vector(-10, 0, 0));
-	// LowerLegMesh		lowerLeftLeg(Side::LEFT, Vector(-10, 0, 0));
-	// LegMesh		rightLeg(Side::RIGHT, Vector(5, 0, 0));
-	// LegMesh		leftLeg(Side::LEFT, Vector(5, 0, 0));
-	// HandMesh		rightHand(Side::RIGHT, Vector(0, 0, 0));
-	// HandMesh		leftHand(Side::LEFT, Vector(0, 0, 0));
-	// FootMesh		rightFoot(Side::RIGHT, Vector(0, 0, 0));
-	// FootMesh		leftFoot(Side::LEFT, Vector(0, 0, 0));
-	// HeadMesh	head(Vector(0, 0, 0));
 
 	this->poubelle = 0;
-	// torso.append(&rightArm);
-	// torso.append(&leftArm);
-	// torso.append(&rightLeg);
-	// torso.append(&leftLeg);
-	// leftLeg.append(&lowerLeftLeg);
-	// rightLeg.append(&lowerRightLeg);
-	// torso.append(&head);
-	// rightArm.append(&lowerRightArm);
-	// leftArm.append(&lowerLeftArm);
-	// lowerRightArm.append(&rightHand);
-	// lowerLeftArm.append(&leftHand);
-	// lowerRightLeg.append(&rightFoot);
-	// lowerLeftLeg.append(&leftFoot);
 	Matrix i;
 	Vector o;
-	// torso.recursivelyUpdateMatrices(i, o);
-	// exit(0);
-
-
-	//this->human->cycles[0]->keyFrames[0]->getTorso()->setRotationAngles(Vector(0, 45, 0));
 
 	while (!glfwWindowShouldClose(this->window) && glfwGetKey(this->window, GLFW_KEY_ESCAPE) != GLFW_PRESS) {
 		glEnable(GL_DEPTH_TEST);
 //		double currentTime = glfwGetTime();
 		glfwPollEvents();
-
+	{
 		// torso.setRotationAngles(Vector(torso.rotationAngles[0], glfwGetTime() * (this->human->getRotationSpeed()[0] * 100), torso.rotationAngles[2]));
 		// torso.setRotationAngles(Vector(glfwGetTime() * (this->human->getRotationSpeed()[0] * 100), glfwGetTime() * (this->human->getRotationSpeed()[0] * 100), glfwGetTime() * (this->human->getRotationSpeed()[0] * 100)));
 		// rightArm.setRotationAngles(Vector( std::sin(glfwGetTime()) * 50, rightArm.rotationAngles[1], rightArm.rotationAngles[2] ));
@@ -186,8 +147,11 @@ void OpenGLWindow::loop() {
 		// torso.recursivelyUpdateMatrices(i, o);
 
 		// std::cout << "Poubelle: " << this->poubelle << std::endl;
-		 this->human->cycles[0]->keyFrames[0]->getRoot()->recursivelyUpdateMatrices(i, o);
-
+	}
+		// this->human->cycles[0]->keyFrames[0]->getRoot()->recursivelyUpdateMatrices(i, o);
+		Frame laPlusBelleDesPutes = this->human->cycles[0]->getCurrentFrame();
+		laPlusBelleDesPutes.getRoot()->recursivelyUpdateMatrices(i, o);
+		// std::cout << "Rotation Angles: " << this->human->cycles[0]->getCurrentFrame().getLeftLeg()->getRotationAngles() << std::endl;
 		
 		glClearColor(0.2f, 0.2f, .5f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -218,7 +182,8 @@ void OpenGLWindow::loop() {
 
 //		glBindVertexArray(VAO);
 //		glDrawArrays(GL_TRIANGLES, 0, 3);
-		this->human->cycles[0]->keyFrames[0]->getRoot()->recursivelyRender(this->shaderProgram);
+		// this->human->cycles[0]->keyFrames[0]->getRoot()->recursivelyRender(this->shaderProgram);
+		laPlusBelleDesPutes.getRoot()->recursivelyRender(this->shaderProgram);
 		this->drawWidgets();
 
 		

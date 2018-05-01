@@ -15,8 +15,8 @@ class Vector {
 		~Vector( void );
 		
 		Vector &	operator=( Vector const & rhs );
-		Vector 	operator+( Vector const & rhs );
-		Vector 	operator-( Vector const & rhs );
+		Vector 	operator+( Vector const & rhs ) const;
+		Vector 	operator-( Vector const & rhs ) const;
 		Vector 	operator*( Vector const & rhs );
 		Vector 	operator*( Matrix const & rhs );
 		Vector 	operator*( float rhs );

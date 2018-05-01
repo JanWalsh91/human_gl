@@ -27,7 +27,9 @@ class Cycle {
 
 		void	setStartTime( unsigned time ) { this->startTime = time; }
 		unsigned	getStartTime() { return this->startTime; }
+		
 		std::vector<KeyFrame*>	keyFrames;
+
 	private:
 		std::vector<Frame>		frames;
 		unsigned			totalTime;

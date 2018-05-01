@@ -49,14 +49,20 @@ public:
 	void setScale(Vector  scale) { this->scale = scale; }
 	void setColor(Vector  color) { this->color = color; }
 	
+	Vector const & getRotationAngles() { return this->rotationAngles;  }
+	Vector const & getTranslation() { return this->translation;  }
+	Vector const & getScale() { return this->scale;  }
+	
 	Vector const & getColor() { return this->color;  }
 	std::string  & getName() { return this->name; }
 	Mesh* getByColor(Vector color);
 
 	Vector rotationAngles;
 
+
 private:
 	std::vector<Mesh*> meshes;
+
 	Mesh* parentMesh;
 	Matrix modelMatrix;
 	Matrix inheritedModelMatrix;
