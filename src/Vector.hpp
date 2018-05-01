@@ -29,7 +29,6 @@ class Vector {
 		
 	private:
 		std::vector<float>	v;
-	
 };
 
 # include "Matrix.hpp"

@@ -149,8 +149,8 @@ void OpenGLWindow::loop() {
 		// std::cout << "Poubelle: " << this->poubelle << std::endl;
 	}
 		// this->human->cycles[0]->keyFrames[0]->getRoot()->recursivelyUpdateMatrices(i, o);
-		Frame laPlusBelleDesPutes = this->human->cycles[0]->getCurrentFrame();
-		laPlusBelleDesPutes.getRoot()->recursivelyUpdateMatrices(i, o);
+		Frame currentFrame = this->human->getCycles()[0]->getCurrentFrame();
+		currentFrame.getRoot()->recursivelyUpdateMatrices(i, o);
 		// std::cout << "Rotation Angles: " << this->human->cycles[0]->getCurrentFrame().getLeftLeg()->getRotationAngles() << std::endl;
 		
 		glClearColor(0.2f, 0.2f, .5f, 1.0f);
@@ -183,7 +183,7 @@ void OpenGLWindow::loop() {
 //		glBindVertexArray(VAO);
 //		glDrawArrays(GL_TRIANGLES, 0, 3);
 		// this->human->cycles[0]->keyFrames[0]->getRoot()->recursivelyRender(this->shaderProgram);
-		laPlusBelleDesPutes.getRoot()->recursivelyRender(this->shaderProgram);
+		currentFrame.getRoot()->recursivelyRender(this->shaderProgram);
 		this->drawWidgets();
 
 		
@@ -206,9 +206,9 @@ void OpenGLWindow::loop() {
 			//this->human->cycles[0]->keyFrames[0]->getHead()->setColor(Vector((float)data[0], (float)data[1], (float)data[2]));
 
 			std::cout << Vector((float)data[0], (float)data[1], (float)data[2]) << std::endl;
-			std::cout << this->human->cycles[0]->keyFrames[0]->getLeftLeg()->getColor() << std::endl;
-			std::cout << this->human->cycles[0]->keyFrames[0]->getLeftFoot()->getColor() << std::endl;
-			Mesh* tmp = this->human->cycles[0]->keyFrames[0]->getRoot()->getByColor(Vector((float)data[0], (float)data[1], (float)data[2]));
+			std::cout << this->human->getCycles()[0]->getKeyFrames()[0]->getLeftLeg()->getColor() << std::endl;
+			std::cout << this->human->getCycles()[0]->getKeyFrames()[0]->getLeftFoot()->getColor() << std::endl;
+			Mesh* tmp = this->human->getCycles()[0]->getKeyFrames()[0]->getRoot()->getByColor(Vector((float)data[0], (float)data[1], (float)data[2]));
 			if (tmp) {
 				std::cout << tmp->getName() << std::endl;
 				tmp->setColor(Vector(1, 0, 0));

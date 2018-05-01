@@ -8,20 +8,11 @@ Cycle::Cycle( Cycle::Type type ) {
 		break;
 	}
 
-	// TODO CHANGE
+	// TODO: use function when starting cycle
 	this->setStartTime( glfwGetTime() );
-
-}
-
-Cycle::Cycle( Cycle const & Cycle ) {
-	*this = Cycle;
 }
 
 Cycle::~Cycle( void ) {}
-
-Cycle & Cycle::operator=( Cycle const & rhs ) {
-	return *this;
-}
 
 void Cycle::interpolate() {
 	
@@ -29,18 +20,8 @@ void Cycle::interpolate() {
 
 Frame&	Cycle::getCurrentFrame() {
 	int f = (int)(( (float)glfwGetTime() - (float)this->getStartTime() ) * 16.0f * 40) % this->frames.size();
-
-	std::cout << "index: " << f << std::endl;
-	// std::cout << "Current rotASSion de la leg: " << this->frames[f].getLeftLeg()->getRotationAngles() << std::endl;
-
-	// std::cout << "getCurrentFrame: " << f << std::endl;
-	// std::cout << "(float)glfwGetTime() - (float)this->getStartTime(): " << (float)glfwGetTime() - (float)this->getStartTime() << std::endl;
-
-	// return this->frames[0];
-	
 	return this->frames[ f ];
 }
-
 
 void Cycle::createWalkingCycle() {
 	this->name = "Walking";
@@ -80,12 +61,8 @@ void Cycle::createWalkingCycle() {
 	tmp = this->keyFrames[30]->interpolate(*this->keyFrames[60], size);
 
 	this->frames.insert( this->frames.end(), tmp->begin(), tmp->end() );
-	// this->frames[size]	
+}
 
-	// std::cout << "Current rotASSion de la leg: " << this->frames[0].getLeftLeg()->getRotationAngles() << std::endl;
-	// std::cout << "Current rotASSion de la leg: " << this->frames[10].getLeftLeg()->getRotationAngles() << std::endl;
-
-	// std::cout << (*this->keyFrames[0]->interpolate(*this->keyFrames[60], size))[10].getLeftLeg()->getRotationAngles() << std::endl;
-
-	// exit (12);
+std::vector<KeyFrame*> const & Cycle::getKeyFrames() {
+	return this->keyFrames;
 }

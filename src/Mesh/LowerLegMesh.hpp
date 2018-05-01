@@ -6,11 +6,8 @@
 class LowerLegMesh : public Mesh {
 
 public:
-
 	LowerLegMesh( Side side );
 	LowerLegMesh( Side side, Vector rotationAngles );
-
-private:
 
 };
 

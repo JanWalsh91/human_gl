@@ -1,7 +1,6 @@
 #include "Vector.hpp"
 
 Vector::Vector( void ) : Vector::Vector( 0, 0, 0 ) {
-	// std::cout << "Vector default constructor" << std::endl;
 }
 
 Vector::Vector( float x, float y, float z ) {
@@ -88,20 +87,6 @@ float	& Vector::operator[]( int i ) {
 float const	& Vector::operator[]( int i ) const {
 	return this->v[i];
 }
-
-// int			Vector::length( void ) {
-// 	return std::sqrt(this->v[0] * this->v[0] +
-// 		this->v[1] * this->v[1] +
-// 		this->v[2] * this->v[2]);
-// }
-
-// Vector		Vector::dot( Vector const & rhs) {
-
-// }
-
-// Vector		Vector::cross( Vector const & rhs) {
-
-// }
 
 float *	Vector::toArray( void ) {
 	return this->v.data();

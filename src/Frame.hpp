@@ -13,7 +13,6 @@ public:
 
 	virtual ~Frame() {}
 
-	void render();
 	Mesh* getRoot() { return this->root; }
 
 	Mesh* getTorso() const { return this->torso; }
@@ -32,7 +31,6 @@ public:
 	Mesh* getLeftFoot() const { return this->leftFoot; }
 
 protected:
-	// std::vector<Mesh> meshes;
 	Mesh* root;
 
 	Mesh* torso;

@@ -34,7 +34,6 @@ void GUI::createSettings() {
 	});
 	slider->setFinalCallback([&](float value) {
 		std::cout << "Final slider value: " << (int) (value * 100) << std::endl;
-		this->screen->getHuman()->setRotationSpeedX(value);
 	});
 
 	textBox->setFixedSize(nanogui::Vector2i(60,25));

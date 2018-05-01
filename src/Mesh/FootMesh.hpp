@@ -8,9 +8,6 @@ class FootMesh : public Mesh {
 public:
 	FootMesh(Side side);
 	FootMesh( Side side, Vector rotationAngles );
-	FootMesh( FootMesh const & );
-
-private:
 
 };
 

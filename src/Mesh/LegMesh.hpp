@@ -6,11 +6,8 @@
 class LegMesh : public Mesh {
 
 public:
-	LegMesh();
 	LegMesh( Side side );
 	LegMesh( Side side, Vector );
-	~LegMesh() {}
-private:
 
 };
 
