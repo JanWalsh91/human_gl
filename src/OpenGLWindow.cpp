@@ -221,10 +221,7 @@ void OpenGLWindow::loop() {
 		this->human->cycles[0]->keyFrames[0]->getRoot()->recursivelyRender(this->shaderProgram);
 		this->drawWidgets();
 
-		
 
-
-		
 		if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT)) {
 			glFlush();
 			glFinish();
@@ -239,15 +236,11 @@ void OpenGLWindow::loop() {
 			ypos = this->height - ypos;
 			glReadPixels(xpos, ypos, 1, 1, GL_RGB, GL_FLOAT, data);
 			//this->human->cycles[0]->keyFrames[0]->getHead()->setColor(Vector((float)data[0], (float)data[1], (float)data[2]));
-
-			std::cout << Vector((float)data[0], (float)data[1], (float)data[2]) << std::endl;
-			std::cout << this->human->cycles[0]->keyFrames[0]->getLeftLeg()->getColor() << std::endl;
-			std::cout << this->human->cycles[0]->keyFrames[0]->getLeftFoot()->getColor() << std::endl;
 			Mesh* tmp = this->human->cycles[0]->keyFrames[0]->getRoot()->getByColor(Vector((float)data[0], (float)data[1], (float)data[2]));
-			if (tmp) {
-				std::cout << tmp->getName() << std::endl;
-				tmp->setColor(Vector(1, 0, 0));
-			}
+			if (tmp)
+				std::cout << "========= tmp: " << tmp->getName() << std::endl;
+
+			this->gui->setSelectedMesh(tmp);
 			//unsigned char res[4];
 			//GLint viewport[4];
 			//glGetIntegerv(GL_VIEWPORT, viewport);

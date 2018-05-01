@@ -78,7 +78,7 @@ Vector  Vector::operator/( Vector const & rhs ) {
 }
 
 bool	Vector::operator==(Vector const & rhs) {
-	return fabs(this->v[0] - rhs[0]) < 0.001 && fabs(this->v[1] - rhs[1]) < 0.001 && fabs(this->v[2] - rhs[2]) < 0.001;
+	return fabs(this->v[0] - rhs[0]) < 0.01 && fabs(this->v[1] - rhs[1]) < 0.01 && fabs(this->v[2] - rhs[2]) < 0.01;
 }
 
 float	& Vector::operator[]( int i ) {

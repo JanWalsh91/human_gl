@@ -51,6 +51,7 @@ public:
 	
 	Vector const & getColor() { return this->color;  }
 	std::string  & getName() { return this->name; }
+	Vector const & getRotationAngles() { return this->rotationAngles; }
 	Mesh* getByColor(Vector color);
 
 	Vector rotationAngles;

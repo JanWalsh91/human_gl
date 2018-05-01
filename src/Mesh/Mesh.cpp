@@ -179,12 +179,11 @@ Mesh* Mesh::getByColor(Vector color) {
 	Mesh* tmp = nullptr;
 
 	if (color == this->color) {
-		std::cout << this->getName() << std::endl;
+		std::cout << "Founded: " << this->name << std::endl;
 		return this;
 	}
 	for (Mesh* mesh : this->meshes) {
-		if (mesh->getByColor(color) != nullptr) {
-			tmp = mesh;
+		if ((tmp = mesh->getByColor(color)) != nullptr) {
 			break;
 		}
 	}

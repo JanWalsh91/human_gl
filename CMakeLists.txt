@@ -22,9 +22,16 @@ set(
 	src/Mesh/Mesh.cpp
 	src/Mesh/TorsoMesh.cpp
 	src/Mesh/ArmMesh.cpp
+	src/Mesh/LegMesh.cpp
 	src/Mesh/HeadMesh.cpp
+	src/Mesh/LowerArmMesh.cpp
+	src/Mesh/LowerLegMesh.cpp
+	src/Mesh/LowerLegMesh.cpp
+	src/Mesh/HandMesh.cpp
+	src/Mesh/FootMesh.cpp
 	src/HumanGL.cpp
 	src/GUI.cpp
+	src/KeyFrame.cpp
 	libs/nanogui/ext/glad/src/glad.c
 )
 add_executable(human_gl ${SOURCE_FILES})

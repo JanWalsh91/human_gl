@@ -1,6 +1,6 @@
 #include "GUI.hpp"
 
-GUI::GUI(OpenGLWindow* screen): screen(screen) {}
+GUI::GUI(OpenGLWindow* screen): screen(screen), currentSelectedMesh(nullptr) {}
 
 GUI::~GUI() {}
 
@@ -10,61 +10,117 @@ void GUI::createSettings() {
 	guiWindow->setPosition(nanogui::Vector2i(20, 15));
 	guiWindow->setLayout(new nanogui::GroupLayout());
 
-	new nanogui::Label(guiWindow, "Rotation", "sans-bold");
+	// Parent GUI Panel, vertical orientation
+	parentPanel = new nanogui::Widget(guiWindow);
+	parentPanel->setLayout(new nanogui::BoxLayout(nanogui::Orientation::Vertical, nanogui::Alignment::Middle, 0, 20));
+	this->createRotationPanels();
+}
 
-	nanogui::Widget *panel = new nanogui::Widget(guiWindow);
-	panel->setLayout(new nanogui::BoxLayout(nanogui::Orientation::Horizontal, nanogui::Alignment::Middle, 0, 20));
+void GUI::createRotationPanels() {
+	// Rotation GUI Panel, vertical orientation
+	rotationPanel = new nanogui::Widget(parentPanel);
+	rotationPanel->setLayout(new nanogui::BoxLayout(nanogui::Orientation::Vertical, nanogui::Alignment::Middle, 0, 20));
+	new nanogui::Label(rotationPanel, "Rotation", "sans-bold");
 
-	new nanogui::Label(panel, "X", "sans-bold");
+	// Rotation X GUI Panel, horizontal orientation
+	// ========================================================
+	nanogui::Widget* rotationXPanel = new nanogui::Widget(rotationPanel);
+	rotationXPanel->setLayout(new nanogui::BoxLayout(nanogui::Orientation::Horizontal, nanogui::Alignment::Middle, 0, 20));
+	new nanogui::Label(rotationXPanel, "X", "sans-bold");
 
-	nanogui::Slider *slider = new nanogui::Slider(panel);
-	slider->setValue(1.0f);
-	slider->setFixedWidth(100);
+	sliderX = new nanogui::Slider(rotationXPanel);
+	sliderX->setValue(0.0f);
+	sliderX->setFixedWidth(100);
 
-	nanogui::TextBox *textBox = new nanogui::TextBox(panel);
-	textBox->setFixedSize(nanogui::Vector2i(60, 25));
-	textBox->setValue("100");
-	textBox->setUnits("%");
+	textBoxX = new nanogui::TextBox(rotationXPanel);
+	textBoxX->setFixedSize(nanogui::Vector2i(60, 25));
+	textBoxX->setValue("0");
+	textBoxX->setUnits("°");
 
+	sliderX->setCallback([this](float value) {
+		textBoxX->setValue(std::to_string((int) (value * 360)));
+		if (currentSelectedMesh) {
 
-	slider->setCallback([this, textBox](float value) {
-		textBox->setValue(std::to_string((int) (value * 100)));
-		std::cout << value << std::endl;
-
+			Vector newAngles = currentSelectedMesh->getRotationAngles();
+			currentSelectedMesh->setRotationAngles(Vector(value * 360, newAngles[1], newAngles[2]));
+		}
 	});
-	slider->setFinalCallback([&](float value) {
-		std::cout << "Final slider value: " << (int) (value * 100) << std::endl;
-		this->screen->getHuman()->setRotationSpeedX(value);
+	textBoxX->setFixedSize(nanogui::Vector2i(60,25));
+	textBoxX->setFontSize(20);
+	textBoxX->setAlignment(nanogui::TextBox::Alignment::Right);
+	// ========================================================
+
+	// Rotation Y GUI Panel, horizontal orientation
+	rotationYPanel = new nanogui::Widget(rotationPanel);
+	rotationYPanel->setLayout(new nanogui::BoxLayout(nanogui::Orientation::Horizontal, nanogui::Alignment::Middle, 0, 20));
+
+	new nanogui::Label(rotationYPanel, "Y", "sans-bold");
+
+	sliderY = new nanogui::Slider(rotationYPanel);
+	sliderY->setValue(0.0f);
+	sliderY->setFixedWidth(100);
+
+	textBoxY = new nanogui::TextBox(rotationYPanel);
+	textBoxY->setFixedSize(nanogui::Vector2i(60, 25));
+	textBoxY->setValue("0");
+	textBoxY->setUnits("°");
+
+
+	sliderY->setCallback([this](float value) {
+		textBoxY->setValue(std::to_string((int)(value * 360)));
+		if (currentSelectedMesh) {
+			Vector newAngles = currentSelectedMesh->getRotationAngles();
+			currentSelectedMesh->setRotationAngles(Vector(newAngles[0], value * 360, newAngles[2]));
+		}
 	});
 
-	textBox->setFixedSize(nanogui::Vector2i(60,25));
-	textBox->setFontSize(20);
-	textBox->setAlignment(nanogui::TextBox::Alignment::Right);
+	textBoxY->setFixedSize(nanogui::Vector2i(60, 30));
+	textBoxY->setFontSize(20);
+	textBoxY->setAlignment(nanogui::TextBox::Alignment::Right);
 
-	//new nanogui::Label(panel, "Y", "sans-bold");
+	// ========================================================
 
-	//nanogui::Slider *sliderY = new nanogui::Slider(panel);
-	//sliderY->setValue(1.0f);
-	//sliderY->setFixedWidth(100);
+	// Rotation Z GUI Panel, horizontal orientation
+	rotationZPanel = new nanogui::Widget(rotationPanel);
+	rotationZPanel->setLayout(new nanogui::BoxLayout(nanogui::Orientation::Horizontal, nanogui::Alignment::Middle, 0, 20));
 
-	//nanogui::TextBox *textBoxY = new nanogui::TextBox(panel);
-	//textBoxY->setFixedSize(nanogui::Vector2i(60, 25));
-	//textBoxY->setValue("100");
-	//textBoxY->setUnits("%");
+	new nanogui::Label(rotationZPanel, "Z", "sans-bold");
+
+	sliderZ = new nanogui::Slider(rotationZPanel);
+	sliderZ->setValue(0.0f);
+	sliderZ->setFixedWidth(100);
+
+	textBoxZ = new nanogui::TextBox(rotationZPanel);
+	textBoxZ->setFixedSize(nanogui::Vector2i(60, 25));
+	textBoxZ->setValue("0");
+	textBoxZ->setUnits("°");
 
 
-	//sliderY->setCallback([this, textBoxY](float value) {
-	//	textBoxY->setValue(std::to_string((int)(value * 100)));
-	//	std::cout << value << std::endl;
+	sliderZ->setCallback([this](float value) {
+		textBoxZ->setValue(std::to_string((int)(value * 360)));
+		if (currentSelectedMesh) {
+			Vector newAngles = currentSelectedMesh->getRotationAngles();
+			currentSelectedMesh->setRotationAngles(Vector(newAngles[0], newAngles[1], value * 360));
+		}
+	});
 
-	//});
-	//sliderY->setFinalCallback([&](float value) {
-	//	std::cout << "Final slider value: " << (int)(value * 100) << std::endl;
-	//	this->screen->getHuman()->setRotationSpeedX(value);
-	//});
+	textBoxZ->setFixedSize(nanogui::Vector2i(60, 30));
+	textBoxZ->setFontSize(20);
+	textBoxZ->setAlignment(nanogui::TextBox::Alignment::Right);
+}
 
-	//textBoxY->setFixedSize(nanogui::Vector2i(60, 30));
-	//textBoxY->setFontSize(20);
-	//textBoxY->setAlignment(nanogui::TextBox::Alignment::Right);
+void GUI::setSelectedMesh(Mesh *selectedMesh) {
+	if (selectedMesh) {
+		this->currentSelectedMesh = selectedMesh;
+		Vector rotationAngles = this->currentSelectedMesh->getRotationAngles();
+		textBoxX->setValue(std::to_string((int)rotationAngles[0]));
+		textBoxY->setValue(std::to_string((int)rotationAngles[1]));
+		textBoxZ->setValue(std::to_string((int)rotationAngles[2]));
 
+		sliderX->setValue(rotationAngles[0] / 360);
+		sliderY->setValue(rotationAngles[1] / 360);
+		sliderZ->setValue(rotationAngles[2] / 360);
+
+		std::cout << "New Selection: " << selectedMesh->getName() << std::endl;
+	}
 }
