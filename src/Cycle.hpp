@@ -15,20 +15,19 @@ class Cycle {
 		enum Type { WALKING };
 
 		Cycle( Cycle::Type );
-		Cycle( Cycle const & );
 		~Cycle( void );
-
-		Cycle & operator=( Cycle const & rhs );
 		
 		void	interpolate(); // call on each KeyFrame to interpolate Frames between itself and next KeyFrame
-		void	play(); // loop over updating uniform matrix and VBO
-
-		Frame&	getCurrentFrame();
-
+		void	play();
+	
 		void	setStartTime( unsigned time ) { this->startTime = time; }
+		
+		Frame&	getCurrentFrame();
 		unsigned	getStartTime() { return this->startTime; }
-		std::vector<KeyFrame*>	keyFrames;
+		std::vector<KeyFrame*> const & getKeyFrames();
+		
 	private:
+		std::vector<KeyFrame*>	keyFrames;
 		std::vector<Frame>		frames;
 		unsigned			totalTime;
 		unsigned			framesPerCycle;
@@ -37,9 +36,7 @@ class Cycle {
 
 		void createWalkingCycle();
 
-
 		static const unsigned	keyFramesPerCycle = 60;
-
 };
 
 #endif

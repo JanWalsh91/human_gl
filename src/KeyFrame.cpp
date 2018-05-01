@@ -1,7 +1,6 @@
 #include "KeyFrame.hpp"
 
 KeyFrame::KeyFrame() {
-	// build mesh hierarchy
 	this->torso = new TorsoMesh();
 	this->head = new HeadMesh();
 	this->rightArm = new ArmMesh(Side::RIGHT);
@@ -39,10 +38,6 @@ KeyFrame::KeyFrame() {
 	this->root = torso;
 }
 
-// KeyFrame::KeyFrame( KeyFrame const & KeyFrame ) {
-// 	*this = KeyFrame;
-// }
-
 KeyFrame::~KeyFrame( void ) {
 	//TODO ...
 }
@@ -51,10 +46,83 @@ KeyFrame & KeyFrame::operator=( KeyFrame const & rhs ) {
 	return *this;
 }
 
-Frame* KeyFrame::interpolate( KeyFrame const & other, unsigned maxFramesPerCycle, int & size ) {
-	// calculate and set size (number of frames generated)
-	//		include first keyFrame, exclude last
-	size = std::abs(other.index - this->index);
-	// calculate 
-	return nullptr;
+// returns list of interpolated frames between two KeyFrames
+std::vector<Frame>* KeyFrame::interpolate( KeyFrame const & other, int & size ) {
+	size = std::abs(other.index - this->index) * Frame::frameLength;
+	std::vector<Frame>* frames = new std::vector<Frame>( size, *dynamic_cast<Frame *>(new KeyFrame()) );
+	std::vector<Mesh*> meshesFirst;
+	std::vector<Mesh*> meshesFinal;
+	std::vector<Mesh*> meshesToUpdate;
+
+	this->copyFramesToList(meshesFirst, *this);
+	this->copyFramesToList(meshesFinal, other);
+	
+	for( int i = 0; i < size; ++i ) {
+		float step = (float)i / (float)size;
+		Frame &	currentFrame = (*frames)[i];		
+		meshesToUpdate.clear();
+		this->addFramesToList( meshesToUpdate, currentFrame );
+		for( int y = 0; y < meshesFirst.size(); ++y ) {
+			this->updateMeshValues(
+				meshesFirst[y],
+				meshesFinal[y],
+				meshesToUpdate[y],
+				step
+			);
+		}
+	}
+	return frames;
+}
+
+void	KeyFrame::copyFramesToList( std::vector<Mesh*> & list, Frame const & frame ) {
+	list.push_back( new Mesh(*frame.getTorso()) );
+	list.push_back( new Mesh(*frame.getHead()) );
+	list.push_back( new Mesh(*frame.getRightArm()) );
+	list.push_back( new Mesh(*frame.getRightLowerArm()) );
+	list.push_back( new Mesh(*frame.getRightHand()) );
+	list.push_back( new Mesh(*frame.getLeftArm()) );
+	list.push_back( new Mesh(*frame.getLeftLowerArm()) );
+	list.push_back( new Mesh(*frame.getLeftHand()) );
+	list.push_back( new Mesh(*frame.getLeftLeg()) );
+	list.push_back( new Mesh(*frame.getLeftLowerLeg()) );
+	list.push_back( new Mesh(*frame.getRightLeg()) );
+	list.push_back( new Mesh(*frame.getRightLowerLeg()) );
+	list.push_back( new Mesh(*frame.getRightFoot()) );
+	list.push_back( new Mesh(*frame.getLeftFoot()) );
+}
+
+void	KeyFrame::addFramesToList( std::vector<Mesh*> & list, Frame const & frame ) {
+	list.push_back( frame.getTorso() );
+	list.push_back( frame.getHead() );
+	list.push_back( frame.getRightArm() );
+	list.push_back( frame.getRightLowerArm() );
+	list.push_back( frame.getRightHand() );
+	list.push_back( frame.getLeftArm() );
+	list.push_back( frame.getLeftLowerArm() );
+	list.push_back( frame.getLeftHand() );
+	list.push_back( frame.getLeftLeg() );
+	list.push_back( frame.getLeftLowerLeg() );
+	list.push_back( frame.getRightLeg() );
+	list.push_back( frame.getRightLowerLeg() );
+	list.push_back( frame.getRightFoot() );
+	list.push_back( frame.getLeftFoot() );
+}
+
+void	KeyFrame::updateMeshValues( Mesh * meshFirst, Mesh * meshLast, Mesh * meshToUpdate, float fraction ) {
+
+	Vector firstRotation = meshFirst->getRotationAngles();
+	Vector lastRotation = meshLast->getRotationAngles();
+	Vector currentRotation = meshToUpdate->getRotationAngles();
+	
+	Vector newRotation = firstRotation + (lastRotation - firstRotation) * fraction;
+	
+	meshToUpdate->setRotationAngles(newRotation);
+	
+	meshToUpdate->setTranslation(
+		meshFirst->getTranslation() + ( meshLast->getTranslation() - meshFirst->getTranslation() ) * fraction
+	);
+		
+	meshToUpdate->setScale(
+		meshFirst->getScale() + ( meshLast->getScale() - meshFirst->getScale() ) * fraction
+	);
 }

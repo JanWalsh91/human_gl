@@ -9,30 +9,28 @@ class Frame {
 
 public:
 	Frame() {}
+	Frame( Frame const & );
 
 	virtual ~Frame() {}
 
-
-	void render();
 	Mesh* getRoot() { return this->root; }
 
-	Mesh* getTorso() { return this->torso; }
-	Mesh* getHead() { return this->head; }
-	Mesh* getRightArm() { return this->rightArm; }
-	Mesh* getRightLowerArm() { return this->rightLowerArm; }
-	Mesh* getRightHand() { return this->rightHand; }
-	Mesh* getLeftArm() { return this->leftArm; }
-	Mesh* getLeftLowerArm() { return this->leftLowerArm; }
-	Mesh* getLeftHand() { return this->leftHand; }
-	Mesh* getLeftLeg() { return this->leftLeg; }
-	Mesh* getLeftLowerLeg() { return this->leftLowerLeg; }
-	Mesh* getRightLeg() { return this->rightLeg; }
-	Mesh* getRightLowerLeg() { return this->rightLowerLeg; }
-	Mesh* getRightFoot() { return this->rightFoot; }
-	Mesh* getLeftFoot() { return this->leftFoot; }
+	Mesh* getTorso() const { return this->torso; }
+	Mesh* getHead() const { return this->head; }
+	Mesh* getRightArm() const { return this->rightArm; }
+	Mesh* getRightLowerArm() const { return this->rightLowerArm; }
+	Mesh* getRightHand() const { return this->rightHand; }
+	Mesh* getLeftArm() const { return this->leftArm; }
+	Mesh* getLeftLowerArm() const { return this->leftLowerArm; }
+	Mesh* getLeftHand() const { return this->leftHand; }
+	Mesh* getLeftLeg() const { return this->leftLeg; }
+	Mesh* getLeftLowerLeg() const { return this->leftLowerLeg; }
+	Mesh* getRightLeg() const { return this->rightLeg; }
+	Mesh* getRightLowerLeg() const { return this->rightLowerLeg; }
+	Mesh* getRightFoot() const { return this->rightFoot; }
+	Mesh* getLeftFoot() const { return this->leftFoot; }
 
 protected:
-	// std::vector<Mesh> meshes;
 	Mesh* root;
 
 	Mesh* torso;
@@ -50,7 +48,7 @@ protected:
 	Mesh* rightFoot;
 	Mesh* leftFoot;
 
-	static const unsigned frameLength = 16;
+	static const unsigned frameLength = 16; //ms
 };
 
 

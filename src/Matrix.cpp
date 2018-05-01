@@ -1,11 +1,9 @@
 #include "Matrix.hpp"
 
 Matrix::Matrix( void ) : Matrix::Matrix(4) {
-	// std::cout << "Matrix default constructor" << std::endl;
 }
 
 Matrix::Matrix( unsigned size ) {
-	// std::cout << "Matrix constructor, size: " << size << std::endl;
 	if (size < 1) {
 		size = 4;
 	}
@@ -30,9 +28,6 @@ Matrix::Matrix( float angle, Matrix::TYPE type ) : Matrix::Matrix(4) {
 void	Matrix::rot_x( float angle ) {
 	this->m[0] = 1;
 	this->m[5] = cos( angle );
-
-	// this->m[6] = -sin( angle );
-	// this->m[9] = sin( angle );
 	this->m[6] = sin( angle );
 	this->m[9] = -sin( angle );
 	
@@ -41,10 +36,6 @@ void	Matrix::rot_x( float angle ) {
 
 void	Matrix::rot_y( float angle ) {
 	this->m[0] = cos( angle );
-	
-	// this->m[2] = sin( angle );
-	// this->m[5] = 1;
-	// this->m[8] = -sin( angle );
 	this->m[2] = -sin( angle );
 	this->m[5] = 1;
 	this->m[8] = sin( angle );
@@ -54,9 +45,6 @@ void	Matrix::rot_y( float angle ) {
 
 void	Matrix::rot_z( float angle ) {
 	this->m[0] = cos( angle );
-	
-	// this->m[1] = -sin( angle );
-	// this->m[4] = sin( angle );
 	this->m[1] = sin( angle );
 	this->m[4] = -sin( angle );
 	
@@ -134,11 +122,6 @@ Vector	Matrix::operator*( Vector const & rhs ) {
 	Vector	v;
 	float	w;
 
-	// w = this->m[12] * rhs[0] + this->m[13] * rhs[1] + this->m[14] * rhs[2] + this->m[15] * 1;
-	// v[0] = (this->m[0] * rhs[0] + this->m[1] * rhs[1] + this->m[2] * rhs[2] + this->m[3] * 1) / w;
-	// v[1] = (this->m[4] * rhs[0] + this->m[5] * rhs[1] + this->m[6] * rhs[2] + this->m[7] * 1) / w;
-	// v[2] = (this->m[8] * rhs[0] + this->m[9] * rhs[1] + this->m[10] * rhs[2] + this->m[11] * 1) / w;
-
 	w = this->m[3] * rhs[0] + this->m[7] * rhs[1] + this->m[11] * rhs[2] + this->m[15] * 1;
 	v[0] = (this->m[0] * rhs[0] + this->m[4] * rhs[1] + this->m[8] * rhs[2] + this->m[12] * 1) / w;
 	v[1] = (this->m[1] * rhs[0] + this->m[5] * rhs[1] + this->m[9] * rhs[2] + this->m[13] * 1) / w;
@@ -146,25 +129,6 @@ Vector	Matrix::operator*( Vector const & rhs ) {
 
 	return v;
 }
-
-// Matrix	Matrix::operator*=( Matrix const & rhs ) {
-// 	Matrix	m;
-// 	int		size = this->getSize();
-	
-// 	if ( this->getSize() != rhs.getSize() ) {
-// 		throw (Matrix::OperationImpossible());
-// 	}
-// 	for (int y = 0; y < size; ++y) {
-// 		for (int x = 0; x < size; ++x) {
-// 			m.m[y * size + x] = this->m[y * size] * rhs.m[x] +
-// 				this->m[y * size + 1] * rhs.m[size + x] +
-// 				this->m[y * size + 2] * rhs.m[size * 2 + x] +
-// 				this->m[y * size + 3] * rhs.m[size * 3 + x];
-// 		}
-// 	}
-// 	this->m = m.m;
-// 	return *this;
-// }
 
 const char* Matrix::OperationImpossible::what() const throw() {
 	return "Operation Impossible";

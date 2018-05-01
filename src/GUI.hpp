@@ -10,13 +10,21 @@ public:
 	~GUI();
 
 	void createSettings();
-	void setSelectedMesh(Mesh* selectedMesh);
 
+
+	Vector const & getClickPosition() const;
+	bool isDragging() const;
+
+	void setSelectedMesh(Mesh* selectedMesh);
+	void setClickPosition(Vector vector);
+	void setDragging(bool dragging);
 private:
 
 	OpenGLWindow*	screen;
 	Mesh*			currentSelectedMesh;
 
+	Vector clickPosition;
+	bool	dragging;
 
 	nanogui::Widget* parentPanel;
 	nanogui::Widget* rotationPanel;

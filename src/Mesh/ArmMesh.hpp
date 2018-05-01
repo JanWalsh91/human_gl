@@ -6,11 +6,8 @@
 class ArmMesh : public Mesh {
 
 public:
-
 	ArmMesh( Side side );
 	ArmMesh( Side side, Vector rotationAngles );
-
-private:
 
 };
 

@@ -19,6 +19,7 @@
 # include "Cycle.hpp"
 # include "HumanGL.hpp"
 # include "Vector.hpp"
+# include "Camera.hpp"
 
 class GUI;
 
@@ -45,6 +46,9 @@ private:
 	int			width;
 	int			height;
 	double		lastTimeFrame;
+
+	Camera		camera;
+
 	Matrix		viewMatrix;
 	Vector		camPos;
 	Vector		camDir;

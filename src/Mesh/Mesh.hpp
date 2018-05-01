@@ -18,7 +18,13 @@ public:
 		Vector scaleOrigin,
 		Vector translation,
 		Vector color );
-	Mesh( Vector rotationAngles, Vector rotationOrigin, Vector scale, Vector scaleOrigin, Vector translation, Vector color, std::string const & name );
+	Mesh( Vector rotationAngles,
+		Vector rotationOrigin,
+		Vector scale,
+		Vector scaleOrigin,
+		Vector translation,
+		Vector color,
+		std::string const & name );
 	Mesh( Mesh const & );
 
 	virtual ~Mesh();
@@ -30,34 +36,29 @@ public:
 	void recursivelyUpdateMatrices( Matrix & parentMatrix, Vector parentPos );
 	Matrix calculateRotationMatrix( Vector & absRotCtr );
 	Matrix calculateScalingMatrix( Vector & absSclCtr );
-
-	// void updateModelMatrix( Matrix & modelMatrix, Matrix & translateMatrix );
-	// void updateModelMatrix(Matrix & parentModelMatrix);
-	// void updateInheritedModelMatrix();
-	
-	// void recursivelyUpdateModelMatrix( Matrix & modelMatrix, Matrix & translateMatrix );
-	
-	// Matrix& recursivelyUpdateModelMatrix(Matrix & parentModelMatrix);
-
-	// Setters
-	// not needed until we set variables outside of constructors.
-	Matrix &	getModelMatrix();
 	void append( Mesh* mesh );
-
+	
 	void setRotationAngles(Vector  newAngle) { this->rotationAngles = newAngle; }
 	void setTranslation(Vector  translation) { this->translation = translation; }
 	void setScale(Vector  scale) { this->scale = scale; }
 	void setColor(Vector  color) { this->color = color; }
 	
+	Matrix &	getModelMatrix();
+	Vector const & getRotationAngles() { return this->rotationAngles;  }
+	Vector const & getTranslation() { return this->translation;  }
+	Vector const & getScale() { return this->scale;  }
 	Vector const & getColor() { return this->color;  }
 	std::string  & getName() { return this->name; }
-	Vector const & getRotationAngles() { return this->rotationAngles; }
+
+
 	Mesh* getByColor(Vector color);
 
 	Vector rotationAngles;
 
+
 private:
 	std::vector<Mesh*> meshes;
+
 	Mesh* parentMesh;
 	Matrix modelMatrix;
 	Matrix inheritedModelMatrix;
@@ -74,10 +75,6 @@ private:
 
 	std::string name;
 
-	// void updateRotationMatrix();
-	// Vector getScaleCenter();
-	// Vector getRotationCenter();
-	// change to actual VBO
 	unsigned VBOPosition;
 };
 

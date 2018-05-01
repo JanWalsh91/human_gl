@@ -8,10 +8,7 @@ class HeadMesh : public Mesh {
 public:
 	HeadMesh();
 	HeadMesh( Vector rotationAngles );
-	HeadMesh( HeadMesh const & );
-
-private:
-
+	
 };
 
 #endif

@@ -7,7 +7,7 @@ ArmMesh::ArmMesh( Side side, Vector rotationAngles ) : Mesh::Mesh (
 		Vector(0, 1, 0), // rotation origin
 		Vector(0.5, 2, 0.5), // scale
 		Vector(0, 0, 0), // scale origin
-		(side == Side::LEFT) ? Vector(-2.1, 0.8, 0) : Vector(2.1, 0.8, 0), // translation ES-FR
-		(side == Side::LEFT) ? Vector(0, 1, 0) : Vector(0, 0.97, 0.08), // Your maaaaaaamaaaaa, houuuhouhouhouuuuuuuuu
+		(side == Side::LEFT) ? Vector(-2.1, 0.8, 0) : Vector(2.1, 0.8, 0), // translation
+		(side == Side::LEFT) ? Vector(0, 1, 0) : Vector(0, 0.97, 0.08), // color
 		(side == Side::LEFT) ? "LeftArm" : "RightArm"
 ) {}

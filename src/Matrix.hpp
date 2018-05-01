@@ -42,16 +42,11 @@ class Matrix {
 		Matrix &	operator=( Matrix const & rhs );
 		Matrix		operator*( Matrix const & rhs );
 		Vector		operator*( Vector const & rhs );
-		// Matrix		operator*=( Matrix const & rhs );
-		// Matrix		operator*=( Vector const & rhs );
 		float &			operator[](int i);
 		float const &	operator[](int i) const;
 
 		float *	toArray( void );
-
 		unsigned		getSize( void ) const;
-	
-
 
 	private:
 		unsigned			size;

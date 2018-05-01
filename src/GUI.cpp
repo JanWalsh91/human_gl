@@ -1,6 +1,6 @@
 #include "GUI.hpp"
 
-GUI::GUI(OpenGLWindow* screen): screen(screen), currentSelectedMesh(nullptr) {}
+GUI::GUI(OpenGLWindow* screen): screen(screen), currentSelectedMesh(nullptr), dragging(false) {}
 
 GUI::~GUI() {}
 
@@ -14,6 +14,8 @@ void GUI::createSettings() {
 	parentPanel = new nanogui::Widget(guiWindow);
 	parentPanel->setLayout(new nanogui::BoxLayout(nanogui::Orientation::Vertical, nanogui::Alignment::Middle, 0, 20));
 	this->createRotationPanels();
+
+	nanogui::Button* b = new nanogui::Button(this->parentPanel, "Stop");
 }
 
 void GUI::createRotationPanels() {
@@ -64,7 +66,6 @@ void GUI::createRotationPanels() {
 	textBoxY->setFixedSize(nanogui::Vector2i(60, 25));
 	textBoxY->setValue("0");
 	textBoxY->setUnits("°");
-
 
 	sliderY->setCallback([this](float value) {
 		textBoxY->setValue(std::to_string((int)(value * 360)));
@@ -123,4 +124,20 @@ void GUI::setSelectedMesh(Mesh *selectedMesh) {
 
 		std::cout << "New Selection: " << selectedMesh->getName() << std::endl;
 	}
+}
+
+void GUI::setClickPosition(Vector clickPosition) {
+	this->clickPosition = clickPosition;
+}
+
+Vector const & GUI::getClickPosition() const {
+	return this->clickPosition;
+}
+
+bool GUI::isDragging() const {
+	return this->dragging;
+}
+
+void GUI::setDragging(bool dragging) {
+	this->dragging = dragging;
 }

@@ -15,8 +15,8 @@ class Vector {
 		~Vector( void );
 		
 		Vector &	operator=( Vector const & rhs );
-		Vector 	operator+( Vector const & rhs );
-		Vector 	operator-( Vector const & rhs );
+		Vector 	operator+( Vector const & rhs ) const;
+		Vector 	operator-( Vector const & rhs ) const;
 		Vector 	operator*( Vector const & rhs );
 		Vector 	operator*( Matrix const & rhs );
 		Vector 	operator*( float rhs );
@@ -24,12 +24,12 @@ class Vector {
 		bool	operator==(Vector const & rhs);
 		float &			operator[](int i);
 		float const &	operator[](int i) const;
+		void	normalize();
 		
 		float *	toArray( void );
 		
 	private:
 		std::vector<float>	v;
-	
 };
 
 # include "Matrix.hpp"
