@@ -32,7 +32,6 @@ set(
 	src/GUI.cpp
 	src/KeyFrame.cpp
 	src/Frame.cpp
-	libs/nanogui/ext/glad/src/glad.c
 	src/ExceptionMsg.cpp
 	src/Camera.cpp
 )

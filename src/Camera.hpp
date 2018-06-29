@@ -11,8 +11,8 @@ public:
 	Camera();
 	virtual ~Camera();
 
-	Matrix const & getViewMatrix();
-	Vector const & getCameraDirection();
+	const Matrix& getViewMatrix();
+	const Vector & getCameraDirection();
 
 	void setCameraDirection(Vector newDirection);
 

@@ -80,7 +80,9 @@ Matrix::Matrix( Matrix const & matrix ) {
 	*this = matrix;
 }
 
-Matrix::~Matrix( void ) {}
+Matrix::~Matrix( void ) {
+	this->m.clear();
+}
 
 Matrix & Matrix::operator=( Matrix const & rhs ) {
 	this->size = rhs.getSize();

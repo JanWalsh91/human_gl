@@ -62,7 +62,7 @@ std::vector<Frame>* KeyFrame::interpolate( KeyFrame const & other, int & size ) 
 		Frame &	currentFrame = (*frames)[i];		
 		meshesToUpdate.clear();
 		this->addFramesToList( meshesToUpdate, currentFrame );
-		for( int y = 0; y < meshesFirst.size(); ++y ) {
+		for( unsigned y = 0; y < meshesFirst.size(); ++y ) {
 			this->updateMeshValues(
 				meshesFirst[y],
 				meshesFinal[y],

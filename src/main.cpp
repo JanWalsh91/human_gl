@@ -1,12 +1,9 @@
 #include "OpenGLWindow.hpp"
 
-int    main ( void ) {
+int main () {
 
 	OpenGLWindow::initOpenGL();
-
-	OpenGLWindow w(1280, 720, "Joli projet");
-
-	w.loop();
-
+	OpenGLWindow window(1280, 720, "HumanGL");
+	window.loop();
 	return (0);
 }

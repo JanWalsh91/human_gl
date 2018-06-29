@@ -37,3 +37,20 @@ Frame::Frame(Frame const & other) {
 
 	this->root = this->torso;
 }
+
+Frame::~Frame() {
+	delete this->torso;
+	delete this->head;
+	delete this->rightArm;
+	delete this->rightLowerArm;
+	delete this->rightHand;
+	delete this->leftArm;
+	delete this->leftLowerArm;
+	delete this->leftHand;
+	delete this->leftLeg;
+	delete this->leftLowerLeg;
+	delete this->rightLeg;
+	delete this->rightLowerLeg;
+	delete this->rightFoot;
+	delete this->leftFoot;
+}

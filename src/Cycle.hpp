@@ -10,33 +10,35 @@
 
 class Cycle {
 
-	public:
+public:
 		
-		enum Type { WALKING };
+	enum Type {
+		WALKING
+	};
 
-		Cycle( Cycle::Type );
-		~Cycle( void );
+	Cycle( Cycle::Type );
+	~Cycle( void );
 		
-		void	interpolate(); // call on each KeyFrame to interpolate Frames between itself and next KeyFrame
-		void	play();
+	void	interpolate(); // call on each KeyFrame to interpolate Frames between itself and next KeyFrame
+	void	play();
 	
-		void	setStartTime( unsigned time ) { this->startTime = time; }
+	void	setStartTime( unsigned time ) { this->startTime = time; }
 		
-		Frame&	getCurrentFrame();
-		unsigned	getStartTime() { return this->startTime; }
-		std::vector<KeyFrame*> const & getKeyFrames();
+	Frame&	getCurrentFrame();
+	unsigned	getStartTime() const { return this->startTime; }
+	const std::vector<KeyFrame*>& getKeyFrames();
 		
-	private:
-		std::vector<KeyFrame*>	keyFrames;
-		std::vector<Frame>		frames;
-		unsigned			totalTime;
-		unsigned			framesPerCycle;
-		unsigned			startTime;
-		std::string				name;
+private:
+	std::vector<KeyFrame*>	keyFrames;
+	std::vector<Frame>		frames;
+	unsigned			totalTime;
+	unsigned			framesPerCycle;
+	unsigned			startTime;
+	std::string				name;
 
-		void createWalkingCycle();
+	void createWalkingCycle();
 
-		static const unsigned	keyFramesPerCycle = 60;
+	static const unsigned	keyFramesPerCycle = 60;
 };
 
 #endif

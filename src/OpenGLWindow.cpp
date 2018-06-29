@@ -31,7 +31,7 @@ OpenGLWindow::OpenGLWindow( int width, int height, std::string const & title ): 
 //	this->viewMatrix[9] = this->camDir[1];
 //	this->viewMatrix[10] = this->camDir[2];
 
-	this->PMatrix = Matrix(100, 0.1, (float)this->width / (float)this->height, 45, Matrix::TYPE::PROJECTION);
+	this->PMatrix = Matrix(100.0f, 0.1f, (float)this->width / (float)this->height, 45, Matrix::TYPE::PROJECTION);
 
 
 	this->initialize(this->window, true);

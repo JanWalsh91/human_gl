@@ -11,7 +11,6 @@ public:
 
 	void createSettings();
 
-
 	Vector const & getClickPosition() const;
 	bool isDragging() const;
 
@@ -40,8 +39,8 @@ private:
 	nanogui::Widget* rotationZPanel;
 	nanogui::Slider *sliderZ;
 	nanogui::TextBox *textBoxZ;
-	void createRotationPanels();
 
+	void createRotationPanels();
 };
 
 

@@ -9,7 +9,7 @@ Cycle::Cycle( Cycle::Type type ) {
 	}
 
 	// TODO: use function when starting cycle
-	this->setStartTime( glfwGetTime() );
+	this->setStartTime( static_cast<unsigned>(glfwGetTime()) );
 }
 
 Cycle::~Cycle( void ) {}
@@ -25,7 +25,7 @@ Frame&	Cycle::getCurrentFrame() {
 
 void Cycle::createWalkingCycle() {
 	this->name = "Walking";
-	this->keyFrames.resize( Cycle::keyFramesPerCycle );
+	this->keyFrames.resize( Cycle::keyFramesPerCycle + 1 );
 
 	this->keyFrames[0] = new KeyFrame();
 	this->keyFrames[0]->setIndex(0);

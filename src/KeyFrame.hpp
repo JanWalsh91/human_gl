@@ -28,7 +28,7 @@ public:
 
 	void setIndex( int index ) { this->index = index; }
 	
-	int  getIndex( void ) { return this->index; }
+	int  getIndex( void ) const { return this->index; }
 private:
 	int index; // Dans les 60 keyframes
 };

@@ -4,10 +4,10 @@ HandMesh::HandMesh( Side side ) : HandMesh::HandMesh(side, Vector(0, 0, 0)) {}
 
 HandMesh::HandMesh( Side side, Vector rotationAngles ) : Mesh::Mesh (
 		rotationAngles,
-		Vector(0, 1, 0), // rotation origin
-		Vector(0.4, 0.8, 0.2), // scale
-		Vector(0, 0, 0), // scale origin
-		(side == Side::LEFT) ? Vector(0, -1.8, 0) : Vector(0, -1.8, 0), // translation
-		(side == Side::LEFT) ? Vector(0, 0.96, 0) : Vector(0, 0.99, 0),
+		Vector(0.0f, 1.0f, 0.0f), // rotation origin
+		Vector(0.4f, 0.8f, 0.2f), // scale
+		Vector(0.0f, 0.0f, 0.0f), // scale origin
+		(side == Side::LEFT) ? Vector(0.0f, -1.8f, 0.0f) : Vector(0.0f, -1.8f, 0.0f), // translation
+		(side == Side::LEFT) ? Vector(0.0f, 0.96f, 0.0f) : Vector(0.0f, 0.99f, 0.0f),
 		(side == Side::LEFT) ? "LeftHand" : "RightHand"
 ) {}

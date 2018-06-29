@@ -19,10 +19,10 @@ public:
 
 	void initCycles();
 
-	GLuint getVBO() { return this->VBO; }
-	GLuint getVAO() { return this->VAO; }
+	GLuint getVBO() const { return this->VBO; }
+	GLuint getVAO() const { return this->VAO; }
 
-	std::vector<Cycle*> const & getCycles() { return this->cycles; }
+	const std::vector<Cycle*>& getCycles() { return this->cycles; }
 
 private:
 
