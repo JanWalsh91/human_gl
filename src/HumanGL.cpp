@@ -77,8 +77,10 @@ HumanGL & HumanGL::operator=( HumanGL const & rhs ) {
 }
 
 void HumanGL::initCycles() {
-	Cycle* c = new Cycle(Cycle::Type::WALKING);
-	this->cycles.push_back(c);
+	this->cycles.push_back( new Cycle(Cycle::Type::STANDING) );
+	this->cycles.push_back( new Cycle(Cycle::Type::WALKING) );
+	this->cycles.push_back( new Cycle(Cycle::Type::JUMPING) );
+	this->cycles.push_back( new Cycle(Cycle::Type::MOON_WALSH) );
 }
 
 

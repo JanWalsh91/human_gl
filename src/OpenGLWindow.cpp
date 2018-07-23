@@ -123,10 +123,10 @@ void OpenGLWindow::loop() {
 		glClearColor(0.2f, 0.2f, .5f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		Frame& currentFrame = this->human->getCycles()[0]->getCurrentFrame();
+		// Frame& currentFrame = this->human->getCycles()[0]->getCurrentFrame();
+		Frame& currentFrame = this->human->getCycles()[this->gui->getSelectedCycle()]->getCurrentFrame();
 		currentFrame.getRoot()->recursivelyUpdateMatrices(i, o);
 
-		this->drawWidgets();
 		glEnable(GL_DEPTH_TEST);
 		this->drawContents();
 		this->shaderProgram.use();
@@ -136,6 +136,7 @@ void OpenGLWindow::loop() {
 
 		currentFrame.getRoot()->recursivelyRender(this->shaderProgram);
 
+		this->drawWidgets();
 
 		if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT)) {
 			glFlush();

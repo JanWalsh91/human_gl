@@ -57,3 +57,5 @@ Frame::~Frame() {
 	delete this->rightFoot;
 	delete this->leftFoot;
 }
+
+unsigned Frame::frameLength = 16;

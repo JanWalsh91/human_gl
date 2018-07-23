@@ -2,6 +2,7 @@
 #define GUI_HPP
 
 #include "OpenGLWindow.hpp"
+#include "Frame.hpp"
 
 class GUI {
 
@@ -17,6 +18,9 @@ public:
 	void setSelectedMesh(Mesh* selectedMesh);
 	void setClickPosition(Vector vector);
 	void setDragging(bool dragging);
+
+	int getSelectedCycle() const;
+
 private:
 
 	OpenGLWindow*	screen;
@@ -26,21 +30,28 @@ private:
 	bool	dragging;
 
 	nanogui::Widget* parentPanel;
-	nanogui::Widget* rotationPanel;
+	nanogui::Widget* scalePanel;
 
-	nanogui::Widget* rotationXPanel;
+	nanogui::Widget* scaleXPanel;
 	nanogui::Slider *sliderX;
 	nanogui::TextBox *textBoxX;
 
-	nanogui::Widget* rotationYPanel;
+	nanogui::Widget* scaleYPanel;
 	nanogui::Slider *sliderY;
 	nanogui::TextBox *textBoxY;
 
-	nanogui::Widget* rotationZPanel;
+	nanogui::Widget* scaleZPanel;
 	nanogui::Slider *sliderZ;
 	nanogui::TextBox *textBoxZ;
 
-	void createRotationPanels();
+	nanogui::Widget* scaleSpeedPanel;
+	nanogui::Slider *sliderSpeed;
+	nanogui::TextBox *textBoxSpeed;
+
+	void createScalePanels();
+	void createCyclePanel();
+
+	int selectedCycle;
 };
 
 

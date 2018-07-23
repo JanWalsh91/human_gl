@@ -13,13 +13,15 @@ class Cycle {
 public:
 		
 	enum Type {
-		WALKING
+		STANDING,
+		WALKING,
+		JUMPING,
+		MOON_WALSH
 	};
 
 	Cycle( Cycle::Type );
 	~Cycle( void );
 		
-	void	interpolate(); // call on each KeyFrame to interpolate Frames between itself and next KeyFrame
 	void	play();
 	
 	void	setStartTime( unsigned time ) { this->startTime = time; }
@@ -36,7 +38,10 @@ private:
 	unsigned			startTime;
 	std::string				name;
 
+	void createStandingCycle();
 	void createWalkingCycle();
+	void createJumpingCycle();
+	void createMoonWalshCycle();
 
 	static const unsigned	keyFramesPerCycle = 60;
 };

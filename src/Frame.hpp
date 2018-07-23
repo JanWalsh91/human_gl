@@ -30,6 +30,9 @@ public:
 	Mesh* getRightFoot()		const { return this->rightFoot; }
 	Mesh* getLeftFoot()			const { return this->leftFoot; }
 
+	static void setFrameLength( unsigned i ) { Frame::frameLength = i; };
+	static unsigned getFrameLength( void ) { return Frame::frameLength; }
+
 protected:
 	Mesh* root;
 
@@ -48,7 +51,7 @@ protected:
 	Mesh* rightFoot;
 	Mesh* leftFoot;
 
-	static const unsigned frameLength = 40; //ms
+	static unsigned frameLength; //ms
 };
 
 
