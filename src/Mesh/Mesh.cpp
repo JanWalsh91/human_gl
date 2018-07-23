@@ -10,7 +10,9 @@ Mesh::Mesh( void ) : Mesh::Mesh(
 	Vector(0, 0, 0), // default scaling origin
 	Vector(0, 0, 0), // default translation
 	Vector(1, 1, 1)  // default color
-) {}
+) {
+	std::cout << "Mesh non cst " << glfwGetTime() << std::endl;
+}
 
 Mesh::Mesh( Vector rotationAngles, Vector rotationOrigin, Vector scale, Vector scaleOrigin, Vector translation, Vector color, std::string const & name ) :
 	parentMesh(nullptr),
@@ -20,7 +22,9 @@ Mesh::Mesh( Vector rotationAngles, Vector rotationOrigin, Vector scale, Vector s
 	scaleOrigin(scaleOrigin),
 	translation(translation),
 	color(color),
-	name(name) {}
+	name(name) {
+		std::cout << "Mesh cst " << glfwGetTime() << std::endl;
+	}
 
 Mesh::Mesh( Vector rotationAngles, Vector rotationOrigin, Vector scale, Vector scaleOrigin, Vector translation, Vector color ) :
 	parentMesh(nullptr),
@@ -30,7 +34,9 @@ Mesh::Mesh( Vector rotationAngles, Vector rotationOrigin, Vector scale, Vector s
 	scaleOrigin(scaleOrigin),
 	translation(translation),
 	color(color), 
-	name("Default mesh") {}
+	name("Default mesh") {
+		std::cout << "Defualt Mesh cst " << glfwGetTime() << std::endl;
+	}
 
 Mesh::Mesh( Mesh const & mesh ) {
 	*this = mesh;

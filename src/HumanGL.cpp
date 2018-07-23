@@ -67,6 +67,9 @@ HumanGL::HumanGL( HumanGL const & HumanGL ) {
 }
 
 HumanGL::~HumanGL( void ) {
+	for (auto c: this->cycles) {
+		delete c;
+	}
 }
 
 HumanGL & HumanGL::operator=( HumanGL const & rhs ) {

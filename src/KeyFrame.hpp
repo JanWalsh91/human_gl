@@ -18,10 +18,10 @@ class KeyFrame: public Frame {
 
 public:
 	KeyFrame();
-	virtual ~KeyFrame();
+	~KeyFrame();
 	KeyFrame &	operator=( KeyFrame const & rhs );
 
-	std::vector<Frame>* interpolate( KeyFrame const & other, int & size );
+	std::vector<Frame>* interpolate( KeyFrame const & other );
 	void copyFramesToList( std::vector<Mesh*> & list, Frame const & frame );
 	void addFramesToList( std::vector<Mesh*> & list, Frame const & frame );
 	void updateMeshValues( Mesh * meshFirst, Mesh * meshLast, Mesh * meshToUpdate, float fraction );

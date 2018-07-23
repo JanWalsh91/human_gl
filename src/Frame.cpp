@@ -1,6 +1,7 @@
 #include "Frame.hpp"
 
 Frame::Frame(Frame const & other) {
+	std::cout << "New Copied Frame: " << glfwGetTime() << std::endl;
 	this->torso			= new Mesh( *other.getTorso() );
 	this->head			= new Mesh( *other.getHead() );
 	this->rightArm		= new Mesh( *other.getRightArm() );
@@ -39,6 +40,8 @@ Frame::Frame(Frame const & other) {
 }
 
 Frame::~Frame() {
+	static int i = 0;
+	std::cout << "delete frame" << i++ << "\n";
 	delete this->torso;
 	delete this->head;
 	delete this->rightArm;

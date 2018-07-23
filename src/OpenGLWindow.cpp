@@ -16,21 +16,6 @@ OpenGLWindow::OpenGLWindow( int width, int height, std::string const & title ): 
 
 	this->human->initCycles();
 
-//	this->camPos = Vector(0, 0, -10);
-//	this->camRight = Vector(1, 0, 0);
-//	this->camUp = Vector(0, 1, 0);
-//	this->camDir = Vector(0, 0, 1);
-//	this->viewMatrix = Matrix(this->camPos * -1 , Matrix::TYPE::TRANSLATE);
-//	this->viewMatrix[0] = this->camRight[0];
-//	this->viewMatrix[1] = this->camRight[1];
-//	this->viewMatrix[2] = this->camRight[2];
-//	this->viewMatrix[4] = this->camUp[0];
-//	this->viewMatrix[5] = this->camUp[1];
-//	this->viewMatrix[6] = this->camUp[2];
-//	this->viewMatrix[8] = this->camDir[0];
-//	this->viewMatrix[9] = this->camDir[1];
-//	this->viewMatrix[10] = this->camDir[2];
-
 	this->PMatrix = Matrix(100.0f, 0.1f, (float)this->width / (float)this->height, 45, Matrix::TYPE::PROJECTION);
 
 
@@ -57,26 +42,6 @@ OpenGLWindow::OpenGLWindow( int width, int height, std::string const & title ): 
 	glfwSetCursorPosCallback(window, [](GLFWwindow *win, double x, double y) {
 		OpenGLWindow* screen = (OpenGLWindow*)glfwGetWindowUserPointer(win);
 			 screen->cursorPosCallbackEvent(x, y);
-
-//		double xposOri, yposOri;
-//		glfwGetCursorPos(screen->window, &xposOri, &yposOri);
-//		screen->gui->setClickPosition(Vector(xposOri, yposOri, 0));
-//
-//		if (screen->gui->isDragging()) {
-//
-//			double xpos, ypos;
-//			glfwGetCursorPos(screen->window, &xpos, &ypos);
-//			std::cout << "Drag distance: " << screen->gui->getClickPosition()[0] - xpos << ", " << screen->gui->getClickPosition()[1] - ypos << std::endl;
-//			Vector dir = screen->camera.getCameraDirection();
-//
-//			dir[0] = dir[0] + (screen->gui->getClickPosition()[0] - xpos) / 100000;
-//			std::cout << dir << std::endl;
-//			dir.normalize();
-//
-//			screen->camera.setCameraDirection(dir);
-//			screen->shaderProgram.setMatrix("viewMatrix",  screen->camera.getViewMatrix());
-//		}
-
 		 }
 	);
 
@@ -144,11 +109,6 @@ void OpenGLWindow::initOpenGL() {
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 }
 
-//void OpenGLWindow::drawContents() {
-//
-//}
-
-
 void OpenGLWindow::loop() {
 
 	this->poubelle = 0;
@@ -163,7 +123,7 @@ void OpenGLWindow::loop() {
 		glClearColor(0.2f, 0.2f, .5f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		Frame currentFrame = this->human->getCycles()[0]->getCurrentFrame();
+		Frame& currentFrame = this->human->getCycles()[0]->getCurrentFrame();
 		currentFrame.getRoot()->recursivelyUpdateMatrices(i, o);
 
 		this->drawWidgets();
@@ -190,7 +150,6 @@ void OpenGLWindow::loop() {
 			glfwGetCursorPos(window, &xpos, &ypos);
 			ypos = this->height - ypos;
 			glReadPixels(xpos, ypos, 1, 1, GL_RGB, GL_FLOAT, data);
-			//this->human->cycles[0]->keyFrames[0]->getHead()->setColor(Vector((float)data[0], (float)data[1], (float)data[2]));
 			Mesh* tmp = currentFrame.getRoot()->getByColor(Vector((float)data[0], (float)data[1], (float)data[2]));
 			if (tmp)
 				std::cout << "========= tmp: " << tmp->getName() << std::endl;

@@ -11,7 +11,7 @@ public:
 	Frame() {}
 	Frame( Frame const & );
 
-	virtual ~Frame();
+	~Frame();
 
 	Mesh* getRoot() const { return this->root; }
 
@@ -48,7 +48,7 @@ protected:
 	Mesh* rightFoot;
 	Mesh* leftFoot;
 
-	static const unsigned frameLength = 16; //ms
+	static const unsigned frameLength = 40; //ms
 };
 
 

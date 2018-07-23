@@ -34,6 +34,8 @@ set(
 	src/Frame.cpp
 	src/ExceptionMsg.cpp
 	src/Camera.cpp
+	libs/glad/glad.c
+
 )
 add_executable(human_gl ${SOURCE_FILES})
 target_link_libraries(human_gl nanogui ${NANOGUI_EXTRA_LIBS})

@@ -1,21 +1,24 @@
 #include "KeyFrame.hpp"
 
 KeyFrame::KeyFrame() {
-	this->torso = new TorsoMesh();
-	this->head = new HeadMesh();
-	this->rightArm = new ArmMesh(Side::RIGHT);
+	static int i = 0;
+	std::cout << "New KeyFrame " << i++ << std::endl;
+	this->torso			= new TorsoMesh();
+	this->head			= new HeadMesh();
+	this->rightArm		= new ArmMesh(Side::RIGHT);
 	this->rightLowerArm = new LowerArmMesh(Side::RIGHT);
-	this->rightHand = new HandMesh(Side::RIGHT);
-	this->leftArm = new ArmMesh(Side::LEFT);
-	this->leftLowerArm = new LowerArmMesh(Side::LEFT);
-	this->leftHand = new HandMesh(Side::LEFT);
-	this->leftLeg = new LegMesh(Side::LEFT);
-	this->leftLowerLeg = new LowerLegMesh(Side::LEFT);
-	this->rightLeg = new LegMesh(Side::RIGHT);
-	this->rightLowerLeg = new LowerLegMesh(Side::RIGHT);
-	this->rightFoot = new FootMesh(Side::RIGHT);
-	this->leftFoot = new FootMesh(Side::LEFT);
+	this->rightHand		= new HandMesh(Side::RIGHT);
+	this->leftArm		= new ArmMesh(Side::LEFT);
+	this->leftLowerArm	= new LowerArmMesh(Side::LEFT);
+	this->leftHand		= new HandMesh(Side::LEFT);
+	this->leftLeg		= new LegMesh(Side::LEFT);
+	this->leftLowerLeg	= new LowerLegMesh(Side::LEFT);
+	this->rightLeg		= new LegMesh(Side::RIGHT);
+	this->rightLowerLeg	= new LowerLegMesh(Side::RIGHT);
+	this->rightFoot		= new FootMesh(Side::RIGHT);
+	this->leftFoot		= new FootMesh(Side::LEFT);
 
+	std::cout << "arm: " << this->rightArm << std::endl;
 	torso->append( head );
 	rightLowerArm->append( rightHand );
 	rightArm->append( rightLowerArm );
@@ -39,7 +42,24 @@ KeyFrame::KeyFrame() {
 }
 
 KeyFrame::~KeyFrame( void ) {
+	static int i = 0;
+	std::cout << "delete keyframe " << i++ << "\n";
+	std::cout << "arm: " << this->rightArm << std::endl;
 	//TODO ...
+	// delete this->torso;
+	// delete this->head;
+	// delete this->rightArm;
+	// delete this->rightLowerArm;
+	// delete this->rightHand;
+	// delete this->leftArm;
+	// delete this->leftLowerArm;
+	// delete this->leftHand;
+	// delete this->leftLeg;
+	// delete this->leftLowerLeg;
+	// delete this->rightLeg;
+	// delete this->rightLowerLeg;
+	// delete this->rightFoot;
+	// delete this->leftFoot;
 }
 
 KeyFrame & KeyFrame::operator=( KeyFrame const & rhs ) {
@@ -47,20 +67,24 @@ KeyFrame & KeyFrame::operator=( KeyFrame const & rhs ) {
 }
 
 // returns list of interpolated frames between two KeyFrames
-std::vector<Frame>* KeyFrame::interpolate( KeyFrame const & other, int & size ) {
-	size = std::abs(other.index - this->index) * Frame::frameLength;
-	std::vector<Frame>* frames = new std::vector<Frame>( size, *dynamic_cast<Frame *>(new KeyFrame()) );
+std::vector<Frame>* KeyFrame::interpolate( KeyFrame const & other ) {
+	std::cout << "Interpolate" << std::endl;
+	int size = std::abs(other.index - this->index) * Frame::frameLength;
+	KeyFrame *tmp = new KeyFrame();
+	std::vector<Frame>* frames = new std::vector<Frame>( size, *dynamic_cast<Frame *>(tmp) );
+	delete tmp;
 	std::vector<Mesh*> meshesFirst;
 	std::vector<Mesh*> meshesFinal;
 	std::vector<Mesh*> meshesToUpdate;
 
+
 	this->copyFramesToList(meshesFirst, *this);
 	this->copyFramesToList(meshesFinal, other);
-	
 	for( int i = 0; i < size; ++i ) {
 		float step = (float)i / (float)size;
 		Frame &	currentFrame = (*frames)[i];		
 		meshesToUpdate.clear();
+
 		this->addFramesToList( meshesToUpdate, currentFrame );
 		for( unsigned y = 0; y < meshesFirst.size(); ++y ) {
 			this->updateMeshValues(
@@ -71,8 +95,27 @@ std::vector<Frame>* KeyFrame::interpolate( KeyFrame const & other, int & size ) 
 			);
 		}
 	}
+
+	for (Mesh* p: meshesFirst) {
+		delete p;
+	}
+	for (Mesh* p: meshesFinal) {
+		delete p;
+	}
 	return frames;
 }
+
+// std::vector<Frame>* KeyFrame::interpolate( KeyFrame const & other, std::vector<Frame> *frames /* list f {"rightFoot"} */ ) {
+// 	if (frame) {
+// 		// modify existing frames
+// 	}
+// 	else {
+// 		// create new frames
+// 	}
+// 	if (rightFoot)
+
+// 	return frames;
+// }
 
 void	KeyFrame::copyFramesToList( std::vector<Mesh*> & list, Frame const & frame ) {
 	list.push_back( new Mesh(*frame.getTorso()) );
