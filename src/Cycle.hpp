@@ -13,10 +13,12 @@ class Cycle {
 public:
 		
 	enum Type {
-		STANDING,
-		WALKING,
-		JUMPING,
-		MOON_WALSH
+		STAND,
+		WALK,
+		JUMP,
+		MOON_WALK,
+		WAVE,
+		PUSH_UP
 	};
 
 	Cycle( Cycle::Type );
@@ -42,6 +44,8 @@ private:
 	void createWalkingCycle();
 	void createJumpingCycle();
 	void createMoonWalshCycle();
+	void createWaveCycle();
+	void createPushUpCycle();
 
 	static const unsigned	keyFramesPerCycle = 60;
 };

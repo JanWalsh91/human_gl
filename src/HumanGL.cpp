@@ -77,10 +77,12 @@ HumanGL & HumanGL::operator=( HumanGL const & rhs ) {
 }
 
 void HumanGL::initCycles() {
-	this->cycles.push_back( new Cycle(Cycle::Type::STANDING) );
-	this->cycles.push_back( new Cycle(Cycle::Type::WALKING) );
-	this->cycles.push_back( new Cycle(Cycle::Type::JUMPING) );
-	this->cycles.push_back( new Cycle(Cycle::Type::MOON_WALSH) );
+	this->cycles.push_back( new Cycle(Cycle::Type::STAND) );
+	this->cycles.push_back( new Cycle(Cycle::Type::WALK) );
+	this->cycles.push_back( new Cycle(Cycle::Type::JUMP) );
+	this->cycles.push_back( new Cycle(Cycle::Type::MOON_WALK) );
+	this->cycles.push_back( new Cycle(Cycle::Type::WAVE) );
+	this->cycles.push_back( new Cycle(Cycle::Type::PUSH_UP) );
 }
 
 

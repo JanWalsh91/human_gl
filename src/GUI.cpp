@@ -1,6 +1,6 @@
 #include "GUI.hpp"
 
-GUI::GUI(OpenGLWindow* screen): screen(screen), currentSelectedMesh(nullptr), dragging(false), selectedCycle(0) {}
+GUI::GUI(OpenGLWindow* screen): screen(screen), currentSelectedMesh(nullptr), dragging(false), selectedCycle(5) {}
 
 GUI::~GUI() {}
 
@@ -17,11 +17,15 @@ void GUI::createCyclePanel() {
 	nanogui::Button *standingButton = new nanogui::Button(guiWindow, "Standing");
 	nanogui::Button *walkingButton = new nanogui::Button(guiWindow, "Walking");
 	nanogui::Button *jumpingButton = new nanogui::Button(guiWindow, "Jumping");
-	nanogui::Button *moonWalshButton = new nanogui::Button(guiWindow, "MoonWalsh");
+	nanogui::Button *moonWalshButton = new nanogui::Button(guiWindow, "MoonWalk");
+	nanogui::Button *waveButton = new nanogui::Button(guiWindow, "Wave");
+	nanogui::Button *pushUpButton = new nanogui::Button(guiWindow, "PushUp");
 	standingButton->setCallback([this] { this->selectedCycle = 0; });
 	walkingButton->setCallback([this] { this->selectedCycle = 1; });
 	jumpingButton->setCallback([this] { this->selectedCycle = 2; });
 	moonWalshButton->setCallback([this] { this->selectedCycle = 3; });
+	waveButton->setCallback([this] { this->selectedCycle = 4; });
+	pushUpButton->setCallback([this] { this->selectedCycle = 5; });
 
 	sliderSpeed = new nanogui::Slider(guiWindow);
 	sliderSpeed->setValue(16.0f / 100.0f);
