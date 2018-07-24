@@ -1,20 +1,13 @@
-#ifndef MATRIX_H
-# define MATRIX_H
+#ifndef MATRIX_HPP
+# define MATRIX_HPP
 
 # include "Vector.hpp"
 
-# ifdef _WIN32
-# define _USE_MATH_DEFINES
-# include <math.h>
-# endif
-
 # include <cmath>
-
 # include <cstring>
 # include <iostream>
 # include <vector>
 # include <exception>
-
 
 class Matrix {
 
@@ -34,7 +27,6 @@ public:
 	Matrix( float angle, Matrix::TYPE type );
 
 	Matrix( Vector const & v, Matrix::TYPE type );
-	//Matrix( Matrix::TYPE type );
 	Matrix( float far_dist, float near_dist, float aspect, float fov, Matrix::TYPE type );
 	Matrix( Matrix const & );
 	~Matrix( void );

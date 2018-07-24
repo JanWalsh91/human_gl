@@ -58,8 +58,6 @@ HumanGL::HumanGL( void ) {
 	glBufferData(GL_ARRAY_BUFFER, sizeof(cubeArray), cubeArray, GL_STATIC_DRAW);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
-
-	// delete cubes
 }
 
 HumanGL::HumanGL( HumanGL const & HumanGL ) {
@@ -84,10 +82,3 @@ void HumanGL::initCycles() {
 	this->cycles.push_back( new Cycle(Cycle::Type::WAVE) );
 	this->cycles.push_back( new Cycle(Cycle::Type::PUSH_UP) );
 }
-
-
-
-
-
-
-

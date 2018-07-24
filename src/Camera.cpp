@@ -17,9 +17,7 @@ Camera::Camera() {
 	this->viewMatrix[10] = this->camDir[2];
 }
 
-Camera::~Camera() {
-
-}
+Camera::~Camera() {}
 
 Matrix const & Camera::getViewMatrix() {
 	std::cout << this->viewMatrix[8] << std::endl;

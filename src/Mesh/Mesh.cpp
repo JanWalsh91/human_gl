@@ -1,8 +1,5 @@
 #include "Mesh.hpp"
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
 Mesh::Mesh( void ) : Mesh::Mesh(
 	Vector(0, 0, 0), // default rotation
 	Vector(0, 0, 0), // default rotation origin
@@ -61,7 +58,7 @@ void Mesh::recursivelyRender( Shader & s ) {
 	this->render( s );
 	for ( Mesh* mesh : this->meshes ) {
 		mesh->recursivelyRender( s );
-	};
+	}
 }
 
 Matrix &	Mesh::getModelMatrix() {
@@ -98,7 +95,6 @@ Mesh* Mesh::getByColor(Vector color) {
 	Mesh* tmp = nullptr;
 
 	if (color == this->color) {
-		std::cout << "Founded: " << this->name << std::endl;
 		return this;
 	}
 	for (Mesh* mesh : this->meshes) {

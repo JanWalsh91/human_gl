@@ -14,8 +14,7 @@ Vector::Vector( Vector const & Vector ) {
 	*this = Vector;
 }
 
-Vector::~Vector( void ) {
-}
+Vector::~Vector( void ) {}
 
 Vector & Vector::operator=( Vector const & rhs ) {
 	this->v = rhs.v;

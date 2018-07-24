@@ -1,7 +1,6 @@
 #include "OpenGLWindow.hpp"
 #include "ExceptionMsg.hpp"
 
-
 OpenGLWindow::OpenGLWindow( int width, int height, std::string const & title ): nanogui::Screen(), width(width), height(height) {
 	if (!(this->window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr))) {
 		throw ExceptionMsg("Failed to create window");
@@ -18,7 +17,6 @@ OpenGLWindow::OpenGLWindow( int width, int height, std::string const & title ): 
 
 	this->PMatrix = Matrix(100.0f, 0.1f, (float)this->width / (float)this->height, 45, Matrix::TYPE::PROJECTION);
 
-
 	this->initialize(this->window, true);
 
 	int w, h;
@@ -26,8 +24,6 @@ OpenGLWindow::OpenGLWindow( int width, int height, std::string const & title ): 
 	glViewport(0, 0, w, h);
 	glfwSwapInterval(0);
 	glfwSwapBuffers(window);
-
-
 
 	bool enabled = true;
 
@@ -97,6 +93,7 @@ OpenGLWindow::OpenGLWindow( OpenGLWindow const & Window ) {
 OpenGLWindow::~OpenGLWindow() {
 	glfwTerminate();
 	delete this->human;
+	delete this->gui;
 }
 
 void OpenGLWindow::initOpenGL() {
@@ -111,19 +108,18 @@ void OpenGLWindow::initOpenGL() {
 
 void OpenGLWindow::loop() {
 
-	this->poubelle = 0;
 	Matrix i;
 	Vector o;
 
 	this->shaderProgram.setMatrix("viewMatrix",  this->camera.getViewMatrix());
 	this->shaderProgram.setMatrix("projectionMatrix",  this->PMatrix);
+
 	while (!glfwWindowShouldClose(this->window) && glfwGetKey(this->window, GLFW_KEY_ESCAPE) != GLFW_PRESS) {
 		glfwPollEvents();
 
 		glClearColor(0.2f, 0.2f, .5f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		// Frame& currentFrame = this->human->getCycles()[0]->getCurrentFrame();
 		Frame& currentFrame = this->human->getCycles()[this->gui->getSelectedCycle()]->getCurrentFrame();
 		currentFrame.getRoot()->recursivelyUpdateMatrices(i, o);
 
@@ -142,62 +138,26 @@ void OpenGLWindow::loop() {
 			glFlush();
 			glFinish();
 			glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-			float data[4];
-			data[0] = 0;
-			data[1] = 0;
-			data[2] = 0;
-			data[3] = 0;
+			float data[4] = {0, 0, 0, 0};
 			double xpos, ypos;
 			glfwGetCursorPos(window, &xpos, &ypos);
 			ypos = this->height - ypos;
 			glReadPixels(xpos, ypos, 1, 1, GL_RGB, GL_FLOAT, data);
-			this->gui->setSelectedMesh(currentFrame.getRoot()->getByColor(Vector((float)data[0], (float)data[1], (float)data[2])));
-
-			//unsigned char res[4];
-			//GLint viewport[4];
-			//glGetIntegerv(GL_VIEWPORT, viewport);
-			//glReadPixels(xpos, ypos, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &res);		
+			this->gui->setSelectedMesh(currentFrame.getRoot()->getByColor(Vector((float)data[0], (float)data[1], (float)data[2])));	
 		}
 
 		if (this->gui->needToUpdateFrames()) {
-			// this->cycles.
 			std::vector<Frame>& frames = this->human->getCycles()[this->gui->getSelectedCycle()]->getFrames();
-			// std::cout << "Update Frames: " << frames.size() << std::endl;
 			for (Frame& frame: frames) {
-				std::string name = this->gui->getSelectedMesh()->getName();
-
 				std::map<std::string, Frame::getMesh> meshMap = frame.getMeshMap();
-
-				Mesh* (Frame::*f)() const = meshMap[name];
-
-				// (frame.(meshMap[name]))();
-
-				Mesh* r = (frame.*f)();
-
-				
-				r->setScale(this->gui->getCurrentMeshScale());
-				std::cout << r->getScale()[0] << std::endl;
-				// std::cout << "& frame: " << &frame << std::endl;
-				// break;
+				Mesh* (Frame::*f)() const = meshMap[this->gui->getSelectedMesh()->getName()];
+				Mesh* m = (frame.*f)();
+				m->setScale(this->gui->getCurrentMeshScale());
 			}
-
-			const std::vector<Frame>& framesAAA = this->human->getCycles()[this->gui->getSelectedCycle()]->getFrames();
-			for (auto frame: framesAAA) {
-				std::string name = this->gui->getSelectedMesh()->getName();
-				std::map<std::string, Frame::getMesh> meshMap = frame.getMeshMap();
-				Mesh* (Frame::*f)() const = meshMap[name];
-				Mesh* r = (frame.*f)();
-				std::cout << r->getScale()[0] << std::endl;
-				// break;
-			}
-			std::cout << "===" << std::endl;
 			this->gui->setUpdateFrames(false);
 		}
-
 		glfwSwapBuffers(this->window);
 	}
-
-
 }
 
 OpenGLWindow & OpenGLWindow::operator=( OpenGLWindow const & rhs ) {

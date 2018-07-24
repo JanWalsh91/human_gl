@@ -1,11 +1,9 @@
 #ifndef CYCLE_H
 # define CYCLE_H
 
-# include "Frame.hpp"
 # include "KeyFrame.hpp"
 # include "Vector.hpp"
 
-# include <GLFW/glfw3.h>
 # include <string>
 
 class Cycle {

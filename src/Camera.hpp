@@ -1,8 +1,8 @@
 #ifndef CAMERA_HPP
-#define CAMERA_HPP
+# define CAMERA_HPP
 
-#include "Matrix.hpp"
-#include "Vector.hpp"
+# include "Matrix.hpp"
+# include "Vector.hpp"
 
 class Camera {
 
@@ -25,6 +25,5 @@ private:
 	Vector		camUp;
 
 };
-
 
 #endif

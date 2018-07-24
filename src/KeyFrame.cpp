@@ -1,7 +1,6 @@
 #include "KeyFrame.hpp"
 
 KeyFrame::KeyFrame() {
-	static int i = 0;
 	this->torso			= new TorsoMesh();
 	this->head			= new HeadMesh();
 	this->rightArm		= new ArmMesh(Side::RIGHT);
@@ -39,30 +38,13 @@ KeyFrame::KeyFrame() {
 	this->root = torso;
 }
 
-KeyFrame::~KeyFrame( void ) {
-	static int i = 0;
-	//TODO ...
-	// delete this->torso;
-	// delete this->head;
-	// delete this->rightArm;
-	// delete this->rightLowerArm;
-	// delete this->rightHand;
-	// delete this->leftArm;
-	// delete this->leftLowerArm;
-	// delete this->leftHand;
-	// delete this->leftLeg;
-	// delete this->leftLowerLeg;
-	// delete this->rightLeg;
-	// delete this->rightLowerLeg;
-	// delete this->rightFoot;
-	// delete this->leftFoot;
-}
+KeyFrame::~KeyFrame( void ) {}
 
 KeyFrame & KeyFrame::operator=( KeyFrame const & rhs ) {
 	return *this;
 }
 
-// returns list of interpolated frames between two KeyFrames
+// Returns list of interpolated frames between two KeyFrames
 std::vector<Frame>* KeyFrame::interpolate( KeyFrame const & other ) {
 	int size = std::abs(other.index - this->index) * Frame::frameLength;
 	KeyFrame *tmp = new KeyFrame();
@@ -72,11 +54,10 @@ std::vector<Frame>* KeyFrame::interpolate( KeyFrame const & other ) {
 	std::vector<Mesh*> meshesFinal;
 	std::vector<Mesh*> meshesToUpdate;
 
-
 	this->copyFramesToList(meshesFirst, *this);
 	this->copyFramesToList(meshesFinal, other);
 	for( int i = 0; i < size; ++i ) {
-		float step = (float)i / (float)size;
+		float step = static_cast<float>(i) / static_cast<float>(size);
 		Frame &	currentFrame = (*frames)[i];		
 		meshesToUpdate.clear();
 
@@ -99,18 +80,6 @@ std::vector<Frame>* KeyFrame::interpolate( KeyFrame const & other ) {
 	}
 	return frames;
 }
-
-// std::vector<Frame>* KeyFrame::interpolate( KeyFrame const & other, std::vector<Frame> *frames /* list f {"rightFoot"} */ ) {
-// 	if (frame) {
-// 		// modify existing frames
-// 	}
-// 	else {
-// 		// create new frames
-// 	}
-// 	if (rightFoot)
-
-// 	return frames;
-// }
 
 void	KeyFrame::copyFramesToList( std::vector<Mesh*> & list, Frame const & frame ) {
 	list.push_back( new Mesh(*frame.getTorso()) );

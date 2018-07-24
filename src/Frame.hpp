@@ -1,5 +1,5 @@
-#ifndef FRAME_H
-# define FRAME_H
+#ifndef FRAME_HPP
+# define FRAME_HPP
 
 # include "Mesh/Mesh.hpp"
 
@@ -55,13 +55,11 @@ protected:
 	Mesh* rightFoot;
 	Mesh* leftFoot;
 
-	static unsigned frameLength; //ms
+	static unsigned frameLength;
 
 private:
 
 	std::map<std::string, getMesh> meshMap;
-
 };
-
 
 #endif

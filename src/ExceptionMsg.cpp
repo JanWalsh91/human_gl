@@ -16,6 +16,5 @@ ExceptionMsg &    ExceptionMsg::operator=( ExceptionMsg const & rhs ) {
 }
 
 const char* ExceptionMsg::what() const throw() {
-	std::cout << this->msg << std::endl;
 	return this->msg.c_str();
 }

@@ -1,9 +1,9 @@
-#ifndef KEY_FRAME_H
-# define KEY_FRAME_H
+#ifndef KEY_FRAME_HPP
+# define KEY_FRAME_HPP
 
 # include "Frame.hpp"
-# include "Mesh/TorsoMesh.hpp"
 # include "Mesh/ArmMesh.hpp"
+# include "Mesh/TorsoMesh.hpp"
 # include "Mesh/LowerArmMesh.hpp"
 # include "Mesh/LegMesh.hpp"
 # include "Mesh/LowerLegMesh.hpp"
@@ -32,6 +32,5 @@ public:
 private:
 	int index; // Dans les 60 keyframes
 };
-
 
 #endif

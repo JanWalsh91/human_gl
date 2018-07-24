@@ -8,7 +8,6 @@ class HandMesh : public Mesh {
 public:
 	HandMesh( Side side );
 	HandMesh( Side side, Vector rotationAngles );
-
 };
 
 #endif

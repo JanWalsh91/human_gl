@@ -1,8 +1,8 @@
 #ifndef GUI_HPP
-#define GUI_HPP
+# define GUI_HPP
 
-#include "OpenGLWindow.hpp"
-#include "Frame.hpp"
+# include "OpenGLWindow.hpp"
+# include "Frame.hpp"
 
 class GUI {
 
@@ -59,6 +59,5 @@ private:
 
 	int selectedCycle;
 };
-
 
 #endif

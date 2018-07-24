@@ -29,8 +29,7 @@ void	Matrix::rot_x( float angle ) {
 	this->m[0] = 1;
 	this->m[5] = cos( angle );
 	this->m[6] = sin( angle );
-	this->m[9] = -sin( angle );
-	
+	this->m[9] = -sin( angle );	
 	this->m[10] = cos( angle );
 }
 
@@ -39,7 +38,6 @@ void	Matrix::rot_y( float angle ) {
 	this->m[2] = -sin( angle );
 	this->m[5] = 1;
 	this->m[8] = sin( angle );
-	
 	this->m[10] = cos( angle );
 }
 
@@ -47,7 +45,6 @@ void	Matrix::rot_z( float angle ) {
 	this->m[0] = cos( angle );
 	this->m[1] = sin( angle );
 	this->m[4] = -sin( angle );
-	
 	this->m[5] = cos( angle );
 	this->m[10] = 1;
 }

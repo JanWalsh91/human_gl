@@ -8,7 +8,6 @@ class HeadMesh : public Mesh {
 public:
 	HeadMesh();
 	HeadMesh( Vector rotationAngles );
-	
 };
 
 #endif
