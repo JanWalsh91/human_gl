@@ -6,8 +6,8 @@
 class LowerArmMesh : public Mesh {
 
 public:
-	LowerArmMesh( Side side );
-	LowerArmMesh( Side side, Vector rotationAngles );
+	LowerArmMesh(Side side);
+	LowerArmMesh(Side side, Vector rotationAngles);
 };
 
 #endif

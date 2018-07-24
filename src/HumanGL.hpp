@@ -11,18 +11,18 @@
 class HumanGL {
 
 public:
-	HumanGL( void );
-	HumanGL( HumanGL const & );
-	~HumanGL( void );
+	HumanGL();
+	HumanGL(HumanGL const &);
+	~HumanGL();
 
-	HumanGL & operator=( HumanGL const & rhs );
+	HumanGL & operator=(HumanGL const & rhs);
 
 	void initCycles();
 
-	GLuint getVBO() const { return this->VBO; }
-	GLuint getVAO() const { return this->VAO; }
+	GLuint getVBO() const;
+	GLuint getVAO() const;
 
-	const std::vector<Cycle*>& getCycles() { return this->cycles; }
+	const std::vector<Cycle*>& getCycles();
 
 private:
 

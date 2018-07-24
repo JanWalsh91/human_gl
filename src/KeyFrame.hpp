@@ -19,16 +19,15 @@ class KeyFrame: public Frame {
 public:
 	KeyFrame();
 	~KeyFrame();
-	KeyFrame &	operator=( KeyFrame const & rhs );
+	KeyFrame &	operator=(KeyFrame const & rhs);
 
-	std::vector<Frame>* interpolate( KeyFrame const & other );
-	void copyFramesToList( std::vector<Mesh*> & list, Frame const & frame );
-	void addFramesToList( std::vector<Mesh*> & list, Frame const & frame );
-	void updateMeshValues( Mesh * meshFirst, Mesh * meshLast, Mesh * meshToUpdate, float fraction );
+	std::vector<Frame>* interpolate(KeyFrame const & other);
+	void copyFramesToList(std::vector<Mesh*> & list, Frame const & frame);
+	void addFramesToList(std::vector<Mesh*> & list, Frame const & frame);
+	void updateMeshValues(Mesh * meshFirst, Mesh * meshLast, Mesh * meshToUpdate, float fraction);
 
-	void setIndex( int index ) { this->index = index; }
-	
-	int  getIndex( void ) const { return this->index; }
+	void setIndex(int index);
+	int  getIndex() const;
 private:
 	int index; // Dans les 60 keyframes
 };

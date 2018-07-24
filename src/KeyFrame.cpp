@@ -133,3 +133,11 @@ void	KeyFrame::updateMeshValues( Mesh * meshFirst, Mesh * meshLast, Mesh * meshT
 		meshFirst->getScale() + ( meshLast->getScale() - meshFirst->getScale() ) * fraction
 	);
 }
+
+void KeyFrame::setIndex(int index) {
+	this->index = index;
+}
+
+int  KeyFrame::getIndex(void) const {
+	return this->index;
+}

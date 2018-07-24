@@ -166,3 +166,7 @@ OpenGLWindow & OpenGLWindow::operator=( OpenGLWindow const & rhs ) {
 	this->height = rhs.height;
 	return *this;
 }
+
+HumanGL* OpenGLWindow::getHuman() {
+	return this->human;
+}

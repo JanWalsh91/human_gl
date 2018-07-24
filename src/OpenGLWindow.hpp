@@ -26,15 +26,14 @@ class GUI;
 class OpenGLWindow: public nanogui::Screen {
 
 public:
-	OpenGLWindow( int width, int height, std::string const & title );
-	OpenGLWindow( OpenGLWindow const & );
-	~OpenGLWindow( void );
+	OpenGLWindow(int width, int height, std::string const & title);
+	OpenGLWindow(OpenGLWindow const &);
+	~OpenGLWindow();
 
-	OpenGLWindow & operator=( OpenGLWindow const & rhs );
+	OpenGLWindow & operator=(OpenGLWindow const & rhs);
 	void loop();
-	void createWidget();
 
-	HumanGL* getHuman() { return this->human; }
+	HumanGL* getHuman();
 
 	static void initOpenGL();
 

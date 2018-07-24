@@ -19,24 +19,22 @@ public:
 		PUSH_UP
 	};
 
-	Cycle( Cycle::Type );
-	~Cycle( void );
+	Cycle(Cycle::Type);
+	~Cycle();
+
+	void	setStartTime(unsigned time);
 		
-	void	play();
-	
-	void	setStartTime( unsigned time ) { this->startTime = time; }
-		
-	Frame&	getCurrentFrame();
-	unsigned	getStartTime() const { return this->startTime; }
+	Frame&		getCurrentFrame();
+	unsigned	getStartTime() const;
 	const std::vector<KeyFrame*>& getKeyFrames();
 	std::vector<Frame>& getFrames();
 		
 private:
 	std::vector<KeyFrame*>	keyFrames;
 	std::vector<Frame>		frames;
-	unsigned			totalTime;
-	unsigned			framesPerCycle;
-	unsigned			startTime;
+	unsigned				totalTime;
+	unsigned				framesPerCycle;
+	unsigned				startTime;
 	std::string				name;
 
 	void createStandingCycle();

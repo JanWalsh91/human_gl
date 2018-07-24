@@ -82,3 +82,15 @@ void HumanGL::initCycles() {
 	this->cycles.push_back( new Cycle(Cycle::Type::WAVE) );
 	this->cycles.push_back( new Cycle(Cycle::Type::PUSH_UP) );
 }
+
+GLuint HumanGL::getVBO() const {
+	return this->VBO;
+}
+
+GLuint HumanGL::getVAO() const {
+	return this->VAO;
+}
+
+const std::vector<Cycle*>& HumanGL::getCycles() {
+	return this->cycles;
+}

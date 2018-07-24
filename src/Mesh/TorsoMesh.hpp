@@ -7,7 +7,6 @@ class TorsoMesh : public Mesh {
 
 public:
 	TorsoMesh();
-	TorsoMesh( TorsoMesh const & );
 };
 
 #endif

@@ -7,7 +7,7 @@ class FootMesh : public Mesh {
 
 public:
 	FootMesh(Side side);
-	FootMesh( Side side, Vector rotationAngles );
+	FootMesh(Side side, Vector rotationAngles);
 };
 
 #endif

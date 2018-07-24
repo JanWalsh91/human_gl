@@ -14,28 +14,28 @@ public:
 
 	~Frame();
 
-	Mesh* getRoot() const { return this->root; }
+	Mesh* getRoot() const;
 
-	Mesh* getTorso()			const { return this->torso; }
-	Mesh* getHead()				const { return this->head; }
-	Mesh* getRightArm()			const { return this->rightArm; }
-	Mesh* getRightLowerArm()	const { return this->rightLowerArm; }
-	Mesh* getRightHand()		const { return this->rightHand; }
-	Mesh* getLeftArm()			const { return this->leftArm; }
-	Mesh* getLeftLowerArm()		const { return this->leftLowerArm; }
-	Mesh* getLeftHand()			const { return this->leftHand; }
-	Mesh* getLeftLeg()			const { return this->leftLeg; }
-	Mesh* getLeftLowerLeg()		const { return this->leftLowerLeg; }
-	Mesh* getRightLeg()			const { return this->rightLeg; }
-	Mesh* getRightLowerLeg()	const { return this->rightLowerLeg; }
-	Mesh* getRightFoot()		const { return this->rightFoot; }
-	Mesh* getLeftFoot()			const { return this->leftFoot; }
+	Mesh* getTorso()			const;
+	Mesh* getHead()				const;
+	Mesh* getRightArm()			const;
+	Mesh* getRightLowerArm()	const;
+	Mesh* getRightHand()		const;
+	Mesh* getLeftArm()			const;
+	Mesh* getLeftLowerArm()		const;
+	Mesh* getLeftHand()			const;
+	Mesh* getLeftLeg()			const;
+	Mesh* getLeftLowerLeg()		const;
+	Mesh* getRightLeg()			const;
+	Mesh* getRightLowerLeg()	const;
+	Mesh* getRightFoot()		const;
+	Mesh* getLeftFoot()			const;
 
 	typedef Mesh* (Frame::*getMesh) () const;
 	std::map<std::string, getMesh> getMeshMap();
 
-	static void setFrameLength( unsigned i ) { Frame::frameLength = i; };
-	static unsigned getFrameLength( void ) { return Frame::frameLength; }
+	static void setFrameLength(unsigned i);
+	static unsigned getFrameLength(void);
 
 protected:
 	Mesh* root;

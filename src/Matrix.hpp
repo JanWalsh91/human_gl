@@ -12,8 +12,8 @@
 class Matrix {
 
 public:
-	Matrix( void );
-	Matrix( unsigned size );
+	Matrix();
+	Matrix(unsigned size);
 
 	enum TYPE {
 		ROTATION_X,
@@ -24,16 +24,16 @@ public:
 		PROJECTION
 	};
 
-	Matrix( float angle, Matrix::TYPE type );
+	Matrix(float angle, Matrix::TYPE type);
 
-	Matrix( Vector const & v, Matrix::TYPE type );
-	Matrix( float far_dist, float near_dist, float aspect, float fov, Matrix::TYPE type );
-	Matrix( Matrix const & );
-	~Matrix( void );
+	Matrix(Vector const & v, Matrix::TYPE type);
+	Matrix(float far_dist, float near_dist, float aspect, float fov, Matrix::TYPE type);
+	Matrix(Matrix const &);
+	~Matrix();
 		
-	Matrix &	operator=( Matrix const & rhs );
-	Matrix		operator*( Matrix const & rhs );
-	Vector		operator*( Vector const & rhs );
+	Matrix &	operator=(Matrix const & rhs);
+	Matrix		operator*(Matrix const & rhs);
+	Vector		operator*(Vector const & rhs);
 	float &		operator[](int i);
 	float const &	operator[](int i) const;
 
@@ -43,9 +43,9 @@ public:
 private:
 	unsigned			size;
 	std::vector<float>	m;
-	void	rot_x( float angle );
-	void	rot_y( float angle );
-	void	rot_z( float angle );
+	void	rot_x(float angle);
+	void	rot_y(float angle);
+	void	rot_z(float angle);
 	
 
 	class OperationImpossible : public std::exception {
@@ -53,6 +53,6 @@ private:
 	};
 };
 
-std::ostream &	operator<<( std::ostream & o, Matrix const & rhs );
+std::ostream &	operator<<(std::ostream & o, Matrix const & rhs);
 
 #endif

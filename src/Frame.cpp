@@ -74,4 +74,73 @@ std::map<std::string, Frame::getMesh> Frame::getMeshMap() {
 	return this->meshMap;
 }
 
+Mesh* Frame::getRoot() const {
+	return this->root;
+
+}
+
+Mesh* Frame::getTorso()	const {
+	return this->torso;
+}
+
+Mesh* Frame::getHead() const {
+	return this->head;
+}
+
+Mesh* Frame::getRightArm() const {
+	return this->rightArm;
+}
+
+Mesh* Frame::getRightLowerArm()	const {
+	return this->rightLowerArm;
+}
+
+Mesh* Frame::getRightHand()	const {
+	return this->rightHand;
+}
+
+Mesh* Frame::getLeftArm() const {
+	return this->leftArm;
+}
+
+Mesh* Frame::getLeftLowerArm()	const {
+	return this->leftLowerArm;
+}
+
+Mesh* Frame::getLeftHand() const {
+	return this->leftHand;
+}
+
+Mesh* Frame::getLeftLeg() const {
+	return this->leftLeg;
+}
+
+Mesh* Frame::getLeftLowerLeg()	const {
+	return this->leftLowerLeg;
+}
+
+Mesh* Frame::getRightLeg() const {
+	return this->rightLeg;
+}
+
+Mesh* Frame::getRightLowerLeg()	const {
+	return this->rightLowerLeg;
+}
+
+Mesh* Frame::getRightFoot()	const {
+	return this->rightFoot;
+}
+
+Mesh* Frame::getLeftFoot() const {
+	return this->leftFoot;
+}
+
+void Frame::setFrameLength(unsigned i) {
+	Frame::frameLength = i;
+}
+
+unsigned Frame::getFrameLength(void) {
+	return Frame::frameLength;
+}
+
 unsigned Frame::frameLength = 16;

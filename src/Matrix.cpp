@@ -15,7 +15,7 @@ Matrix::Matrix( unsigned size ) {
 }
 
 Matrix::Matrix( float angle, Matrix::TYPE type ) : Matrix::Matrix(4) {
-	angle *= M_PI / 180;
+	angle *= 3.14159f / 180.0f;
 
 	if ( type == Matrix::TYPE::ROTATION_X )
 		this->rot_x( angle );
@@ -64,7 +64,7 @@ Matrix::Matrix( Vector const & v, Matrix::TYPE type ) : Matrix::Matrix(4) {
 Matrix::Matrix( float far_dist, float near_dist, float aspect, float fov, Matrix::TYPE type ) : Matrix::Matrix(4) {
 	if ( type == Matrix::TYPE::PROJECTION ) {
 		float one_over_depth = 1 / ( far_dist - near_dist );
-		this->m[5] = 1 / tan(0.5f * fov * M_PI / 180 );
+		this->m[5] = 1 / tan(0.5f * fov * 3.14159f / 180.0f );
 		this->m[0] = this->m[5] / aspect;
 		this->m[10] = far_dist * one_over_depth;
 		this->m[14] = ( -far_dist * near_dist ) * one_over_depth;

@@ -7,7 +7,7 @@ class HeadMesh : public Mesh {
 
 public:
 	HeadMesh();
-	HeadMesh( Vector rotationAngles );
+	HeadMesh(Vector rotationAngles);
 };
 
 #endif

@@ -119,3 +119,39 @@ void Mesh::recursivelyUpdateMatrices( Matrix & parentMatrix, Vector parentPos ) 
 		mesh->recursivelyUpdateMatrices( newParentMatrix, newParentPos );
 	}
 }
+
+void Mesh::setRotationAngles(Vector  newAngle) {
+	this->rotationAngles = newAngle;
+}
+
+void Mesh::setTranslation(Vector  translation) {
+	this->translation = translation;
+}
+
+void Mesh::setScale(Vector  scale) {
+	this->scale = scale;
+}
+
+void Mesh::setColor(Vector  color) {
+		this->color = color;
+}
+
+Vector const & Mesh::getRotationAngles() {
+	return this->rotationAngles;
+}
+
+Vector const & Mesh::getTranslation() {
+	return this->translation;
+}
+
+Vector const & Mesh::getScale() {
+	return this->scale;
+}
+
+Vector const & Mesh::getColor() {
+	return this->color;
+}
+
+std::string  & Mesh::getName() {
+	return this->name;
+}

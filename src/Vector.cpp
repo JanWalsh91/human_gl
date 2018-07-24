@@ -92,7 +92,7 @@ float *	Vector::toArray( void ) {
 }
 
 void Vector::normalize() {
-	double length = std::sqrt(this->v[0] * this->v[0] + this->v[1] * this->v[1] + this->v[2] * this->v[2]);
+	float length = std::sqrt(this->v[0] * this->v[0] + this->v[1] * this->v[1] + this->v[2] * this->v[2]);
 	this->v[0] /= length;
 	this->v[1] /= length;
 	this->v[2] /= length;
