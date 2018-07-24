@@ -1,7 +1,6 @@
 #include "Frame.hpp"
 
 Frame::Frame(Frame const & other) {
-	std::cout << "New Copied Frame: " << glfwGetTime() << std::endl;
 	this->torso			= new Mesh( *other.getTorso() );
 	this->head			= new Mesh( *other.getHead() );
 	this->rightArm		= new Mesh( *other.getRightArm() );
@@ -37,11 +36,25 @@ Frame::Frame(Frame const & other) {
 	torso->append( rightLeg );
 
 	this->root = this->torso;
+
+	this->meshMap["LeftArm"] = &Frame::getLeftArm;
+	this->meshMap["RightArm"] = &Frame::getRightArm;
+	this->meshMap["LeftFoot"] = &Frame::getLeftFoot;
+	this->meshMap["RightFoot"] = &Frame::getRightFoot;
+	this->meshMap["LeftHand"] = &Frame::getLeftHand;
+	this->meshMap["RightHand"] = &Frame::getRightHand;
+	this->meshMap["Head"] = &Frame::getHead;
+	this->meshMap["LeftLeg"] = &Frame::getLeftLeg;
+	this->meshMap["RightLeg"] = &Frame::getRightLeg;
+	this->meshMap["LeftLowerLeg"] = &Frame::getLeftLowerLeg;
+	this->meshMap["RightLowerLeg"] = &Frame::getRightLowerLeg;
+	this->meshMap["LeftLowerArm"] = &Frame::getLeftLowerArm;
+	this->meshMap["RightLowerArm"] = &Frame::getRightLowerArm;
+	this->meshMap["Torso"] = &Frame::getTorso;
 }
 
 Frame::~Frame() {
 	static int i = 0;
-	std::cout << "delete frame" << i++ << "\n";
 	delete this->torso;
 	delete this->head;
 	delete this->rightArm;
@@ -56,6 +69,10 @@ Frame::~Frame() {
 	delete this->rightLowerLeg;
 	delete this->rightFoot;
 	delete this->leftFoot;
+}
+
+std::map<std::string, Frame::getMesh> Frame::getMeshMap() {
+	return this->meshMap;
 }
 
 unsigned Frame::frameLength = 16;

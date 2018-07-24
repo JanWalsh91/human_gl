@@ -31,6 +31,7 @@ public:
 	Frame&	getCurrentFrame();
 	unsigned	getStartTime() const { return this->startTime; }
 	const std::vector<KeyFrame*>& getKeyFrames();
+	std::vector<Frame>& getFrames();
 		
 private:
 	std::vector<KeyFrame*>	keyFrames;

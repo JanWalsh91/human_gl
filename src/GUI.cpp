@@ -1,6 +1,8 @@
 #include "GUI.hpp"
 
-GUI::GUI(OpenGLWindow* screen): screen(screen), currentSelectedMesh(nullptr), dragging(false), selectedCycle(5) {}
+#include <iomanip>
+
+GUI::GUI(OpenGLWindow* screen): screen(screen), currentSelectedMesh(nullptr), dragging(false), updateFrames(false), selectedCycle(0) {}
 
 GUI::~GUI() {}
 
@@ -49,15 +51,13 @@ int GUI::getSelectedCycle() const {
 void GUI::createSettings() {
 
 	nanogui::Window* guiWindow = new nanogui::Window(this->screen, "HumanGL Settings");
-	guiWindow->setPosition(nanogui::Vector2i(20, 150));
+	guiWindow->setPosition(nanogui::Vector2i(20, 380));
 	guiWindow->setLayout(new nanogui::GroupLayout());
 
 	// Parent GUI Panel, vertical orientation
 	parentPanel = new nanogui::Widget(guiWindow);
 	parentPanel->setLayout(new nanogui::BoxLayout(nanogui::Orientation::Vertical, nanogui::Alignment::Middle, 0, 20));
 	this->createScalePanels();
-
-	nanogui::Button* b = new nanogui::Button(this->parentPanel, "Stop");
 
 	this->createCyclePanel();
 }
@@ -66,7 +66,7 @@ void GUI::createScalePanels() {
 	// scale GUI Panel, vertical orientation
 	scalePanel = new nanogui::Widget(parentPanel);
 	scalePanel->setLayout(new nanogui::BoxLayout(nanogui::Orientation::Vertical, nanogui::Alignment::Middle, 0, 20));
-	new nanogui::Label(scalePanel, "scale", "sans-bold");
+	new nanogui::Label(scalePanel, "Scale", "sans-bold");
 
 	// scale X GUI Panel, horizontal orientation
 	// ========================================================
@@ -81,14 +81,15 @@ void GUI::createScalePanels() {
 	textBoxX = new nanogui::TextBox(scaleXPanel);
 	textBoxX->setFixedSize(nanogui::Vector2i(60, 25));
 	textBoxX->setValue("0");
-	textBoxX->setUnits("°");
 
 	sliderX->setCallback([this](float value) {
-		textBoxX->setValue(std::to_string((int) (value * 360)));
+		std::ostringstream out;
+    	out << std::setprecision(2) << value * 5.0;
+		textBoxX->setValue(out.str());
 		if (currentSelectedMesh) {
-
-			Vector newScale = currentSelectedMesh->getScale();
-			currentSelectedMesh->setScale(Vector(value * 360, newScale[1], newScale[2]));
+			this->currentMeshScale = currentSelectedMesh->getScale();
+			this->currentMeshScale = Vector(value * 3, this->currentMeshScale[1], this->currentMeshScale[2]);
+			this->updateFrames = true;
 		}
 	});
 	textBoxX->setFixedSize(nanogui::Vector2i(60,25));
@@ -109,13 +110,15 @@ void GUI::createScalePanels() {
 	textBoxY = new nanogui::TextBox(scaleYPanel);
 	textBoxY->setFixedSize(nanogui::Vector2i(60, 25));
 	textBoxY->setValue("0");
-	textBoxY->setUnits("°");
 
 	sliderY->setCallback([this](float value) {
-		textBoxY->setValue(std::to_string((int)(value * 360)));
+		std::ostringstream out;
+    	out << std::setprecision(2) << value * 5.0;
+		textBoxY->setValue(out.str());
 		if (currentSelectedMesh) {
-			Vector newScale = currentSelectedMesh->getScale();
-			currentSelectedMesh->setScale(Vector(newScale[0], value * 360, newScale[2]));
+			this->currentMeshScale = currentSelectedMesh->getScale();
+			this->currentMeshScale = Vector(this->currentMeshScale[0], value * 3, this->currentMeshScale[2]);
+			this->updateFrames = true;
 		}
 	});
 
@@ -138,14 +141,16 @@ void GUI::createScalePanels() {
 	textBoxZ = new nanogui::TextBox(scaleZPanel);
 	textBoxZ->setFixedSize(nanogui::Vector2i(60, 25));
 	textBoxZ->setValue("0");
-	textBoxZ->setUnits("°");
 
 
 	sliderZ->setCallback([this](float value) {
-		textBoxZ->setValue(std::to_string((int)(value * 360)));
+		std::ostringstream out;
+    	out << std::setprecision(2) << value * 5.0;
+		textBoxZ->setValue(out.str());
 		if (currentSelectedMesh) {
-			Vector newScale = currentSelectedMesh->getScale();
-			currentSelectedMesh->setScale(Vector(newScale[0], newScale[1], value * 360));
+			this->currentMeshScale = currentSelectedMesh->getScale();
+			this->currentMeshScale = Vector(this->currentMeshScale[0], this->currentMeshScale[1], value * 3);
+			this->updateFrames = true;
 		}
 	});
 
@@ -158,15 +163,22 @@ void GUI::setSelectedMesh(Mesh *selectedMesh) {
 	if (selectedMesh) {
 		this->currentSelectedMesh = selectedMesh;
 		Vector scale = this->currentSelectedMesh->getScale();
-		textBoxX->setValue(std::to_string((int)scale[0]));
-		textBoxY->setValue(std::to_string((int)scale[1]));
-		textBoxZ->setValue(std::to_string((int)scale[2]));
 
-		sliderX->setValue(scale[0] / 360);
-		sliderY->setValue(scale[1] / 360);
-		sliderZ->setValue(scale[2] / 360);
+		std::ostringstream out;
+    	out << std::setprecision(2) << scale[0];
+		textBoxX->setValue(out.str());
+		out.str("");
+		out << std::setprecision(2) << scale[1];
+		textBoxY->setValue(out.str());
+		out.str("");
+		out << std::setprecision(2) << scale[2];
+		textBoxZ->setValue(out.str());
 
-		std::cout << "New Selection: " << selectedMesh->getName() << std::endl;
+		std::cout << scale << std::endl;
+
+		sliderX->setValue(scale[0] / 5.0f);
+		sliderY->setValue(scale[1] / 5.0f);
+		sliderZ->setValue(scale[2] / 5.0f);
 	}
 }
 
@@ -178,10 +190,26 @@ Vector const & GUI::getClickPosition() const {
 	return this->clickPosition;
 }
 
+Vector const & GUI::getCurrentMeshScale() const {
+	return this->currentMeshScale;
+}
+
 bool GUI::isDragging() const {
 	return this->dragging;
 }
 
+bool GUI::needToUpdateFrames() const {
+	return this->updateFrames;
+}
+
+void GUI::setUpdateFrames(bool updateFrames) {
+	this->updateFrames = updateFrames; 
+}
+
 void GUI::setDragging(bool dragging) {
 	this->dragging = dragging;
+}
+
+Mesh* GUI::getSelectedMesh() {
+	return this->currentSelectedMesh;
 }

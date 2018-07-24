@@ -55,7 +55,6 @@ public:
 
 	Vector rotationAngles;
 
-
 private:
 	std::vector<Mesh*> meshes;
 

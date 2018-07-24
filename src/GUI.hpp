@@ -13,11 +13,15 @@ public:
 	void createSettings();
 
 	Vector const & getClickPosition() const;
+	Vector const & getCurrentMeshScale() const;
 	bool isDragging() const;
+	bool needToUpdateFrames() const;
+	Mesh* getSelectedMesh();
 
 	void setSelectedMesh(Mesh* selectedMesh);
 	void setClickPosition(Vector vector);
 	void setDragging(bool dragging);
+	void setUpdateFrames(bool b);
 
 	int getSelectedCycle() const;
 
@@ -27,7 +31,9 @@ private:
 	Mesh*			currentSelectedMesh;
 
 	Vector clickPosition;
+	Vector currentMeshScale;
 	bool	dragging;
+	bool	updateFrames;
 
 	nanogui::Widget* parentPanel;
 	nanogui::Widget* scalePanel;

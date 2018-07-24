@@ -50,6 +50,9 @@ void Cycle::createStandingCycle() {
 
 	std::vector<Frame>* tmp = this->keyFrames[0]->interpolate(*this->keyFrames[59]);
 	this->frames.insert( this->frames.end(), tmp->begin(), tmp->end() );
+
+	std::cout << "&1st Frame: " << &this->frames[0] << std::endl;
+
 	delete tmp;
 
 	delete this->keyFrames[0];
@@ -66,7 +69,7 @@ void Cycle::createJumpingCycle() {
 	this->keyFrames[0]->setIndex(0);
 	Mesh* torso = this->keyFrames[0]->getTorso();
 	torso->setRotationAngles(Vector(-30, 40, 0));
-	torso->setTranslation(Vector(0.0f, 3.0f - 2, 15.0f));
+	torso->setTranslation(Vector(0.0f, 1.0f - 2, 15.0f));
 	Mesh* rightLeg = this->keyFrames[0]->getRightLeg();
 	rightLeg->setRotationAngles(Vector(130, 0, 0));
 	Mesh* rightLowerLeg = this->keyFrames[0]->getRightLowerLeg();
@@ -90,7 +93,7 @@ void Cycle::createJumpingCycle() {
 	this->keyFrames[19]->setIndex(19);
 	torso = this->keyFrames[19]->getTorso();
 	torso->setRotationAngles(Vector(0, 40, 0));
-	torso->setTranslation(Vector(0.0f, 3.0f + 2, 15.0f));
+	torso->setTranslation(Vector(0.0f, 1.0f + 2, 15.0f));
 	rightArm = this->keyFrames[19]->getRightArm();
 	rightArm->setRotationAngles(Vector(25, 0, 0));
 	leftArm = this->keyFrames[19]->getLeftArm();
@@ -104,7 +107,7 @@ void Cycle::createJumpingCycle() {
 	this->keyFrames[30]->setIndex(30);
 	torso = this->keyFrames[30]->getTorso();
 	torso->setRotationAngles(Vector(-30, 40, 0));
-	torso->setTranslation(Vector(0.0f, 3.0f + 5.5f, 15.0f));
+	torso->setTranslation(Vector(0.0f, 1.0f + 5.5f, 15.0f));
 	rightLeg = this->keyFrames[30]->getRightLeg();
 	rightLeg->setRotationAngles(Vector(130, 0, 0));
 	rightLowerLeg = this->keyFrames[30]->getRightLowerLeg();
@@ -119,7 +122,7 @@ void Cycle::createJumpingCycle() {
 	this->keyFrames[41]->setIndex(41);
 	torso = this->keyFrames[41]->getTorso();
 	torso->setRotationAngles(Vector(0, 41, 0));
-	torso->setTranslation(Vector(0.0f, 3.0f + 2, 15.0f));
+	torso->setTranslation(Vector(0.0f, 1.0f + 2, 15.0f));
 	rightArm = this->keyFrames[41]->getRightArm();
 	rightArm->setRotationAngles(Vector(45, 0, 0));
 	leftArm = this->keyFrames[41]->getLeftArm();
@@ -133,7 +136,7 @@ void Cycle::createJumpingCycle() {
 	this->keyFrames[59]->setIndex(59);
 	torso = this->keyFrames[59]->getTorso();
 	torso->setRotationAngles(Vector(-30, 40, 0));
-	torso->setTranslation(Vector(0.0f, 3.0f - 2, 15.0f));
+	torso->setTranslation(Vector(0.0f, 1.0f - 2, 15.0f));
 	rightLeg = this->keyFrames[59]->getRightLeg();
 	rightLeg->setRotationAngles(Vector(130, 0, 0));
 	rightLowerLeg = this->keyFrames[59]->getRightLowerLeg();
@@ -322,7 +325,6 @@ void Cycle::createWalkingCycle() {
 	this->frames.insert( this->frames.end(), tmp->begin(), tmp->end() );
 	delete tmp;
 
-	std::cout << "deleting keyframes after interpolation" << std::endl;
 	delete this->keyFrames[0];
 	delete this->keyFrames[15];
 	delete this->keyFrames[30];
@@ -478,7 +480,6 @@ void Cycle::createMoonWalshCycle() {
 	this->frames.insert( this->frames.end(), tmp->begin(), tmp->end() );
 	delete tmp;
 
-	std::cout << "deleting keyframes after interpolation" << std::endl;
 	delete this->keyFrames[0];
 	delete this->keyFrames[15];
 	delete this->keyFrames[30];
@@ -684,4 +685,8 @@ void Cycle::createPushUpCycle() {
 
 std::vector<KeyFrame*> const & Cycle::getKeyFrames() {
 	return this->keyFrames;
+}
+
+std::vector<Frame>& Cycle::getFrames() {
+	return this->frames;
 }

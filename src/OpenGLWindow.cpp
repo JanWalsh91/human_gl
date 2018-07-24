@@ -151,17 +151,49 @@ void OpenGLWindow::loop() {
 			glfwGetCursorPos(window, &xpos, &ypos);
 			ypos = this->height - ypos;
 			glReadPixels(xpos, ypos, 1, 1, GL_RGB, GL_FLOAT, data);
-			Mesh* tmp = currentFrame.getRoot()->getByColor(Vector((float)data[0], (float)data[1], (float)data[2]));
-			if (tmp)
-				std::cout << "========= tmp: " << tmp->getName() << std::endl;
-
-			this->gui->setSelectedMesh(tmp);
+			this->gui->setSelectedMesh(currentFrame.getRoot()->getByColor(Vector((float)data[0], (float)data[1], (float)data[2])));
 
 			//unsigned char res[4];
 			//GLint viewport[4];
 			//glGetIntegerv(GL_VIEWPORT, viewport);
 			//glReadPixels(xpos, ypos, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &res);		
 		}
+
+		if (this->gui->needToUpdateFrames()) {
+			// this->cycles.
+			std::vector<Frame>& frames = this->human->getCycles()[this->gui->getSelectedCycle()]->getFrames();
+			// std::cout << "Update Frames: " << frames.size() << std::endl;
+			for (Frame& frame: frames) {
+				std::string name = this->gui->getSelectedMesh()->getName();
+
+				std::map<std::string, Frame::getMesh> meshMap = frame.getMeshMap();
+
+				Mesh* (Frame::*f)() const = meshMap[name];
+
+				// (frame.(meshMap[name]))();
+
+				Mesh* r = (frame.*f)();
+
+				
+				r->setScale(this->gui->getCurrentMeshScale());
+				std::cout << r->getScale()[0] << std::endl;
+				// std::cout << "& frame: " << &frame << std::endl;
+				// break;
+			}
+
+			const std::vector<Frame>& framesAAA = this->human->getCycles()[this->gui->getSelectedCycle()]->getFrames();
+			for (auto frame: framesAAA) {
+				std::string name = this->gui->getSelectedMesh()->getName();
+				std::map<std::string, Frame::getMesh> meshMap = frame.getMeshMap();
+				Mesh* (Frame::*f)() const = meshMap[name];
+				Mesh* r = (frame.*f)();
+				std::cout << r->getScale()[0] << std::endl;
+				// break;
+			}
+			std::cout << "===" << std::endl;
+			this->gui->setUpdateFrames(false);
+		}
+
 		glfwSwapBuffers(this->window);
 	}
 

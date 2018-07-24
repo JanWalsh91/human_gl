@@ -4,6 +4,7 @@
 # include "Mesh/Mesh.hpp"
 
 # include <vector>
+# include <map>
 
 class Frame {
 
@@ -30,6 +31,9 @@ public:
 	Mesh* getRightFoot()		const { return this->rightFoot; }
 	Mesh* getLeftFoot()			const { return this->leftFoot; }
 
+	typedef Mesh* (Frame::*getMesh) () const;
+	std::map<std::string, getMesh> getMeshMap();
+
 	static void setFrameLength( unsigned i ) { Frame::frameLength = i; };
 	static unsigned getFrameLength( void ) { return Frame::frameLength; }
 
@@ -52,6 +56,11 @@ protected:
 	Mesh* leftFoot;
 
 	static unsigned frameLength; //ms
+
+private:
+
+	std::map<std::string, getMesh> meshMap;
+
 };
 
 

@@ -2,7 +2,6 @@
 
 KeyFrame::KeyFrame() {
 	static int i = 0;
-	std::cout << "New KeyFrame " << i++ << std::endl;
 	this->torso			= new TorsoMesh();
 	this->head			= new HeadMesh();
 	this->rightArm		= new ArmMesh(Side::RIGHT);
@@ -18,7 +17,6 @@ KeyFrame::KeyFrame() {
 	this->rightFoot		= new FootMesh(Side::RIGHT);
 	this->leftFoot		= new FootMesh(Side::LEFT);
 
-	std::cout << "arm: " << this->rightArm << std::endl;
 	torso->append( head );
 	rightLowerArm->append( rightHand );
 	rightArm->append( rightLowerArm );
@@ -43,8 +41,6 @@ KeyFrame::KeyFrame() {
 
 KeyFrame::~KeyFrame( void ) {
 	static int i = 0;
-	std::cout << "delete keyframe " << i++ << "\n";
-	std::cout << "arm: " << this->rightArm << std::endl;
 	//TODO ...
 	// delete this->torso;
 	// delete this->head;
@@ -68,7 +64,6 @@ KeyFrame & KeyFrame::operator=( KeyFrame const & rhs ) {
 
 // returns list of interpolated frames between two KeyFrames
 std::vector<Frame>* KeyFrame::interpolate( KeyFrame const & other ) {
-	std::cout << "Interpolate" << std::endl;
 	int size = std::abs(other.index - this->index) * Frame::frameLength;
 	KeyFrame *tmp = new KeyFrame();
 	std::vector<Frame>* frames = new std::vector<Frame>( size, *dynamic_cast<Frame *>(tmp) );
