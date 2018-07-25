@@ -68,8 +68,9 @@ void GUI::createScalePanels() {
 	scalePanel->setLayout(new nanogui::BoxLayout(nanogui::Orientation::Vertical, nanogui::Alignment::Middle, 0, 20));
 	new nanogui::Label(scalePanel, "Scale", "sans-bold");
 
-	// scale X GUI Panel, horizontal orientation
 	// ========================================================
+	
+	// scale X GUI Panel, horizontal orientation
 	nanogui::Widget* scaleXPanel = new nanogui::Widget(scalePanel);
 	scaleXPanel->setLayout(new nanogui::BoxLayout(nanogui::Orientation::Horizontal, nanogui::Alignment::Middle, 0, 20));
 	new nanogui::Label(scaleXPanel, "X", "sans-bold");
@@ -95,6 +96,7 @@ void GUI::createScalePanels() {
 	textBoxX->setFixedSize(nanogui::Vector2i(60,25));
 	textBoxX->setFontSize(20);
 	textBoxX->setAlignment(nanogui::TextBox::Alignment::Right);
+
 	// ========================================================
 
 	// scale Y GUI Panel, horizontal orientation
@@ -173,8 +175,6 @@ void GUI::setSelectedMesh(Mesh *selectedMesh) {
 		out.str("");
 		out << std::setprecision(2) << scale[2];
 		textBoxZ->setValue(out.str());
-
-		std::cout << scale << std::endl;
 
 		sliderX->setValue(scale[0] / 5.0f);
 		sliderY->setValue(scale[1] / 5.0f);

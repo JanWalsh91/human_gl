@@ -20,7 +20,6 @@ Camera::Camera() {
 Camera::~Camera() {}
 
 Matrix const & Camera::getViewMatrix() {
-	std::cout << this->viewMatrix[8] << std::endl;
 	return this->viewMatrix;
 }
 
