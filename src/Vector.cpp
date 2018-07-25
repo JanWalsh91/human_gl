@@ -1,7 +1,6 @@
 #include "Vector.hpp"
 
-Vector::Vector( void ) : Vector::Vector( 0, 0, 0 ) {
-}
+Vector::Vector( void ) : Vector::Vector( 0, 0, 0 ) {}
 
 Vector::Vector( float x, float y, float z ) {
 	this->v = std::vector<float>(3, 0);

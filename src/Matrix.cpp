@@ -1,7 +1,6 @@
 #include "Matrix.hpp"
 
-Matrix::Matrix( void ) : Matrix::Matrix(4) {
-}
+Matrix::Matrix( void ) : Matrix::Matrix(4) {}
 
 Matrix::Matrix( unsigned size ) {
 	if (size < 1) {

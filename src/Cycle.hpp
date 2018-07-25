@@ -1,5 +1,5 @@
-#ifndef CYCLE_H
-# define CYCLE_H
+#ifndef CYCLE_HPP
+# define CYCLE_HPP
 
 # include "KeyFrame.hpp"
 # include "Vector.hpp"

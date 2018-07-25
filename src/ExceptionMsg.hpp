@@ -1,5 +1,5 @@
-#ifndef EXCEPTION_MSG_H
-# define EXCEPTION_MSG_H
+#ifndef EXCEPTION_MSG_HPP
+# define EXCEPTION_MSG_HPP
 
 # include <exception>
 # include <string>
@@ -17,7 +17,6 @@ private:
 	ExceptionMsg();
 	std::string msg;
 	virtual const char* what() const throw();
-
 };
 
 #endif
