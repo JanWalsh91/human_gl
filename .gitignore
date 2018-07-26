@@ -1,8 +1,0 @@
-build
-.vscode
-.vsco
-build/*
-.idea/
-cmake-build-debug/
-.vs/
-nanogui.dll
