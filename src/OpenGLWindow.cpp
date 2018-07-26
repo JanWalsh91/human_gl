@@ -82,6 +82,7 @@ OpenGLWindow::OpenGLWindow( int width, int height, std::string const & title ): 
 	glfwSetFramebufferSizeCallback(window, [](GLFWwindow *win, int width, int height) {
 		OpenGLWindow* screen = (OpenGLWindow*)glfwGetWindowUserPointer(win);
 			screen->resizeCallbackEvent(width, height);
+			screen->resize(width, height);
 	   }
 	);
 }
@@ -169,4 +170,9 @@ OpenGLWindow & OpenGLWindow::operator=( OpenGLWindow const & rhs ) {
 
 HumanGL* OpenGLWindow::getHuman() {
 	return this->human;
+}
+
+void	OpenGLWindow::resize(int width, int height) {
+	this->width = width;
+	this->height = height;
 }

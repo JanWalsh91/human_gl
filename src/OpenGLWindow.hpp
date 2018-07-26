@@ -32,6 +32,7 @@ public:
 
 	OpenGLWindow & operator=(OpenGLWindow const & rhs);
 	void loop();
+	void resize(int widht, int height);
 
 	HumanGL* getHuman();
 
